@@ -94,21 +94,25 @@ To run the projects you will need to follow the instructions below. This will ru
 ### Features
 
 - [ ] Set up a basic blog structure
-    - [ ] Create a template for each post
-    - [ ] Create a template for the index page
-- [ ] create a routing system
-- [ ] Set up a basic Authentication system using Passport
+    - [ ] Create an index page
+        - Post-Preview Cards
+    - [ ] Create Mock blog posts
+        - Think of random themes for each post.
+- [ ] Create a Route system using Express
+- [ ] Set up Authentication system using Passport
 - [ ] Set up a Database
     - [ ] users
-    - [ ] posts
+        - [ ] username
+        - [ ] password
+        - [ ] email
     - [ ] comments
     - [ ] likes
     - [ ] dislikes
 
-
 ### Style
 
 - [ ] Add Basic Theme.
+    - Consider using Open-Props for simplifying the theme.
 
 See the [open issues](https://github.com/LucasMERN/project-night-blog/issues) for a full list of proposed features (and known issues).
 
