@@ -10,11 +10,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/LucasMERN/project-night-blog">
-    <img src="https://user-images.githubusercontent.com/72772558/180280901-7d62a24c-0354-4da5-8526-0aef52a4c161.png" alt="Logo" width="80" height="80">
-  </a>
 
-<h3 align="center">&#60;BlackSkies &#47;&#62;</h3>
+<h3 align="center">Project Night Blog</h3>
 
   <p align="center">
     This is a personal Blog and Bookreview website. I intend to document my journey in creating the website and its features. Maybe use it as a showcase for other people to see what I am capable of.
