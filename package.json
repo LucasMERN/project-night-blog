@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/LucasMERN/project-night-blog/issues"
   },
-  "homepage": "https://github.com/LucasMERN/project-night-blog#readme"
+  "homepage": "https://github.com/LucasMERN/project-night-blog#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }
