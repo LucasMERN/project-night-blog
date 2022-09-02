@@ -3,12 +3,12 @@
 html {
 
     /* light */
-    --brand-light: var(--teal-6);       // Brand color 1
-    --brand-light-alt: var(--grape-6); // Brand color 2
+    --brand-light: var(--teal-6);
+    --brand-light-alt: var(--grape-6);
     --text1-light: var(--gray-8);
     --text2-light: var(--gray-7);
-    --text1-brand-light: var(--teal-6); // Text color 1
-    --text2-brand-light: var(--teal-5); // Text color 2
+    --text1-brand-light: var(--teal-6);
+    --text2-brand-light: var(--teal-5);
     --surface1-light: var(--gray-6);
     --surface2-light: var(--gray-4);
     --surface3-light: var(--gray-3);
@@ -71,9 +71,6 @@ html {
     --surface2: var(--surface2-light);
     --surface3: var(--surface3-light);
     --surface4: var(--surface4-light);
-    --surface-shadow: var(--surface-shadow-light);
-    --shadow-strength: var(--shadow-strength-light);
-    --selection-text: var(--selection-text-light);
 }
   
 [color-scheme="dark"] {
