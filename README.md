@@ -60,7 +60,10 @@
 
 * [JavaScript](https://www.javascript.com/)
 * [Express](https://expressjs.com/)
+* [EJS](https://ejs.co/)
+* [Express-session](https://www.npmjs.com/package/express-session)
 * [MongoDB](https://www.mongodb.com/)
+* [Mongoosejs](https://mongoosejs.com/)
 * [Node.js](https://nodejs.org/)
 * [Passport.js](https://www.passportjs.org/)
 
@@ -92,27 +95,41 @@ To run the projects you will need to follow the instructions below. This will ru
 ## Roadmap
 
 ### Features
-
 - [ ] Set up a basic blog structure
+    - [ ] Look into using `express-ejs-layouts`
     - [ ] Create an index page
         - Post-Preview Cards
     - [ ] Create Mock blog posts
         - Think of random themes for each post.
 - [ ] Create a Route system using Express
 - [ ] Set up Authentication system using Passport
-- [ ] Set up a Database
-    - [ ] users
-        - [ ] username
-        - [ ] password
-        - [ ] email
-    - [ ] comments
+- [x] Set up a Database (MongoDB)
+  - [ ] users
+      - [ ] username
+      - [ ] password
+      - [ ] email
+  - [ ] comments
     - [ ] likes
     - [ ] dislikes
+- [x] Add Footer.
+
 
 ### Style
 
-- [ ] Add Basic Theme.
-    - Consider using Open-Props for simplifying the theme.
+- [x] Add Basic Themes.
+    - [x] Add Darkmode.
+
+### Future
+
+- [ ] Create User Profile pages
+  - [ ] User Photo
+  - [ ] User Bio
+  - Can use this for tooltips on hover in comment Section
+- [ ] Create a CRUD system for the blog posts
+  - [ ] Create a new post
+  - [ ] Read a post
+  - [ ] Update a post
+  - [ ] Delete a post
 
 See the [open issues](https://github.com/LucasMERN/project-night-blog/issues) for a full list of proposed features (and known issues).
 
