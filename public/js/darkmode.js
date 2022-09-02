@@ -1,4 +1,3 @@
-
 const switcher = document.querySelector('#theme-switcher'); // select the switcher
 
 switcher.addEventListener('input', e =>

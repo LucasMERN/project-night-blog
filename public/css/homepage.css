@@ -1,0 +1,30 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text1);
+    background-color: var(--surface1);
+}
+
+main {
+    margin-top: 5rem;
+}
+
+#page-container {
+    position: relative;
+    min-height: 90vh;   /* Sets the height of the container */
+}
+
+#content-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2.5rem;    /* Footer height */
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem; /* Footer height */
+  }
