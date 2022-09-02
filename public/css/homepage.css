@@ -13,6 +13,9 @@ main {
 #page-container {
     position: relative;
     min-height: 90vh;   /* Sets the height of the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #content-wrap {
@@ -20,6 +23,22 @@ main {
     flex-direction: column;
     align-items: center;
     padding-bottom: 2.5rem;    /* Footer height */
+    border-radius: var(--radius     -3);
+}
+
+.card {
+    background: var(--surface2);
+    border-radius: var(--radius-2);
+    padding: var(--size-fluid-3);
+    box-shadow: var(--shadow-2);
+
+    &:hover {
+        box-shadow: var(--shadow-4);
+    }
+
+  @media (--motionOK) {
+    animation: var(--animation-fade-in);
+  }
 }
 
 #footer {
