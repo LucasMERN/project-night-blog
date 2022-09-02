@@ -12,16 +12,16 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// let db,
-//     dbConnectionStr,
-//     dbName;
-
-// MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-//     .then(client => {
-//         console.log(`Connected to ${dbName} Database`);
-//         db = client.db(dbName);
-//     });
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({
+            client: mongoose.connection.getClient()
+        }),
+    })
+)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running on port ${process.env.PORT}`);
