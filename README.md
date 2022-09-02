@@ -14,7 +14,7 @@
 <h3 align="center">Project Night Blog</h3>
 
   <p align="center">
-    This is a personal Blog and Bookreview website. I intend to document my journey in creating the website and its features. Maybe use it as a showcase for other people to see what I am capable of.
+    This is a Blog
     <br />
     <br />
 <!--     <a href="https://github.com/LucasMERN/project-night-blog">View Demo</a> 
