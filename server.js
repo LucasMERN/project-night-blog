@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const connectDB = require('./config/database');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 require('dotenv').config({path: './config/.env'});
 
