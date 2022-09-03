@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/blogCard.css">
+
     <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
 
     <title>Blog</title>
@@ -22,6 +23,7 @@
                     <p>This is a simple blog application built with Node.js, Express, and EJS.</p>
                     <br />
                     <p>lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea vitae numquam ipsam aut eaque dicta adipisci ad nulla maiores? Nesciunt suscipit totam nostrum eligendi distinctio? Fuga ipsa labore est cumque!</p>
+                    <a href="/blog/new"><button class="blog-btn">New Blog</button></a>
                 </div>
             </div>
         </main>
@@ -36,13 +38,13 @@
                     </div>
                     <div class="card-info">
                         <p><%= article.body %></p>
-                        <a href="#">Read Article<i class="fa-solid fa-chevron-right"></i></a>
+                        <a href="/blog/<%= article.slug %>">Read Article<i class="fa-solid fa-chevron-right"></i></a>
                     </div>
                     <div class="utility-info">
                         <ul class="utility-list">
-                          <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.likeTotal %></a></li>
-                          <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.commentTotal %></a></li>
-                          <li><i class="fa-regular fa-calendar-days"></i>03 jun 2017</li>
+                          <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
+                          <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
+                          <li><i class="fa-regular fa-calendar-days"></i><%= article.createdAt.toLocaleDateString() %></li>
                           <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
                         </ul>
                       </div>
