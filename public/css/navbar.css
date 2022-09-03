@@ -31,10 +31,10 @@ select {
     max-width: 6rem;
     height: 100%;
     border-bottom: 0px;
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-2);
     font-size: 18px;
     background: var(--surface2);
-    color: var(--text1);
+    color: var(--text-1);
     highlight: var(--surface2);
     outline: none;
 }
@@ -94,7 +94,8 @@ select {
     transition: all 0.3s ease-in-out;
     background-color: var(--surface1);
 }
-@media (max-width: 850PX){
+
+@media (max-width: 850px){
     .bigLogo {
         display: none;
         visibility: hidden;
@@ -105,6 +106,7 @@ select {
         font-weight: bold;
     }
 }
+
 @media(max-width: 768px){
     li {
         min-height: 30px;
@@ -153,9 +155,5 @@ select {
 
     .nav-menu.active {
         right: 0;
-    }
-
-    .logo {
-        content: ["BS"];
     }
 }
