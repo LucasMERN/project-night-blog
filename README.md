@@ -65,7 +65,8 @@
 * [MongoDB](https://www.mongodb.com/)
 * [Mongoosejs](https://mongoosejs.com/)
 * [Node.js](https://nodejs.org/)
-* [Passport.js](https://www.passportjs.org/)
+* [Passport.js](https://www.passportjs.org/)\
+* [Marked.js](https://marked.js.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
