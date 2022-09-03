@@ -13,22 +13,10 @@
     <title>Blog</title>
 </head>
 <body id="pageContainer">
-    <%- include('component/navbar.ejs') %>  <!-- js located in the public folder-->
-    <div >
-        <main id="container">
-            <div class="content-wrap">
-                <div class="card">
-                    <h1>Welcome to Project Night Blog!</h1>
-                    <p>This is a simple blog application built with Node.js, Express, and EJS.</p>
-                    <br />
-                    <p>lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea vitae numquam ipsam aut eaque dicta adipisci ad nulla maiores? Nesciunt suscipit totam nostrum eligendi distinctio? Fuga ipsa labore est cumque!</p>
-                    <a href="/blog/new"><button class="blog-btn">New Blog</button></a>
-                </div>
-            </div>
-        </main>
+      
+    <div>
         <%- include('component/postPreview.ejs') %>
-        </div>
     </div>
-    <%- include('component/footer.ejs') %>
+    <%- include('component/navbar.ejs') %>
 </body>
 </html>
