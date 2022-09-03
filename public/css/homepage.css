@@ -12,7 +12,7 @@ main {
 
 #page-container {
     position: relative;
-    min-height: 90vh;   /* Sets the height of the container */
+    min-height: 100vh;   /* Sets the height of the container */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,10 +20,18 @@ main {
 
 #content-wrap {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-basis: var(--size-content-2);
+    gap: var(--size-2) var(--size-8);
     align-items: center;
-    padding-bottom: 2.5rem;    /* Footer height */
-    border-radius: var(--radius     -3);
+    justify-content: center;
+    max-width: 90vh;
+    width: 100%;
+}
+
+.postContainer {
+    display: flex;
+    flex-direction: row;
 }
 
 .card {
@@ -31,15 +39,18 @@ main {
     border-radius: var(--radius-2);
     padding: var(--size-fluid-3);
     box-shadow: var(--shadow-2);
-
-    &:hover {
-        box-shadow: var(--shadow-4);
-    }
-
-  @media (--motionOK) {
-    animation: var(--animation-fade-in);
-  }
+    margin-bottom: var(--size-fluid-3);
+    transition: all 1s ease-in-out;
 }
+.card:hover {
+    background: var(--surface3);
+    box-shadow: var(--shadow-4);
+    transition: all 0.2s ease-in-out;
+}
+
+@media (--motionOK) {
+    animation: var(--animation-fade-in);
+ }
 
 #footer {
     position: absolute;

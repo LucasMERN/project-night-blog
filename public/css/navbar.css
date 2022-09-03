@@ -147,6 +147,8 @@ select {
         background-color: var(--surface3);
         text-align: center;
         transition: 0.3s;
+        box-shadow: var(--shadow-4);
+        border-radius: var(--radius-1);
     }
 
     .nav-link {

@@ -6,6 +6,7 @@ const connectDB = require('./config/database'); // connect to mongodb
 const session = require('express-session'); // express-session is a middleware for session management
 const MongoStore = require('connect-mongo'); // connect-mongo is a store for Connect and Express
 const mainRoutes = require('./routes/main'); // import the main routes
+const blogRoutes = require('./routes/blog'); // import the post routes
 
 require('dotenv').config({path: './config/.env'});  // dotenv is used to store the secret keys in a .env file
 
@@ -28,6 +29,7 @@ app.use(
 
 // Routes
 app.use('/', mainRoutes)
+app.use('/blog', blogRoutes)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running. http://localhost:${process.env.PORT}`);

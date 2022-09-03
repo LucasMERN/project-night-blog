@@ -7,16 +7,52 @@
     <!-- located in public folder -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/blogCard.css">
+    <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
+
     <title>Blog</title>
 </head>
 <body>
     <%- include('component/navbar.ejs') %>  <!-- js located in the public folder-->
     <div id="page-container">
-        <main id="content-wrap" class="card">
-            <h1>Welcome to the Blog!</h1>
+        <main id="container">
+            <div class="content-wrap">
+                <div class="card">
+                    <h1>Welcome to Project Night Blog!</h1>
+                    <p>This is a simple blog application built with Node.js, Express, and EJS.</p>
+                    <br />
+                    <p>lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea vitae numquam ipsam aut eaque dicta adipisci ad nulla maiores? Nesciunt suscipit totam nostrum eligendi distinctio? Fuga ipsa labore est cumque!</p>
+                </div>
+            </div>
         </main>
-
-        <%- include('component/footer.ejs') %>
+        <div class="postContainer">
+            <% articles.forEach(article => { %>
+                <article class="blog-card " style="background: url('<%- article.img %>')">
+                    <div class="title-content">
+                        <h3><%= article.title %></h3>
+                        <div class="intro">
+                            <a href="#"><%= article.intro %></a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <p><%= article.body %></p>
+                        <a href="#">Read Article<i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <div class="utility-info">
+                        <ul class="utility-list">
+                          <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.likeTotal %></a></li>
+                          <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.commentTotal %></a></li>
+                          <li><i class="fa-regular fa-calendar-days"></i>03 jun 2017</li>
+                          <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
+                        </ul>
+                      </div>
+                      <div class="gradient-overlay"></div>
+                      <div class="colorOverlay"></div>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
     </div>
+    <!-- <%- include('component/footer.ejs') %> -->
 </body>
 </html>
