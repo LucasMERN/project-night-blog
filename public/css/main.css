@@ -88,17 +88,6 @@ html {
 }
 
 /* Sets global page container */
-#pageContainer {
-    position: relative;
-    min-height: 100vh;   /* Sets the height of the container */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#container {
-    margin-top: 5rem;
-}
 
 body {
     font-family: "Open Sans", sans-serif;
@@ -106,4 +95,21 @@ body {
     line-height: 1.5;
     color: var(--text1);
     background-color: var(--surface1);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+a {
+    color: var(--text1);
+    text-decoration: none;
+    display: block;
 }

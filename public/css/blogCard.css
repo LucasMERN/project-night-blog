@@ -200,16 +200,6 @@ h3:after {
   font-size:0.8em
 }
 
-.fa-regular, .fa-solid {
-  position:relative;  
-   width:23px;
-   height:15px;
-   display:inline-block;
-   vertical-align:middle;
-   color: var(--text-1);
-   padding: 0 5px;
-}
-
 .fa-chevron-right{
    filter: brightness(10);
 }
