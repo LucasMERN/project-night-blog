@@ -86,3 +86,24 @@ html {
     --surface3: var(--surface3-dark);
     --surface4: var(--surface4-dark);
 }
+
+/* Sets global page container */
+#pageContainer {
+    position: relative;
+    min-height: 100vh;   /* Sets the height of the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container {
+    margin-top: 5rem;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text1);
+    background-color: var(--surface1);
+}

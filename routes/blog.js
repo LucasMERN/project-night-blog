@@ -16,7 +16,7 @@ router.post('/create', blogController.newBlogPost);
 router.get('/:slug', async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
     if(blog == null) res.redirect('/')
-    res.render('blog', {blog: blog})
+    res.render('article', {blog: blog})
 })
 
 module.exports = router;

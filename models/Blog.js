@@ -18,6 +18,10 @@ const BlogSchema = new Schema({
         type: String,
         required: true
     },
+    author: {
+        type: String,
+        required: true
+    },
     intro: {
         type: String,
         required: true

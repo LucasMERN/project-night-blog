@@ -5,17 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- located in public folder -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/blogCard.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/homepage.css">
 
     <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
 
     <title>Blog</title>
 </head>
-<body>
+<body id="pageContainer">
     <%- include('component/navbar.ejs') %>  <!-- js located in the public folder-->
-    <div id="page-container">
+    <div >
         <main id="container">
             <div class="content-wrap">
                 <div class="card">
@@ -27,34 +26,9 @@
                 </div>
             </div>
         </main>
-        <div class="postContainer">
-            <% articles.forEach(article => { %>
-                <article class="blog-card " style="background: url('<%- article.img %>')">
-                    <div class="title-content">
-                        <h3><%= article.title %></h3>
-                        <div class="intro">
-                            <a href="#"><%= article.intro %></a>
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <p><%= article.body %></p>
-                        <a href="/blog/<%= article.slug %>">Read Article<i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                    <div class="utility-info">
-                        <ul class="utility-list">
-                          <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
-                          <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
-                          <li><i class="fa-regular fa-calendar-days"></i><%= article.createdAt.toLocaleDateString() %></li>
-                          <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
-                        </ul>
-                      </div>
-                      <div class="gradient-overlay"></div>
-                      <div class="colorOverlay"></div>
-                    </div>
-                </article>
-            <% }) %>
+        <%- include('component/postPreview.ejs') %>
         </div>
     </div>
-    <!-- <%- include('component/footer.ejs') %> -->
+    <%- include('component/footer.ejs') %>
 </body>
 </html>

@@ -2,16 +2,17 @@ const Blog = require('../models/Blog')
 
 module.exports = {
     getIndex: (req,res)=>{
-        res.render('blog')
+        res.render('article')
     },
     newBlogPage: (req, res)=>{
-        res.render('new.ejs')
+        res.render('newPost.ejs')
     },
     newBlogPost: async(req, res)=>{
         try {
             await Blog.create({
                 title: req.body.title,
                 intro: req.body.intro,
+                author: req.body.author,
                 markdown: req.body.markdown,
                 totalLikes: 0,
                 totalComments: 0,
