@@ -14,7 +14,7 @@
 <h3 align="center">Project Night Blog</h3>
 
   <p align="center">
-    This is a Blog
+    The goal here is to create a fullstack blog style application built on Node, Express, and EJS.
     <br />
     <br />
 <!--     <a href="https://github.com/LucasMERN/project-night-blog">View Demo</a> 
@@ -54,6 +54,22 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
+Desktop Index View
+![image](https://user-images.githubusercontent.com/72772558/188334814-fbbcaedb-2191-4a5a-9fc8-7ac55818ea2e.png)
+Desktop Login View
+![image](https://user-images.githubusercontent.com/72772558/188335517-585edcfd-038f-4291-b024-9dc37b32d5ee.png)
+Desktop Edit Profile View
+![image](https://user-images.githubusercontent.com/72772558/188335539-9c19036f-2311-4a03-8f61-c7bf7185322d.png)
+
+Mobile index & Login Profile view
+![image](https://user-images.githubusercontent.com/72772558/188335447-ebf722ed-8304-4bf8-98e5-2311f73c7b8b.png)
+Mobile index & Register Profile view
+![image](https://user-images.githubusercontent.com/72772558/188335457-bab78bf6-4eca-42b0-acb5-46052e5bf809.png)
+Mobile index & Edit Profile view
+![image](https://user-images.githubusercontent.com/72772558/188335465-486891a0-b192-4896-abf3-f0e379137aa0.png)
+
+TODO: Define Post views for Desktop and Mobile
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
@@ -87,7 +103,7 @@ To run the projects you will need to follow the instructions below. This will ru
    ```
 3. Run LocalHost:
    ```sh
-   npm run start
+   npm run dev
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -96,41 +112,47 @@ To run the projects you will need to follow the instructions below. This will ru
 ## Roadmap
 
 ### Features
-- [ ] Set up a basic blog structure
-    - [ ] Look into using `express-ejs-layouts`
-    - [ ] Create an index page
-        - Post-Preview Cards
-    - [ ] Create Mock blog posts
-        - Think of random themes for each post.
-- [ ] Create a Route system using Express
+- [x] Set up a basic blog structure
+    - [ ] Add Layout based on Canva
+          - [x] Left Navbar
+          - [ ] Top Navbar
+          - [ ] Index Page
+          - [ ] Post view
+          - [ ] Profile view
+          - [ ] Search view: Feature Update
 - [ ] Set up Authentication system using Passport
-- [x] Set up a Database (MongoDB)
+- [x] Routes
+    - [x] '/' 
+    - [x] '/blog'
+    - [ ] '/user'
+    - [ ] '/login'
+    - [ ] '/register'
+- [x] Set up a Database (MongoDB) using Model
+  - [x] post  Completed with PR #11
+    - [x] create post
+    - [x] edit post
   - [ ] users
-      - [ ] username
-      - [ ] password
-      - [ ] email
+    - [ ] username
+    - [ ] password
+    - [ ] email
   - [ ] comments
     - [ ] likes
     - [ ] dislikes
+- [x] Darkmode toggle: Added with PR #10
 - [x] Add Footer.
-
-
-### Style
-
-- [x] Add Basic Themes.
-    - [x] Add Darkmode.
 
 ### Future
 
 - [ ] Create User Profile pages
-  - [ ] User Photo
-  - [ ] User Bio
-  - Can use this for tooltips on hover in comment Section
-- [ ] Create a CRUD system for the blog posts
-  - [ ] Create a new post
-  - [ ] Read a post
-  - [ ] Update a post
-  - [ ] Delete a post
+  - [ ] Edit Photo
+  - [ ] Add/Edit Bio
+  - Can use this for tooltips on hover in comment/Suggested follow sections
+- [ ] Search Bar
+- [ ] Filter Post Buttons
+  - [ ] Popular (filter by Most Liked posts)
+  - [ ] Authors Followed (filter by author)
+  - [ ] Latest Posts (filter by CreateAt date)
+- [ ] Trending Posts
 
 See the [open issues](https://github.com/LucasMERN/project-night-blog/issues) for a full list of proposed features (and known issues).
 
