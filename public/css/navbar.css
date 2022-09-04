@@ -42,6 +42,12 @@ nav {
 /*MEDIA QUERIES*/
 /************************/
 
+@media screen and (max-width: 550px) {
+    #list-toggle {
+        display: none;
+    }
+}
+
 @media screen and (min-width: 550px) {
     .logo-img {
         display: block;
