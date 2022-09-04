@@ -1,0 +1,33 @@
+<!-- <link rel="stylesheet" href="/css/main.css"> -->
+<link rel="stylesheet" href="/css/navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <nav>
+            
+            <ul class="nav-list">
+                <li class="logo-img"><a href="/"><img class="logo" src="/images/Assets/mobile-logo.svg" alt="Project Night Blog Logo. Click to return to homepage." /></a></li>
+                <li><a href="#"><i class="fa-solid fa-home fa-lg"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-bell fa-lg"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-bookmark fa-lg"></i></a></li>
+                <li class="search"><a href="#"><i class="fa-solid fa-search fa-lg"></i></a></li>
+                <li class="upload"><a href="/blog/new"><i class="fa-solid fa-circle-plus fa-lg"></i></a></li>
+                <!-- <li class="settings"><a href="#"><i class="fa-solid fa-gears fa-lg"></i></a></li> add in later for settings controls--> 
+                <li id="list-toggle">
+                    <div id="toggle">
+                        <i class="indicator"></i>
+                    </div>
+                    <script>
+                        const body = document.querySelector('body');
+                        const toggle = document.getElementById('toggle');
+                        toggle.onclick = function() {
+                            toggle.classList.toggle('active');
+                            body.classList.toggle('active');
+                        }
+                    </script>
+                </li>
+            </ul>
+            
+        </nav>
+<script src="/js/navbar.js"></script>
+<script src="/js/darkmode.js"></script>
