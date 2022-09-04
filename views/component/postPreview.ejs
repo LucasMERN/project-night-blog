@@ -18,6 +18,7 @@
                     <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
                     <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
                     <li><i class="fa-regular fa-calendar-days"></i><%= article.createdAt.toLocaleDateString() %></li>
+                    <li><a href="/edit/<%= article.id %>"><i class="fa-regular fa-pen-to-square"></i></i></a></li>
                     <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
                 </ul>
                 </div>

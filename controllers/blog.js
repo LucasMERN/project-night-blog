@@ -2,7 +2,7 @@ const Blog = require('../models/Blog')
 
 module.exports = {
     getIndex: (req,res)=>{
-        res.render('article')
+        res.redirect('/')
     },
     newBlogPage: (req, res)=>{
         res.render('newPost.ejs')
