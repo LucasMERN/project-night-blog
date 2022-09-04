@@ -13,7 +13,7 @@ router.get('/edit/:id', async (req, res)=>{
 router.post('/', async (req, res, next)=>{
     req.blog = new Blog()
     next()
-}, saveArticleAndRedirect('new'))
+}, saveArticleAndRedirect('newPost'))
 
 router.put('/:id', async (req, res, next)=>{
     req.blog = await Blog.findById(req.params.id)
@@ -34,6 +34,7 @@ function saveArticleAndRedirect(path){
             res.redirect(`/blog/${blog.slug}`)
         } catch (error) {
             console.log(error)
+            res.render(`/${path}`, { blog: blog })
         }
     }
 }
