@@ -6,6 +6,11 @@ const blogController = require('../controllers/blog');
 //Loads main blog route, we can prob remove this bc we want to load the specific blog post when we click read more, which we can do by using the code that begins on line 16
 router.get('/', blogController.getIndex);
 
+//
+router.get('/editPost', (req,res)=>{
+    res.send('hey')
+})
+
 //Load page that has form to enter a new blog
 router.get('/new', blogController.newBlogPage);
 

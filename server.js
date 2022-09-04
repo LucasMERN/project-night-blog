@@ -5,6 +5,7 @@ const passport = require('passport');   // passport is a middleware for authenti
 const connectDB = require('./config/database'); // connect to mongodb
 const session = require('express-session'); // express-session is a middleware for session management
 const MongoStore = require('connect-mongo'); // connect-mongo is a store for Connect and Express
+const methodOverride = require('method-override') // allows us to override forms to use put and delete
 const mainRoutes = require('./routes/main'); // import the main routes
 const blogRoutes = require('./routes/blog'); // import the post routes
 
@@ -16,6 +17,7 @@ app.set('view engine', 'ejs');  // set the view engine to ejs
 app.use(express.static('public'));  // set the public folder to serve static files
 app.use(express.urlencoded({ extended: true }));    // use express to parse the form data
 app.use(express.json());    // use express to parse json data
+app.use(methodOverride('_method'))
 app.use(
     session({
         secret: process.env.SESSION_SECRET, // set the secret key for the session
