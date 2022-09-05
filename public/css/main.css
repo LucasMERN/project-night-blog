@@ -2,12 +2,6 @@
 
 /* toggle switch */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     display: flex;
     justify-content: center;
@@ -83,6 +77,12 @@ body {
     line-height: 1.5;
     color: var(--text1);
     background-color: var(--surface1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--surface1);
+    transition: 0.5s;
 }
 
 * {
