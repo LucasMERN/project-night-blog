@@ -1,0 +1,25 @@
+
+<div class="viewContainer">
+
+
+    <div class="headerContainer">
+        <%- include('component/toggle.ejs') %>
+        <h1><%= blog.title %></h1>
+    </div>
+
+
+
+    <div class="bodyContainer">
+        <h4 class="subContainer">by
+            <a href="#">
+                <%= blog.author %>
+            </a> on 
+            <span class="date">
+                <%= blog.createdAt.toLocaleDateString() %>
+            </span>
+        </h4>
+        <%- blog.sanitizedHtml %>
+    </div>
+
+
+</div>

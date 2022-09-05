@@ -41,12 +41,8 @@ nav li:nth-child(4), nav li:nth-child(5){
 /************************/
 
 @media screen and (min-width: 550px) {
-    /* .logo-img {
-        display: block;
-    } */
-
     .search {
-        display: none;
+        display: inline;
     }
 
     .upload {
@@ -54,14 +50,12 @@ nav li:nth-child(4), nav li:nth-child(5){
     }
 
     /* Removed due to image being too large and color is untargetable*/
-    /*
-    .logo-img img {
-        height: 60px;
-    }
-
     .logo-img {
-        margin-bottom: 8rem;
-    } */
+        display: block;
+        margin-bottom: 1rem;
+        width: 50px;
+        height: 50px;
+    }
 
     .navbar ul {
         display: block;

@@ -5,9 +5,20 @@
     min-height: 100vh;
 }
 
-.tn-mv{
+/* 
+tn= topNavbar
+mv= mainViewport
+rn= rightNavbar
+*/
+.tn-mv-rn {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.mv-rn {
+    display: flex;
+    flex-direction: row;
 }
 
 .navbar {
@@ -29,7 +40,9 @@
     justify-content: flex-start;
     align-items: center;
     min-height: 5rem;
-    background: var(--surface3)
+    background: var(--surface3);
+    position: sticky;
+    top: 0;
 }
 
 /* set mainViewport to take up the rest of the page */
@@ -53,7 +66,8 @@
 
 @media screen and (min-width: 550px) {
     .navbar {
-        position: unset;
+        position: sticky;
+        top: 0;
         height: 100vh;
         max-width: 10rem;
         display: flex;
