@@ -222,6 +222,11 @@ h3:after {
   background-position: -33px -6px;
 
 }
+.btnDelete{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
 @media (max-width:750px)
 {

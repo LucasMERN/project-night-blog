@@ -11,14 +11,19 @@
             </div>
             <div class="card-info">
                 <p><%= article.body %></p>
-                <a href="/blog/<%= article.slug %>">Read Article<i class="fa-solid fa-chevron-right"></i></a>
+                <a href="/<%= article.slug %>/article">Read Article<i class="fa-solid fa-chevron-right"></i></a>
             </div>
             <div class="utility-info">
                 <ul class="utility-list">
                     <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
                     <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
                     <li><i class="fa-regular fa-calendar-days"></i><%= article.createdAt.toLocaleDateString() %></li>
-                    <li><a href="/edit/<%= article.id %>"><i class="fa-regular fa-pen-to-square"></i></i></a></li>
+                    <li><a class="editPostAnchor" href="/edit/<%= article.id %>"><i class="fa-regular fa-pen-to-square"></i></i></a></li>
+                    <li>
+                        <form action="/<%= article.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btnDelete"><i class="fa-regular fa-trash-can"></i></button>
+                            </form>
+                    </li>
                     <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
                 </ul>
                 </div>
