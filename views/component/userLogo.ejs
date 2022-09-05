@@ -1,10 +1,26 @@
 <link rel="stylesheet" href="/css/userLogo.css">
 
-<div class="userLogo">
-    <a class="usernameLink" href="#">
-        <i class="fa-regular fa-circle"></i>
-        <span class="username">Just for show</span>
-    </a>
-</div>
-
 <!-- TODO: Add fallback image -->
+<!-- 
+conditional if user is not logged in show login icon else show user.img and user.name
+
+Link is conditional if user is not logged in link to login page else link to user profile page 
+-->
+
+<div class="userLogo">
+    <%# if (user) { %>
+        <!-- <a class="profileLink" href="/user/<%#= user.name %>"> -->
+            <%# if (user.img) { %>
+                <!-- <img src="<%#= user.img %>" alt="user image"> -->
+            <%# } else { %>
+                <!-- <img src="images/assets/freddy.svg" alt="alt user image"> -->
+            <%# } %>
+            <!-- <span class="username"><%#= user.name %></span>
+        </a> -->
+    <%# } else { %> 
+        <a class="profileLink" href="/login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span class="username">Login</span>
+        </a>
+    <%# } %>
+</div>

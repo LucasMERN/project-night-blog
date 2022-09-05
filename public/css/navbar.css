@@ -50,12 +50,12 @@ nav li:nth-child(4), nav li:nth-child(5){
     }
 
     /* Removed due to image being too large and color is untargetable*/
-    .logo-img {
+    /* .logo-img {
         display: block;
         margin-bottom: 1rem;
         width: 50px;
         height: 50px;
-    }
+    } */
 
     .navbar ul {
         display: block;
