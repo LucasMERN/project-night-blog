@@ -3,15 +3,11 @@
 .logo-img {
     display: none;
 }
-/* Center navbar items vertically */
 
-
-.navbar ul {
+ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    list-style: none;
 }
 
 nav li{
@@ -32,8 +28,14 @@ nav li:nth-child(4), nav li:nth-child(5){
 }
 
 .upload i {
-    padding-top: 1rem;
     font-size: 2.4em;
+}
+
+nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 /************************/
@@ -41,9 +43,9 @@ nav li:nth-child(4), nav li:nth-child(5){
 /************************/
 
 @media screen and (min-width: 550px) {
-    /* .logo-img {
+    .logo-img {
         display: block;
-    } */
+    }
 
     .search {
         display: none;
@@ -53,36 +55,28 @@ nav li:nth-child(4), nav li:nth-child(5){
         font-size: 1em;
     }
 
-    /* Removed due to image being too large and color is untargetable*/
-    /*
     .logo-img img {
         height: 60px;
     }
 
     .logo-img {
         margin-bottom: 8rem;
-    } */
-
-    .navbar {
-        position: fixed;
-        height: 100%;
-        max-width: 10rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 0;
     }
 
-    .navbar ul {
+    ul {
         display: block;
+        width: 20%;
     }
 
-    .navbar li {
+    nav li {
         text-align: center;
-        margin: 4rem;
+        margin-top: 4rem;
     }
 
-    
+    nav {
+        position: fixed;
+        top: 0;
+    }
 }
 
 @media screen and (min-width: 800px) {

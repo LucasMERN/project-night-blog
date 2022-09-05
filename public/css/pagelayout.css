@@ -1,0 +1,60 @@
+#pageContainer{
+display: flex;
+}
+
+.1{
+}
+.2{
+}
+.3{
+}
+.4{
+}
+
+.navbar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 6rem;
+    z-index: 100;
+    outline: 1px solid red;
+    display: flex;
+    align-items: center;
+    background: var(--surface3);
+}
+
+.topNavbar {
+    outline: 1px solid red;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 5rem;
+    background: var(--surface3)
+}
+
+.mainViewport {
+    outline: 1px solid red;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--surface4);
+}
+
+
+@media screen and (min-width: 550px) {
+    .navbar {
+        position: fixed;
+        height: 100%;
+        max-width: 10rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 0;
+    }
+}

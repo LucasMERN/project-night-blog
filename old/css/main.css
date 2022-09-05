@@ -1,8 +1,6 @@
 @import "https://unpkg.com/open-props";
 
 /* toggle switch */
-/* end switch */
-
 html {
 
     /* light */
@@ -45,6 +43,22 @@ html {
     }
 }
 
+/* Sets global page container */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text1);
+    background-color: var(--surface1);
+}
+
 body.active {
     color-scheme: light;
     --brand: var(--brand-light);
@@ -59,20 +73,6 @@ body.active {
     --surface4: var(--surface4-light);
 }
 
-/* Sets global page container */
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    color: var(--text1);
-    background-color: var(--surface1);
-}
-
 li {
     list-style: none;
     font-size: 1.5rem;
@@ -83,3 +83,14 @@ a {
     text-decoration: none;
     display: block;
 }
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* end switch */
+
