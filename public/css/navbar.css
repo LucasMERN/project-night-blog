@@ -63,16 +63,6 @@ nav li:nth-child(4), nav li:nth-child(5){
         margin-bottom: 8rem;
     } */
 
-    .navbar {
-        position: fixed;
-        height: 100%;
-        max-width: 10rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 0;
-    }
-
     .navbar ul {
         display: block;
     }

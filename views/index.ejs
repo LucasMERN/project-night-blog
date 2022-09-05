@@ -12,34 +12,14 @@
 
     <title>Blog</title>
 </head>
-<body id="pageContainer">
+<body class="pageContainer">
     <%- include('component/navbar.ejs') %>
-    <%- include('component/topNavbar.ejs') %>
-    <%- include('component/rightNavbar.ejs') %>
-    
-    <!-- viewport -->
-    <div id="viewport">  
-        <% if (routeName == 'home') { %>
-            <%- include('component/postPreview.ejs') %>
-        <!-- if route is slug return post.ejs -->
-        <% } else if (routeName == 'slug') { %>
-            <%- include('component/post.ejs') %>
-        <!-- if route is edit return edit.ejs -->
-        <% } else if (routeName == 'edit') { %> 
-            <%- include('component/edit.ejs') %>
-        <!-- if route is newPost return newPost.ejs -->
-        <% } else if (routeName == 'newPost') { %>
-            <%- include('component/newPost.ejs') %>
-        <!-- if route is login return login.ejs -->
-        <% } else if (routeName == 'login') { %>
-            <%- include('component/login.ejs') %>
-        <!-- if route is register return register.ejs -->
-        <% } else if (routeName == 'register') { %>
-            <%- include('component/register.ejs') %>
-        <!-- else  -->
-        <% } else { %>
-            <%- include('component/404.ejs') %>
-        <% } %>
+    <div class="tn-mv">
+        <%- include('component/topNavbar.ejs') %>
+        <%- include('component/postPreview.ejs') %>
     </div>
+ 
+    <!-- viewport -->
+
 </body>
 </html>
