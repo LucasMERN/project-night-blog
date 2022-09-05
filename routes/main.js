@@ -19,7 +19,7 @@ router.delete('/:id', async (req, res) => {
   })
 
 // The 'slug' is generated in our model. Basically, each blog will have an id (1234213452), instead of presenting that ugly string of numbers in our URL, we change the string of numbers into what is called a slug. I set the slug to be whatever the title of our blog is. This makes a more user-friendly URL.
-router.get('/:slug', async (req, res)=>{
+router.get('/:slug/article', async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
     if(blog == null) res.redirect('/')
     res.render('article', {blog: blog})
