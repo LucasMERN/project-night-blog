@@ -7,12 +7,14 @@
     <!-- located in public folder -->
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/css/user-view.css">
 
     <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
 
     <title>Blog</title>
 </head>
 <body id="pageContainer">
+    <%- include('component/user-view.ejs') %>
     <%- include('component/postPreview.ejs') %>
     <%- include('component/navbar.ejs') %>
     <%- include('component/toggleswitch.ejs') %>
