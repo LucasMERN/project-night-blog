@@ -1,0 +1,44 @@
+#component{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#component h1{
+    border-bottom: 1px solid lightgray;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 1%;
+    margin-bottom: 2%;
+}
+
+#component input, button[type=submit] {
+    margin-bottom: 1%;
+    width: 15rem;
+    border-radius: 20px;
+    background: rgb(213,213,213);
+    border: none;
+    height: 1.5rem;
+    padding-left: 1.5%;
+}
+
+button[type=submit]{
+    background: rgb(143, 87, 245);
+    color: white;
+    margin-top: 3%;
+    cursor: pointer;
+    width: 16rem;
+}
+
+button[type=submit]:hover{
+    background: rgb(143, 120, 245);
+}
+
+label{
+    display: block;
+    margin-bottom: 0.5%;
+}
+
+.socialIcon{
+    width: 50px;
+    padding: 1%;
+}

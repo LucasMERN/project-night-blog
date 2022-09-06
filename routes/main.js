@@ -22,13 +22,13 @@ router.delete('/:id', async (req, res) => {
 router.get('/:slug/article', async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
     if(blog == null) res.redirect('/')
-    res.render('article', {blog: blog})
+    res.render('index.ejs', {blog: blog, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view
 router.get('/edit/:id', async (req, res)=>{
     const blog = await Blog.findById(req.params.id)
-    res.render('edit.ejs', {blog: blog})
+    res.render('index.ejs', {blog: blog, routeName: 'edit'})
 })
 
 // Grab our specific article and update based upon saveArticleAndRedirect function

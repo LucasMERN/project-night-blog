@@ -1,9 +1,9 @@
-#userView {
+.userLogo {
     display: inline-block;
     height: 50px;
 }
 
-#usernameLink {
+.profileLink {
     text-decoration: none;
     height: 50px;
 }
@@ -20,7 +20,7 @@
     text-align: left;
 }
 
-#userViewName {
+.username {
     display: inline-block;
     height: 50px;
     vertical-align: middle;

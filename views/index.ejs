@@ -4,18 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- located in public folder -->
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pagelayout.css">
     <link rel="stylesheet" href="/css/homepage.css">
 
     <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="/images/assets/logo-favicon.png">
     <title>Blog</title>
 </head>
-<body id="pageContainer">
-    <%- include('component/user-view.ejs') %>
-    <%- include('component/postPreview.ejs') %>
+<body class="pageContainer">
     <%- include('component/navbar.ejs') %>
-    <%- include('component/toggleswitch.ejs') %>
+    <div class="tn-mv-rn">
+        <%- include('component/topNavbar.ejs') %>
+        <div class="viewport">
+            <% if (routeName == 'home') { %>
+                <%- include('viewport/postPreview.ejs') %>
+            <% } else if (routeName == 'slug') { %>
+                <%- include('viewport/post.ejs') %>
+            <% } else if (routeName == 'edit') { %> 
+                <%- include('viewport/edit.ejs') %>
+            <% } else if (routeName == 'newPost') { %>
+                <%- include('viewport/newPost.ejs') %>
+            <% } else if (routeName == 'login') { %>
+                <%- include('viewport/login.ejs') %>
+            <% } else if (routeName == 'register') { %>
+                <%- include('viewport/register.ejs') %>
+            <% } else { %>
+                <%- include('viewport/404.ejs') %>
+            <% } %>
+        </div>
+    </div>
 </body>
 </html>

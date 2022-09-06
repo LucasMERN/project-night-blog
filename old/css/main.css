@@ -1,8 +1,6 @@
 @import "https://unpkg.com/open-props";
 
 /* toggle switch */
-/* end switch */
-
 html {
 
     /* light */
@@ -45,6 +43,22 @@ html {
     }
 }
 
+/* Sets global page container */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text1);
+    background-color: var(--surface1);
+}
+
 body.active {
     color-scheme: light;
     --brand: var(--brand-light);
@@ -59,20 +73,6 @@ body.active {
     --surface4: var(--surface4-light);
 }
 
-/* Sets global page container */
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    color: var(--text1);
-    background-color: var(--surface1);
-}
-
 li {
     list-style: none;
     font-size: 1.5rem;
@@ -84,45 +84,13 @@ a {
     display: block;
 }
 
-/* Typography */
-h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--text1);
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text1);
-}
+/* end switch */
 
-h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text1);
-}
-
-h4 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text1);
-}
-
-h5 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text1);
-}
-
-h6 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text1);
-}
-
-p {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--text1);
-}

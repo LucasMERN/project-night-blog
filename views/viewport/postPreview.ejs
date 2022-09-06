@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="/css/blogCard.css">
+<link rel="stylesheet" href="/css/postPreview.css">
 
-<div class="postContainer">
+<div class="postPreviewContainer">
     <% articles.forEach(article => { %>
-        <article class="blog-card" style="background: url('<%- article.img %>')">
+        <article class="card" style="background: url('<%- article.img %>')">
             <div class="title-content">
                 <h3><%= article.title %></h3>
                 <div class="intro">
@@ -27,8 +27,6 @@
                     <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
                 </ul>
                 </div>
-                <div class="gradient-overlay"></div>
-                <div class="colorOverlay"></div>
             </div>
         </article>
     <% }) %>
