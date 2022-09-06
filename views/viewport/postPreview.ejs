@@ -1,33 +1,38 @@
 <link rel="stylesheet" href="/css/postPreview.css">
 
-<div class="postPreviewContainer">
-    <% articles.forEach(article => { %>
-        <article class="card" style="background: url('<%- article.img %>')">
-            <div class="title-content">
-                <h3><%= article.title %></h3>
-                <div class="intro">
-                    <a href="#"><%= article.intro %></a>
+<div class="viewContainer">
+    <div class="headerContainer">
+        <h1>Post Preview</h1> <!-- later we can add the filter conditionals here -->
+    </div>
+    <div class="bodyContainer">
+        <% articles.forEach(article => { %>
+            <article class="card" style="background: url('<%- article.img %>')">
+                <div class="title-content">
+                    <h3><%= article.title %></h3>
+                    <div class="intro">
+                        <a href="#"><%= article.intro %></a>
+                    </div>
                 </div>
-            </div>
-            <div class="card-info">
-                <p><%= article.body %></p>
-                <a href="/<%= article.slug %>/article">Read Article<i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="utility-info">
-                <ul class="utility-list">
-                    <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
-                    <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
-                    <li><i class="fa-regular fa-calendar-days"></i><%= article.createdAt.toLocaleDateString() %></li>
-                    <li><a class="editPostAnchor" href="/edit/<%= article.id %>"><i class="fa-regular fa-pen-to-square"></i></i></a></li>
-                    <li>
-                        <form action="/<%= article.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btnDelete"><i class="fa-regular fa-trash-can"></i></button>
-                            </form>
-                    </li>
-                    <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
-                </ul>
+                <div class="card-info">
+                    <p><%= article.body %></p>
+                    <a href="/<%= article.slug %>/article">Read Article<i class="fa-solid fa-chevron-right"></i></a>
                 </div>
-            </div>
-        </article>
-    <% }) %>
+                <div class="utility-info">
+                    <ul class="utility-list">
+                        <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
+                        <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
+                        <li><i class="fa-regular fa-calendar-days"></i><%= article.createdAt.toLocaleDateString() %></li>
+                        <li><a class="editPostAnchor" href="/edit/<%= article.id %>"><i class="fa-regular fa-pen-to-square"></i></i></a></li>
+                        <li>
+                            <form action="/<%= article.id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="btnDelete"><i class="fa-regular fa-trash-can"></i></button>
+                                </form>
+                        </li>
+                        <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
+                    </ul>
+                    </div>
+                </div>
+            </article>
+        <% }) %>
+    </div>
 </div>
