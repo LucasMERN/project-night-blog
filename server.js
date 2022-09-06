@@ -7,6 +7,7 @@ const session = require('express-session'); // express-session is a middleware f
 const MongoStore = require('connect-mongo'); // connect-mongo is a store for Connect and Express
 const methodOverride = require('method-override') // allows us to override forms to use put and delete
 const mainRoutes = require('./routes/main'); // import the main routes
+const loginRoutes = require('./routes/login'); // import the login routes
 
 require('dotenv').config({path: './config/.env'});  // dotenv is used to store the secret keys in a .env file
 
@@ -30,6 +31,7 @@ app.use(
 
 // Routes
 app.use('/', mainRoutes)
+app.use('/login', loginRoutes)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running. http://localhost:${process.env.PORT}`);
