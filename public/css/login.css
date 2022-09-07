@@ -1,44 +1,151 @@
-#component{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.graphic-side {
+    display: none;
+}
+
+.form-side {
+    width: 100%;
+}
+
+.logo-header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 1rem;
+    align-items: center;
+    width: 100%;
+}
+
+img {
+    height: 2.5rem;
+}
+
+h2 {
+    flex-basis: 88%;
+    font-size: .9rem;
+    color: rgb(14, 16, 27)
+}
+
+.content-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.content {
+    flex-basis: 70%;
+}
+
+header {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    margin: 12rem 0 3rem 0;
+    width: 100%;
 }
 
-#component h1{
-    border-bottom: 1px solid lightgray;
-    width: 90%;
-    margin: 0 auto;
-    padding-bottom: 1%;
-    margin-bottom: 2%;
+h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: rgb(14, 16, 27);
 }
 
-#component input, button[type=submit] {
-    margin-bottom: 1%;
-    width: 15rem;
-    border-radius: 20px;
-    background: rgb(213,213,213);
+h5 {
+    color: rgb(177, 180, 185);
+    font-size: .7rem;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    position: relative;
+}
+
+span {
+    background-color: white;
+    width: 60%;
+    position: absolute;
+    bottom: -5px;
+    left: 55px
+}
+
+form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
     border: none;
-    height: 1.5rem;
-    padding-left: 1.5%;
+    text-align: center;
+    width: 100%;
 }
 
-button[type=submit]{
-    background: rgb(143, 87, 245);
+input {
+    border: none;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+button {
+    margin-top: 2rem;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(17, 23, 39);
     color: white;
-    margin-top: 3%;
-    cursor: pointer;
-    width: 16rem;
+    height: 2rem;
+    width: 100%;
 }
 
-button[type=submit]:hover{
-    background: rgb(143, 120, 245);
+footer {
+    text-align: center;
+    margin: 1.5rem 0;
 }
 
-label{
-    display: block;
-    margin-bottom: 0.5%;
+h4 {
+    color: rgb(177, 180, 185);
+    font-size: .7rem;
+    margin-bottom: 3rem;
 }
 
-.socialIcon{
-    width: 50px;
-    padding: 1%;
+.border {
+    position: relative;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+.span2 {
+    background-color: white;
+    width: 25%;
+    position: absolute;
+    bottom: -5px;
+    left: 100px
+}
+
+li {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+a {
+    color: var(--text1);
+    color: rgb(14, 16, 27);
+    margin-left: 5px;
+}
+
+ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+
+.socialIcon {
+    flex-basis: 22.5%;
 }
