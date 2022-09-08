@@ -4,6 +4,26 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;    
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 body {
     display: flex;
     flex-flow: row wrap;
@@ -48,30 +68,46 @@ h2 {
 
 header {
     text-align: center;
-    margin: 12rem 0 3rem 0;
+    margin-top: 7rem;
     width: 100%;
 }
 
 h1 {
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
     color: rgb(14, 16, 27);
 }
 
 h5 {
-    color: rgb(177, 180, 185);
-    font-size: .7rem;
-    border-bottom: 1px solid rgb(235, 235, 235);
+    font-size: .8rem;
+    margin-bottom: 2rem;
+    color: rgb(14, 16, 27);
+    width: 100%; 
+    text-align: center;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+h5:before,
+h5:after {
+    background-color: rgb(34, 38, 60);
+    content: "";
+    display: inline-block;
+    height: 1px;
     position: relative;
-}
-
-span {
-    background-color: white;
-    width: 60%;
-    position: absolute;
-    bottom: -5px;
-    left: 55px
-}
+    vertical-align: middle;
+    width: 50%;
+  }
+  
+h5:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+  
+h5:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
 
 form {
     display: flex;
@@ -82,23 +118,30 @@ form {
 
 fieldset {
     border: none;
-    text-align: center;
+    text-align: left;
     width: 100%;
 }
 
 input {
     border: none;
-    border-bottom: 1px solid rgb(235, 235, 235);
+    border-bottom: 1px solid rgba(34, 38, 60, 0.3);
     width: 100%;
     margin-top: 1.5rem;
+    background: transparent;
+    display: block;
+    outline: none;
+}
+
+::placeholder {
+    color: rgb(14, 16, 27);
 }
 
 button {
-    margin-top: 2rem;
+    margin-top: 3rem;
     text-align: center;
     border-radius: 5px;
     border: none;
-    background-color: rgb(17, 23, 39);
+    background-color: rgb(14, 16, 27);
     color: white;
     height: 2rem;
     width: 100%;
@@ -110,22 +153,9 @@ footer {
 }
 
 h4 {
-    color: rgb(177, 180, 185);
-    font-size: .7rem;
+    text-align: left;
+    font-size: .8rem;
     margin-bottom: 3rem;
-}
-
-.border {
-    position: relative;
-    border-bottom: 1px solid rgb(235, 235, 235);
-}
-
-.span2 {
-    background-color: white;
-    width: 25%;
-    position: absolute;
-    bottom: -5px;
-    left: 100px
 }
 
 li {
@@ -148,4 +178,37 @@ ul {
 
 .socialIcon {
     flex-basis: 22.5%;
+}
+
+@media screen and (min-width: 380px) {
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+}
+
+@media screen and (min-width: 550px) {
+
+    .form-side {
+        width: 550px;
+        margin: 0 auto
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+
+    .graphic-side {
+        display: block;
+        width: 50%;
+        min-height: 100vh;
+        background: url(/public/images/login-graphic.svg) no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .form-side {
+        width: 50%;
+    }
+
 }
