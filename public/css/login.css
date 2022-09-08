@@ -130,6 +130,7 @@ input {
     background: transparent;
     display: block;
     outline: none;
+    padding-bottom: 10px;
 }
 
 ::placeholder {
