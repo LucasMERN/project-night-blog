@@ -204,7 +204,7 @@ ul {
         display: block;
         width: 50%;
         min-height: 100vh;
-        background: url(/public/images/graphic2.svg) no-repeat center center;
+        background: url(/images/graphic2.svg) no-repeat center center;
         background-size: cover;
         object-position: 50% 50%;
     }
