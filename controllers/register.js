@@ -1,5 +1,5 @@
 module.exports = {
     loadRegisterPage: (req, res) =>{
-        res.render('index.ejs', {routeName: 'register'})
+        res.render('sign-up.ejs')
     }
 }
