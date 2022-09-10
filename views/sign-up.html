@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/sign-up.css">
+    <title>Login</title>
+</head>
+<body>
+  <div class="form-side">
+    <div class="logo-header">
+      <img src='/public/images/Assets/logo.svg' alt='PNB logo' />
+      <h2>Project. Night. Blog.</h2>
+    </div>
+    <div class="content-container">
+      <section class="content">
+        <header>
+          <h1>Hello, thanks for joining us!</h1>
+          <h5>please register below</h5>
+        </header>
+        <form action="/loginLocal" method="POST">
+          <fieldset>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Email"
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Confirm Password"
+            />
+            <button type="submit" class="btn">Sign Up</button>
+          </fieldset>
+        </form>
+        <footer>
+          <h4>Already have an account? <a href="/register"> Login here!</a></h4>
+          <h5>or sign up with</h5>
+          <ul>
+            <li><a href="#"><img class="socialIcon" src="/public/images/google.png"></a></li>
+            <li><a href="#"><img class="socialIcon" src="/public/images/facebook.png"></a></li>
+            <li><a href="#"><img class="socialIcon" src="/public/images/github.png"></a></li>
+            <li><a href="#"><img class="socialIcon" src="/public/images/twitter.png"></a></li>
+          </ul>
+        </footer>
+      </section>
+    </div>
+  </div>
+  <div class="graphic-side"></div>
+</body>
+</html>

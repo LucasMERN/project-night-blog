@@ -1,33 +1,55 @@
 <link rel="stylesheet" href="/css/postPreview.css">
 
-<div class="postPreviewContainer">
-    <% articles.forEach(article => { %>
-        <article class="card" style="background: url('<%- article.img %>')">
-            <div class="title-content">
-                <h3><%= article.title %></h3>
-                <div class="intro">
-                    <a href="#"><%= article.intro %></a>
-                </div>
-            </div>
-            <div class="card-info">
-                <p><%= article.body %></p>
-                <a href="/<%= article.slug %>/article">Read Article<i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="utility-info">
-                <ul class="utility-list">
-                    <li><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
-                    <li><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
-                    <li><i class="fa-regular fa-calendar-days"></i><%= article.createdAt.toLocaleDateString() %></li>
-                    <li><a class="editPostAnchor" href="/edit/<%= article.id %>"><i class="fa-regular fa-pen-to-square"></i></i></a></li>
-                    <li>
-                        <form action="/<%= article.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btnDelete"><i class="fa-regular fa-trash-can"></i></button>
+<div class="viewContainer">
+    <div class="headerContainer">
+        <h1>Post Preview</h1> <!-- later we can add the filter conditionals here -->
+    </div>
+    <div class="bodyContainer">
+        <!-- For each post in an array of posts create a new card -->
+        <!-- We will need to figure out how to eventually lazy load a cetain number of posts due to potential performance issues -->
+        <div class="cardContainer">
+            <% articles.forEach(article => { %>
+                <article class="postcard">
+                    
+                    <!-- Defines the Card content -->
+                    <div class="titleContent">
+                        <a href="/<%= article.slug %>/article">
+                            <h2 class="title"><%= article.title %></h2>
+                            <span>by <%= article.author %></span>
+                        </a>
+                    </div>
+                    <div class="cardContent">
+                        <a href="#"><%= article.intro %></a>
+                    </div>
+
+                    <!-- Adds icons to bottom of card -->
+                    <ul class="utilityContainer">
+                        <li class="iconInline"><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
+                        <li class="iconInline"><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
+                        
+                        <!-- tooltip to show the article date-->
+                        <li><i class="fa-solid fa-tag"></i>
+                            <div class="tooltip"><%= article.tags %></div>
+                        </li>
+                        <li><i class="fa-regular fa-calendar-days"></i>
+                            <div class="tooltip"><%= article.createdAt.toLocaleDateString() %></div>
+                        </li>
+
+                        <!-- This should be asigned soley to admin and authors users. Something like this -->
+                        <%# if (article.author === req.user.username || req.user.role === 'admin') { %>
+                        <li><a href="/edit/<%= article.id %>"><i class="fa-solid fa-pen-to-square"></i></i></a></li>
+                        
+                        <!-- We need to fix this icon. the button adds style and shrinks it. -->
+                        <li>
+                            <form action="/<%= article.id %>?_method=DELETE" method="POST">
+                                <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
                             </form>
-                    </li>
-                    <li><i class="fa-solid fa-tag"></i><%= article.tags %></li>
-                </ul>
-                </div>
-            </div>
-        </article>
-    <% }) %>
+                        </li>
+                        <%# } %>
+                    </ul>
+                    
+                </article>
+            <% }) %>
+        </div>
+    </div>
 </div>

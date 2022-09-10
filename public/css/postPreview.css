@@ -1,21 +1,73 @@
-.postPreviewContainer{
+.cardContainer{
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* max-width: 600px; */
 }
 
-.card {
+.postcard{
+    background: var(--surface2);
+    width: 500px;
+    height: 200px;
+    margin: 1rem;
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-2);
+    transition: all 0.3s ease-in-out;
+}
+
+.postcard:hover{
+    background: var(--surface3);
+    box-shadow: var(--shadow-3);
+    transition: all 0.3s ease-in-out;
+}
+
+/* The header and Author info */
+.titleContent{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    max-width: 500px;
-    min-height: 400px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    padding: 10px;
+    border-bottom: 1px solid var(--surface3);
+
+}
+/* Title specific to card */
+.title{
+
+}
+
+/* The intro content */
+.cardContent{
+
+}
+
+/* Icon container */
+.utilityContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0;
+    padding: 20px;
+}
+/* inlines the icon and count */
+.iconInline{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+}
+.tooltip{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    display: none;
+    visibility: hidden;
+}
+
+.tooltip:hover {
+    display: unset;
+    visibility: visible;
 }

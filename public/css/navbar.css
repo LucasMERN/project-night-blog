@@ -1,6 +1,6 @@
 /* NAV STYLING */
 
-.logo-img {
+nav li:nth-child(1) {
     display: none;
 }
 /* Center navbar items vertically */
