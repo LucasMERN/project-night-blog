@@ -21,6 +21,7 @@
     "nodemon": "^2.0.19"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
     "dompurify": "^2.4.0",
     "dotenv": "^16.0.2",
@@ -33,6 +34,7 @@
     "mongodb": "^4.9.1",
     "mongoose": "^6.5.4",
     "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "slugify": "^1.6.5"
   }
 }
