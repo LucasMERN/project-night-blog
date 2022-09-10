@@ -12,6 +12,9 @@ const registerRoutes = require('./routes/register'); // import the register rout
 
 require('dotenv').config({path: './config/.env'});  // dotenv is used to store the secret keys in a .env file
 
+// Require passport in our config
+require('./config/passport')(passport)
+
 connectDB();    // Connect to database
 
 app.set('view engine', 'ejs');  // set the view engine to ejs
@@ -19,6 +22,8 @@ app.use(express.static('public'));  // set the public folder to serve static fil
 app.use(express.urlencoded({ extended: true }));    // use express to parse the form data
 app.use(express.json());    // use express to parse json data
 app.use(methodOverride('_method'))
+
+// Store sessions as cookies
 app.use(
     session({
         secret: process.env.SESSION_SECRET, // set the secret key for the session
@@ -29,6 +34,10 @@ app.use(
         }),
     })
 );
+
+// Set passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Routes
 app.use('/', mainRoutes)
