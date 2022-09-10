@@ -26,6 +26,7 @@ module.exports = {
             });
         }else{
             const newUser = new User({
+                userName: req.body.text,
                 email: req.body.email,
                 password: req.body.password
             });
