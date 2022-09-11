@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/sign-up.css">
-    <title>Login</title>
+    <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
+    <title>Register</title>
 </head>
 <body>
   <div class="form-side">
@@ -35,6 +36,7 @@
               class="form-control"
               placeholder="Email"
             />
+            <div class="password-container">
             <input
               type="password"
               id="password"
@@ -42,6 +44,9 @@
               class="form-control"
               placeholder="Password"
             />
+            <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
+          </div>
+          <div class="password-container">
             <input
               type="password"
               id="password2"
@@ -49,6 +54,8 @@
               class="form-control"
               placeholder="Confirm Password"
             />
+            <i class="fa-regular fa-eye-slash" id="togglePassword2"></i>
+          </div>
             <button type="submit" class="btn">Sign Up</button>
           </fieldset>
         </form>
@@ -66,5 +73,6 @@
     </div>
   </div>
   <div class="graphic-side"></div>
+  <script src="/js/main.js"></script>
 </body>
 </html>
