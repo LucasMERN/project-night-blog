@@ -1,4 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy
+const FacebookStrategy = require('passport-facebook');
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
@@ -26,5 +27,42 @@ module.exports = function (passport) {
 
   passport.deserializeUser((id, done) => {
     User.findById(id, (err, user) => done(err, user))
+  }),
+
+  passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:2002/login/facebook/callback"
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    console.log(profile)
+    const newUser = {
+      userName: profile.displayName,
+      // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
+      email: profile.id,
+      password: 'N/A',
+    }
+    try {
+      let user = await User.findOne({ email: profile.email })
+
+      if (user) {
+        done(null, user)
+      } else {
+        user = await User.create(newUser)
+        done(null, user)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+));
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id)
   })
+
+  passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => done(err, user))
+  })
+
 }

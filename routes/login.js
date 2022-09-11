@@ -16,6 +16,18 @@ router.post('/loginLocal', (req, res, next)=>{
     })(req, res, next)
 })
 
+//Get facebook login page
+router.get('/facebook', passport.authenticate('facebook'));
+
+//Facebook auth callback, determines what to do if login is successful/fails
+router.get('/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+//Logout user and destroy sessions
 router.get('/logout', (req, res)=>{
     req.logout((err)=>{
         if(err){
