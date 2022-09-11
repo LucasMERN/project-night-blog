@@ -43,7 +43,7 @@ module.exports = function (passport) {
       password: 'N/A',
     }
     try {
-      let user = await User.findOne({ email: profile.email })
+      let user = await User.findOne({ email: profile.id })
 
       if (user) {
         done(null, user)
