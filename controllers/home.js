@@ -23,6 +23,7 @@ module.exports = {
                 intro: req.body.intro,
                 author: req.body.author,
                 markdown: req.body.markdown,
+                email: req.user.email,
                 totalLikes: 0,
                 totalComments: 0,
             })
