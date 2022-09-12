@@ -3,9 +3,18 @@ const mongoose = require('mongoose')
 
 
 const UserSchema = new mongoose.Schema({    // create a new schema for the user model
-  userName: { type: String, unique: true },
-  email: { type: String, unique: true },    
-  password: String
+  userName: { 
+    type: String, 
+    required: true 
+  },
+  email: { 
+    type: String, 
+    required: true 
+  },    
+  password: {
+    type: String,
+    required: true
+  }
 })
 
  UserSchema.pre('save', function save(next) {   // hash the password before saving the user

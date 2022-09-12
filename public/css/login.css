@@ -181,6 +181,17 @@ ul {
     flex-basis: 22.5%;
 }
 
+.password-container{
+    position: relative;
+}
+
+form i {
+    position: absolute;
+    top: 1%;
+    right: 4%;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 380px) {
 
     h1 {
@@ -204,7 +215,7 @@ ul {
         display: block;
         width: 50%;
         min-height: 100vh;
-        background: url(/public/images/login-graphic.svg) no-repeat center center fixed;
+        background: url(/images/login-graphic.svg) no-repeat center center fixed;
         background-size: cover;
     }
 

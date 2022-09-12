@@ -1,5 +1,3 @@
-const { serialize } = require("bson")
-
 const togglePassword = document.querySelector('#togglePassword')
 const togglePassword2 = document.querySelector('#togglePassword2')
 const password = document.querySelector('#password')
