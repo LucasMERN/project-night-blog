@@ -115,7 +115,7 @@ To run the projects you will need to follow the instructions below. This will ru
 - [x] Set up a basic blog structure
     - [ ] Add Layout based on Canva
           - [x] Left Navbar
-          - [ ] Top Navbar
+          - [x] Top Navbar
           - [ ] Index Page
           - [ ] Post view
           - [ ] Profile view
@@ -125,16 +125,16 @@ To run the projects you will need to follow the instructions below. This will ru
     - [x] '/' 
     - [x] '/blog'
     - [ ] '/user'
-    - [ ] '/login'
-    - [ ] '/register'
+    - [x] '/login'
+    - [x] '/register'
 - [x] Set up a Database (MongoDB) using Model
   - [x] post  Completed with PR #11
     - [x] create post
     - [x] edit post
-  - [ ] users
-    - [ ] username
-    - [ ] password
-    - [ ] email
+  - [x] users
+    - [x] username
+    - [x] password
+    - [x] email
   - [ ] comments
     - [ ] likes
     - [ ] dislikes
