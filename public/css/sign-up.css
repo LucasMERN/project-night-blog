@@ -109,6 +109,11 @@ h5:after {
     margin-right: -50%;
   }
 
+.errorMsg{
+    font-size: .8rem;
+    text-align: center;
+}
+
 form {
     display: flex;
     flex-flow: row wrap;

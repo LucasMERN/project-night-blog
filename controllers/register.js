@@ -17,6 +17,8 @@ module.exports = {
             errors.push({msg: 'Password must be at least 8 characters long.'});
         }if(exists){
             errors.push({msg: 'This email is already taken.'});
+        }if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)){
+            errors.push({msg: 'Passwords must be between 8-30 characters long and contain at least one: uppercase letter, lowercase letter, special character, & number.'})
         }if(errors.length > 0){
             res.render('sign-up.ejs', {
                 errors,
