@@ -43,7 +43,9 @@
               name="password"
               class="form-control"
               placeholder="Password"
-            />
+              oninput="pwValidation()"
+             />
+            <div id="passwordError"></div>
             <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
           </div>
           <div class="password-container">
@@ -53,7 +55,9 @@
               name="password2"
               class="form-control"
               placeholder="Confirm Password"
-            />
+              oninput="pwMatch()"
+              />
+            <div id="passwordMatch"></div>
             <i class="fa-regular fa-eye-slash" id="togglePassword2"></i>
           </div>
             <button type="submit" class="btn">Sign Up</button>

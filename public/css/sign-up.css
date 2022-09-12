@@ -137,6 +137,12 @@ input {
     color: rgb(14, 16, 27);
 }
 
+#passwordError, #passwordMatch {
+    margin: 1rem 20rem 1rem 0;
+    color: red;
+    font-size: 1.1rem;
+}
+
 button {
     margin-top: 3rem;
     text-align: center;

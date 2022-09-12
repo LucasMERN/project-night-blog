@@ -23,3 +23,24 @@ function toggleSecondPw (){
     password2.setAttribute('type', type)
     this.classList.toggle('fa-eye')
 }
+
+function pwValidation() {
+
+    let str = document.getElementById('password').value;
+    let message = document.getElementById('passwordError');
+    
+    if (!str.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
+        message.innerText = 'Passwords must be between 8-30 characters long and contain atleast one: uppercase letter, lowercase letter, special character, & number.';
+    } else {
+        message.innerText = '';
+    }
+
+  };
+
+  function pwMatch() {
+    if(document.getElementById('password').value !== document.getElementById('password2').value){
+        document.getElementById('passwordMatch').innerText = 'Passwords must match.';
+    } else {
+        document.getElementById('passwordMatch').innerText = '';
+    }
+  }
