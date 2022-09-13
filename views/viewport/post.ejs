@@ -22,14 +22,21 @@
 
     <div class="commentContainer">
         <div class="commentSubContainer">
-            <h5>10 comments</h5>
+            <h5><%= commentTotal %> comments</h5>
             <h5>P.N.B.</h5>
         </div>
         <form action="/addComment" method="POST">
             <textarea type="text" rows="3" name="comment" placeholder="Join the discussion, Misko..."></textarea>
-            <input type="text" name="email" value="<%= blog.title %>">
+            <input type="hidden" name="title" value="<%= blog.title %>">
             <button type="submit">Share</button>
         </form>
+        <% Allcomments.forEach((item)=> { %>
+            <div class="blogComment">
+                <h6><%= item.userName %></h6>
+                <h6><%= item.date %></h6>
+                <h3><%= item.comment %></h3>
+            </div>
+        <% }) %>
     </div>
 
 

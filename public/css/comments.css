@@ -29,3 +29,18 @@
 .commentContainer textarea{
     width: 100%;
 }
+
+.blogComment{
+    margin: 1rem 3rem;
+    font-size: 1rem;
+    background-color: white; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.288);
+}
+
+.blogComment h6{
+    font-size: .8rem;
+}
+
+.blogComment h3{
+    font-size: 1.2rem;
+}
