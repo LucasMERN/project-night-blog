@@ -9,6 +9,7 @@ const methodOverride = require('method-override') // allows us to override forms
 const mainRoutes = require('./routes/main'); // import the main routes
 const loginRoutes = require('./routes/login'); // import the login routes
 const registerRoutes = require('./routes/register'); // import the register routes
+const commentRoutes = require('./routes/comments'); // import the comments routes
 
 require('dotenv').config({path: './config/.env'});  // dotenv is used to store the secret keys in a .env file
 
@@ -43,6 +44,7 @@ app.use(passport.session())
 app.use('/', mainRoutes)
 app.use('/login', loginRoutes)
 app.use('/register', registerRoutes)
+app.use('/addComment', commentRoutes)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running. http://localhost:${process.env.PORT}`);

@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="/css/comments.css">
 <div class="viewContainer">
 
 
@@ -18,6 +18,17 @@
             </span>
         </h4>
         <%- blog.sanitizedHtml %>
+    </div>
+
+    <div class="commentContainer">
+        <div class="commentSubContainer">
+            <h5>10 comments</h5>
+            <h5>P.N.B.</h5>
+        </div>
+        <form action="/addComment" method="POST">
+            <textarea type="text" rows="3" placeholder="Join the discussion, Misko..."></textarea>
+            <button type="submit">Share</button>
+        </form>
     </div>
 
 
