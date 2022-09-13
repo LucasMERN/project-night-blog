@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.commentContainer{
+    margin-top: 1rem;
+}
+
+.commentSubContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: rgb(223, 219, 219);
+    width: 100%;
+    height: 4rem;
+}
+
+.commentSubContainer, h5{
+    font-size: 1rem;
+}
+
+.commentContainer form{
+    margin: 2rem 3rem;
+}
+
+.commentContainer textarea{
+    width: 100%;
+}
+
+.blogComment{
+    margin: 1rem 3rem;
+    font-size: 1rem;
+    background-color: white; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.288);
+}
+
+.blogComment h6{
+    font-size: .8rem;
+}
+
+.blogComment h3{
+    font-size: 1.2rem;
+}
