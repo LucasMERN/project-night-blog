@@ -26,7 +26,8 @@
             <h5>P.N.B.</h5>
         </div>
         <form action="/addComment" method="POST">
-            <textarea type="text" rows="3" placeholder="Join the discussion, Misko..."></textarea>
+            <textarea type="text" rows="3" name="comment" placeholder="Join the discussion, Misko..."></textarea>
+            <input type="text" name="email" value="<%= blog.title %>">
             <button type="submit">Share</button>
         </form>
     </div>
