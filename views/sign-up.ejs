@@ -20,6 +20,11 @@
           <h1>Hello, thanks for joining us!</h1>
           <h5>please register below</h5>
         </header>
+        <% if(typeof errors !== 'undefined'){ %>
+          <% errors.forEach((error)=> { %>
+            <div class="errorMsg"><%= error.msg %></div>
+        <% }) %>
+        <% } %>
         <form action="/register/createUser" method="POST">
           <fieldset>
             <input
