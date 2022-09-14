@@ -30,7 +30,7 @@
             <input type="hidden" name="title" value="<%= blog.title %>">
             <button type="submit">Share</button>
         </form>
-        <% Allcomments.forEach((item)=> { %>
+        <% allComments.forEach((item)=> { %>
             <div class="blogComment">
                 <h6><%= item.userName %></h6>
                 <h6><%= item.date %></h6>

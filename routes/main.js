@@ -25,7 +25,7 @@ router.get('/:slug/article', async (req, res)=>{
     const commentTotal = await Comment.countDocuments({title: blog.title})
     const comments = await Comment.find({title: blog.title})
     if(blog == null) res.redirect('/')
-    res.render('index.ejs', {blog: blog, commentTotal: commentTotal, Allcomments: comments, username: req.user.userName, routeName: 'slug'})
+    res.render('index.ejs', {blog: blog, commentTotal: commentTotal, allComments: comments, username: req.user.userName, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view
