@@ -25,7 +25,7 @@ module.exports = {
     },
     deleteComment: async (req, res) => {
         try {
-            await Comment.findOneAndDelete(req.params.id)
+            await Comment.findOneAndDelete({_id: req.params.id})
             await Blog.findOneAndUpdate(
                 {title: req.body.title},
                 {
