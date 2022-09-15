@@ -10,6 +10,7 @@ const mainRoutes = require('./routes/main'); // import the main routes
 const loginRoutes = require('./routes/login'); // import the login routes
 const registerRoutes = require('./routes/register'); // import the register routes
 const commentRoutes = require('./routes/comments'); // import the comments routes
+app.locals.moment = require('moment'); // allows us to format our date
 
 require('dotenv').config({path: './config/.env'});  // dotenv is used to store the secret keys in a .env file
 

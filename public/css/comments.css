@@ -32,6 +32,7 @@
 
 .blogComment{
     margin: 1rem 3rem;
+    padding: 1rem;
     font-size: 1rem;
     background-color: white; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.288);
@@ -42,5 +43,15 @@
 }
 
 .blogComment h3{
+    margin-top: .5rem;
     font-size: 1.2rem;
 }
+
+.usernameContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+#deleteForm{
+    margin: 0;
+   }

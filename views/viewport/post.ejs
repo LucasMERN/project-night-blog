@@ -32,16 +32,16 @@
         </form>
         <% allComments.forEach((item)=> { %>
             <div class="blogComment">
-                <div>
+                <div class="usernameContainer">
                     <h6><%= item.userName %></h6>
                     <% if (item.userName === user.userName) { %>
-                        <form action="/comment/deleteComment/<%= item._id %>?_method=DELETE" method="POST">
+                        <form id="deleteForm" action="/comment/deleteComment/<%= item._id %>?_method=DELETE" method="POST">
                             <input type="hidden" name="title" value="<%= blog.title %>">
                             <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
                         </form>
                     <% } %>
                 </div>
-                <h6><%= item.date %></h6>
+                <h6><%= moment(item.date).format('MMMM Do YYYY, h:mm a') %></h6>
                 <h3><%= item.comment %></h3>
             </div>
         <% }) %>
