@@ -24,7 +24,7 @@ router.delete('/:id', async (req, res) => {
 router.get('/:slug/article', ensureAuth, async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
     const commentTotal = await Comment.countDocuments({title: blog.title})
-    const comments = await Comment.find({title: blog.title})
+    const comments = await Comment.find({title: blog.title}).sort({date: -1})
     if(blog == null) res.redirect('/')
     res.render('index.ejs', {blog: blog, commentTotal: commentTotal, allComments: comments, username: req.user.userName, user: req.user, routeName: 'slug'})
 })
