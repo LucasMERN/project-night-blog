@@ -44,7 +44,15 @@ app.use(passport.session())
 app.use('/', mainRoutes)
 app.use('/login', loginRoutes)
 app.use('/register', registerRoutes)
-app.use('/addComment', commentRoutes)
+app.use('/comment', commentRoutes)
+
+// Global var for logged in user
+app.use(function(req, res, next){
+    if (req.session.user) {
+        res.locals.user = req.session.user
+      }
+      next();
+ });
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running. http://localhost:${process.env.PORT}`);
