@@ -131,6 +131,8 @@ input {
     display: block;
     outline: none;
     padding-bottom: 10px;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
 }
 
 ::placeholder {
