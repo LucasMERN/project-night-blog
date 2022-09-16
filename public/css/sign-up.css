@@ -112,6 +112,7 @@ h5:after {
 .errorMsg{
     font-size: .8rem;
     text-align: center;
+    color: red;
 }
 
 form {
