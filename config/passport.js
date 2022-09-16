@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
@@ -55,6 +56,35 @@ module.exports = function (passport) {
       console.log(error)
     }
   }
+));
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  scope: ['profile', 'email'],
+  callbackURL: "http://localhost:2002/login/google/callback"
+},
+async (accessToken, refreshToken, profile, done) => {
+  console.log(profile)
+  const newUser = {
+    userName: profile.displayName,
+    // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
+    email: profile.id,
+    password: 'N/A',
+  }
+  try {
+    let user = await User.findOne({ email: profile.id })
+
+    if (user) {
+      done(null, user)
+    } else {
+      user = await User.create(newUser)
+      done(null, user)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 ));
 
   passport.serializeUser((user, done) => {
