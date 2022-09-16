@@ -18,10 +18,18 @@ router.post('/loginLocal', (req, res, next)=>{
 
 //Get facebook login page
 router.get('/facebook', passport.authenticate('facebook'));
+router.get('/google', passport.authenticate('google'));
 
 //Facebook auth callback, determines what to do if login is successful/fails
 router.get('/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+  router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
