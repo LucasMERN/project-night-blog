@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Blog = require('../models/Blog')
-const Comment = require('../models/Comment')
+const Blog = require('../models/Blog');
+const Comment = require('../models/Comment');
+const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const homeController = require('../controllers/home');
 
 //Load home page
 router.get('/', homeController.getIndex);
 
 //Load page that allows you to create a new blog/article
-router.get('/new', homeController.newBlogPage);
+router.get('/new', ensureAuth, homeController.newBlogPage);
 
 //Post the form and add it to our database
 router.post('/create', homeController.newBlogPost);
@@ -20,12 +21,12 @@ router.delete('/:id', async (req, res) => {
   })
 
 // The 'slug' is generated in our model. Basically, each blog will have an id (1234213452), instead of presenting that ugly string of numbers in our URL, we change the string of numbers into what is called a slug. I set the slug to be whatever the title of our blog is. This makes a more user-friendly URL.
-router.get('/:slug/article', async (req, res)=>{
+router.get('/:slug/article', ensureAuth, async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
     const commentTotal = await Comment.countDocuments({title: blog.title})
-    const comments = await Comment.find({title: blog.title})
+    const comments = await Comment.find({title: blog.title}).sort({date: -1})
     if(blog == null) res.redirect('/')
-    res.render('index.ejs', {blog: blog, commentTotal: commentTotal, allComments: comments, username: req.user.userName, routeName: 'slug'})
+    res.render('index.ejs', {blog: blog, commentTotal: commentTotal, allComments: comments, username: req.user.userName, user: req.user, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view

@@ -22,5 +22,19 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    deleteComment: async (req, res) => {
+        try {
+            await Comment.findOneAndDelete({_id: req.params.id})
+            await Blog.findOneAndUpdate(
+                {title: req.body.title},
+                {
+                    $inc: {totalComments: -1}
+                }
+            );
+            res.redirect('back')
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
