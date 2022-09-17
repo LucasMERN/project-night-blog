@@ -51,24 +51,14 @@ function pwValidation() {
     }
   }
 
-function inputDisable() {
-  if(document.getElementById('text').value.length > 0 && document.getElementById('password').value == document.getElementById('password2').value && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
-    document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
-    document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"
-    document.getElementById('signUp-btn').style.cursor = 'pointer';
-  } else {
-    if(document.getElementById('text').value.length < 1 || document.getElementById('email').value.length < 1) {
-        document.getElementById('signUp-btn').style.color = "rgba(255, 255, 255, 0.38)"
-        document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"
-        document.getElementById('signUp-btn').style.cursor = 'not-allowed';
-    }
-  }
-};
+  function removeDisable () {
+    if((document.getElementById('password').value == document.getElementById('password2').value) && (document.querySelector('#password').value.length > 5) && (document.getElementById('text').value.length > 5) && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
 
-function loginButton() {
-    if(document.getElementById('email').value.length > 0 && document.getElementById('password').value.length > 0) {
-        document.getElementById('logIn-btn').style.color = "rgb(255, 255, 255)"
-    document.getElementById('logIn-btn').style.backgroundColor = "rgb(14, 16, 27)"
-    document.getElementById('logIn-btn').style.cursor = 'pointer';
+    document.getElementById('signUp-btn').removeAttribute('disabled')   
+    document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
+    document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"    
+
+    }else{
+        document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"  
     }
 }
