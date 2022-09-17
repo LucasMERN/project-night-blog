@@ -1,6 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitHubStrategy = require('passport-github2').Strategy;
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
@@ -72,6 +73,34 @@ async (accessToken, refreshToken, profile, done) => {
     email: profile.id,
     password: 'N/A',
   }
+  try {
+    let user = await User.findOne({ email: profile.id })
+
+    if (user) {
+      done(null, user)
+    } else {
+      user = await User.create(newUser)
+      done(null, user)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+));
+
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: "http://localhost:2002/login/github/callback"
+},
+async (accessToken, refreshToken, profile, done) => {
+    console.log(profile)
+    const newUser = {
+      userName: profile.displayName,
+      // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
+      email: profile.id,
+      password: 'N/A',
+    }
   try {
     let user = await User.findOne({ email: profile.id })
 
