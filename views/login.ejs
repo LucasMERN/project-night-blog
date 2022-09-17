@@ -22,23 +22,30 @@
         </header>
         <form action="/login/loginLocal" method="POST">
           <fieldset>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-control"
-              placeholder="Email"
-              required
+            <div>
+                <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                required
             />
+            <label>
+              Email
+            </label>
+            </div>
+
             <div class="password-container">
             <input
               type="password"
               id="password"
               name="password"
               class="form-control"
-              placeholder="Password"
               required
             />
+            <label>
+              Password
+            </label>
             <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
           </div>
             <button type="submit" id="logIn-btn">Login</button>

@@ -190,6 +190,7 @@ button {
     color: rgba(255, 255, 255, 0.38);
     height: 2rem;
     width: 100%;
+    cursor: pointer;
 }
 
 footer {

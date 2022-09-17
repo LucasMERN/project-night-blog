@@ -116,6 +116,34 @@ form {
     align-items: center;
 }
 
+form div {
+    position: relative;
+}
+
+form div label {
+    position: absolute;
+    top: 0.1px;
+    left: 0;
+    color: rgb(66, 65, 65);
+    font-size: .9rem;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+form input:focus + label,
+form input:valid + label{
+    top: -20px;
+    left: 0;
+    color: rgb(31, 87, 81);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+form input:focus,
+form input:valid{
+    border-bottom: 1px solid black;
+}
+
 fieldset {
     border: none;
     text-align: left;
