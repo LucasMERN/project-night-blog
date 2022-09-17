@@ -66,3 +66,13 @@ function removeDisable () {
 }
 
 
+// Toggle disable for login button depending on whether criteria is met
+function loginButton() {
+    if(document.getElementById('email').value.length > 0 && document.getElementById('password').value.length > 0) {
+        document.getElementById('logIn-btn').removeAttribute('disabled')  
+        document.getElementById('logIn-btn').style.color = "rgb(255, 255, 255)"
+    document.getElementById('logIn-btn').style.backgroundColor = "rgb(14, 16, 27)"
+    document.getElementById('logIn-btn').style.cursor = 'pointer';
+    }
+}
+
