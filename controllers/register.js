@@ -7,7 +7,7 @@ module.exports = {
     createUser: async (req, res) => {
         const { email, username, password, password2 } = req.body
         const exists = await User.findOne({email: email});
-        const usernameExists = await User.findOne({username: username});
+        const usernameExists = await User.findOne({userName: username});
         let errors = [];
         //Check fields
         if(!email || !password || !password2){
@@ -31,7 +31,7 @@ module.exports = {
             });
         }else{
             const newUser = new User({
-                userName: req.body.text,
+                userName: req.body.username,
                 email: req.body.email,
                 password: req.body.password
             });
