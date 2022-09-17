@@ -26,6 +26,7 @@ module.exports = {
             res.render('sign-up.ejs', {
                 errors,
                 email,
+                username,
                 password,
                 password2
             });
