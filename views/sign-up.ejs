@@ -27,31 +27,45 @@
         <% } %>
         <form action="/register/createUser" method="POST">
           <fieldset>
-            <input
-              type="text"
-              id="text"
-              name="username"
-              class="form-control"
-              placeholder="Username"
-              oninput="inputDisable()"
-            />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-control"
-              placeholder="Email"
-              oninput="inputDisable()"
-            />
+            <div>
+                <input
+                type="text"
+                id="text"
+                name="username"
+                class="form-control"
+                oninput="inputDisable()"
+                required
+                />
+                <label>
+                  Username
+                </label>
+            </div>
+            <div>
+                <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                oninput="inputDisable()"
+                required
+              />
+              <label>
+                Email
+              </label>
+            </div>
+            
             <div class="password-container">
             <input
               type="password"
               id="password"
               name="password"
               class="form-control"
-              placeholder="Password"
               oninput="pwValidation()"
+              required
              />
+             <label>
+               Password
+             </label>
             <div id="passwordError"></div>
             <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
           </div>
@@ -61,9 +75,12 @@
               id="password2"
               name="password2"
               class="form-control"
-              placeholder="Confirm Password"
               oninput="pwMatch()"
+              required
               />
+              <label>
+                Confirm Password
+              </label>
             <div id="passwordMatch"></div>
             <i class="fa-regular fa-eye-slash" id="togglePassword2"></i>
           </div>
