@@ -33,6 +33,7 @@
               name="username"
               class="form-control"
               placeholder="Username"
+              oninput="inputDisable()"
             />
             <input
               type="email"
@@ -40,6 +41,7 @@
               name="email"
               class="form-control"
               placeholder="Email"
+              oninput="inputDisable()"
             />
             <div class="password-container">
             <input
@@ -65,7 +67,7 @@
             <div id="passwordMatch"></div>
             <i class="fa-regular fa-eye-slash" id="togglePassword2"></i>
           </div>
-            <button type="submit" class="btn">Sign Up</button>
+            <button type="submit" id="signUp-btn">Sign Up</button>
           </fieldset>
         </form>
         <footer>

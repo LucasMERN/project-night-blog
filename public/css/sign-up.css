@@ -110,9 +110,10 @@ h5:after {
   }
 
 .errorMsg{
-    font-size: .8rem;
+    font-size: 1.1rem;
     text-align: center;
     color: red;
+    text-shadow: .5px .5px 2px rgba(0, 0, 0, 0.35);
 }
 
 form {
@@ -137,6 +138,8 @@ input {
     display: block;
     outline: none;
     padding-bottom: 10px;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
 }
 
 ::placeholder {
@@ -144,9 +147,10 @@ input {
 }
 
 #passwordError, #passwordMatch {
-    margin: 1rem 20rem 1rem 0;
+    margin: 1rem;
     color: red;
     font-size: 1.1rem;
+    text-shadow: .5px .5px 2px rgba(0, 0, 0, 0.35);
 }
 
 button {
@@ -154,8 +158,8 @@ button {
     text-align: center;
     border-radius: 5px;
     border: none;
-    background-color: rgb(14, 16, 27);
-    color: white;
+    background-color: rgba(14, 16, 27, 0.38);
+    color: rgba(255, 255, 255, 0.38);
     height: 2rem;
     width: 100%;
 }
