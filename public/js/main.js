@@ -49,14 +49,21 @@ function pwValidation() {
     }
   }
 
-// function inputDisable() {
-//   if(document.getElementById('text').value.length > 0 && document.getElementById('password').value == document.getElementById('password2').value && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
-//     document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
-//     document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"
-//   } else {
-//     if(document.getElementById('text').value.length < 1 || document.getElementById('email').value.length < 1) {
-//         document.getElementById('signUp-btn').style.color = "rgba(255, 255, 255, 0.38)"
-//         document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"
-//     }
-//   }
-// };
+function inputDisable() {
+  if(document.getElementById('text').value.length > 0 && document.getElementById('password').value == document.getElementById('password2').value && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
+    document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
+    document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"
+  } else {
+    if(document.getElementById('text').value.length < 1 || document.getElementById('email').value.length < 1) {
+        document.getElementById('signUp-btn').style.color = "rgba(255, 255, 255, 0.38)"
+        document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"
+    }
+  }
+};
+
+function loginButton() {
+    if(document.getElementById('email').value.length > 0 && document.getElementById('password').value.length > 0) {
+        document.getElementById('logIn-btn').style.color = "rgb(255, 255, 255)"
+    document.getElementById('logIn-btn').style.backgroundColor = "rgb(14, 16, 27)"
+    }
+}
