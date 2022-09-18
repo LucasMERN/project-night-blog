@@ -24,8 +24,9 @@ function toggleSecondPw (){
     this.classList.toggle('fa-eye')
 }
 
+// Make sure password contains special characters
 function pwValidation() {
-
+    removeDisable();
     let str = document.getElementById('password').value;
     let message = document.getElementById('passwordError');
     
@@ -33,40 +34,42 @@ function pwValidation() {
         message.innerText = 'Passwords must be between 8-30 characters long and contain atleast one: uppercase letter, lowercase letter, special character, & number.';
         document.getElementById('signUp-btn').style.color = "rgba(255, 255, 255, 0.38)"
         document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"
-        document.getElementById('signUp-btn').style.cursor = 'not-allowed';
     } else {
         message.innerText = '';
     }
-
-  };
-
-  function pwMatch() {
-    if(document.getElementById('password').value !== document.getElementById('password2').value){
-        document.getElementById('passwordMatch').innerText = 'Passwords must match.';
-    } else {
-        document.getElementById('passwordMatch').innerText = '';
-        document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
-        document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"
-        document.getElementById('signUp-btn').style.cursor = 'pointer';
-    }
-  }
-
-function inputDisable() {
-  if(document.getElementById('text').value.length > 0 && document.getElementById('password').value == document.getElementById('password2').value && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
-    document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
-    document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"
-    document.getElementById('signUp-btn').style.cursor = 'pointer';
-  } else {
-    if(document.getElementById('text').value.length < 1 || document.getElementById('email').value.length < 1) {
-        document.getElementById('signUp-btn').style.color = "rgba(255, 255, 255, 0.38)"
-        document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"
-        document.getElementById('signUp-btn').style.cursor = 'not-allowed';
-    }
-  }
 };
 
+// Make sure passwords match
+ function pwMatch() {
+     removeDisable()
+   if(document.getElementById('password').value !== document.getElementById('password2').value){
+       document.getElementById('passwordMatch').innerText = 'Passwords must match.';
+   } else {
+       document.getElementById('passwordMatch').innerText = '';
+       document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
+       document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"
+   }
+ }
+
+// Make sure passwords match, contain special characters, and that the username is filled out, if tests pass we will remove the disable from the submit button
+function removeDisable () {
+        if((document.getElementById('password').value == document.getElementById('password2').value) && (document.querySelector('#password').value.length > 5) && (document.getElementById('text').value.length > 0) && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
+
+        document.getElementById('signUp-btn').removeAttribute('disabled')   
+        document.getElementById('signUp-btn').style.cursor = 'pointer'
+        document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
+        document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"    
+
+        }else{
+            document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"  
+        }
+}
+
+
+// Toggle disable for login button depending on whether criteria is met
 function loginButton() {
     if(document.getElementById('email').value.length > 0 && document.getElementById('password').value.length > 0) {
+        document.getElementById('logIn-btn').removeAttribute('disabled')  
         document.getElementById('logIn-btn').style.color = "rgb(255, 255, 255)"
     document.getElementById('logIn-btn').style.backgroundColor = "rgb(14, 16, 27)"
     document.getElementById('logIn-btn').style.cursor = 'pointer';
