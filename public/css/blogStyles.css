@@ -54,4 +54,26 @@
 
 #deleteForm{
     margin: 0;
-   }
+}
+
+.likesButton{
+    display: flex;
+    justify-content: center;
+    background: rgb(26, 28, 42);
+    border-radius: 20px;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    color: white;
+    width: 6rem;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.likesButton:hover{
+    background: rgb(51, 55, 80);
+}
+
+.likesButton i{
+    color: rgb(127, 134, 169);
+    margin-right: 10%;
+}
