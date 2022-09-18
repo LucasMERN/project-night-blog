@@ -1,84 +1,55 @@
-.cardContainer{
-    margin: 0 auto;
+figure {
+    height: 100%;
+    width: 100%;
+    border: solid 3px black;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    /* max-width: 600px; */
+    flex-flow: row wrap;
 }
 
-.postcard{
-    background: var(--surface2);
-    width: 48%;
-    height: 200px;
-    margin-bottom: 1rem;
-    border-radius: var(--radius-2);
-    box-shadow: var(--shadow-2);
-    transition: all 0.3s ease-in-out;
+figure form {
+    margin: 1rem auto 0 1rem;
 }
 
-.postcard:hover{
-    background: var(--surface3);
-    box-shadow: var(--shadow-3);
-    transition: all 0.3s ease-in-out;
+figure div {
+    margin: 1rem 1rem 0 auto;
 }
 
-/* The header and Author info */
-.titleContent{
+figure a {
+    width: 100%;
+}
+
+.title {
+    margin-bottom: 2rem;
+}
+
+a h4, a h2 {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+figcaption {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+p {
+    justify-content: center;
+}
+
+ul {
+    width: 100%;
+    margin: 1rem 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
     align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid var(--surface3);
-
-}
-/* Title specific to card */
-.title{
-
 }
 
-/* The intro content */
-.cardContent{
-
-}
-
-/* Icon container */
-.utilityContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    bottom: 0;
-    padding: 20px;
-}
-/* inlines the icon and count */
-.iconInline{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 60px;
-}
-.tooltip{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    display: none;
-    visibility: hidden;
-}
-
-.tooltip:hover {
-    display: unset;
-    visibility: visible;
-}
-
-@media screen and (max-width: 775px) {
-    .postcard{
-        width: 100%;
-        margin: 1rem 1.5rem;
-    }
-    .cardContainer{
-        margin-bottom: 7rem;
-    }
+li i {
+    margin-left: 5px;
 }
