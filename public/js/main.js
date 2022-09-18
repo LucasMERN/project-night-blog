@@ -76,3 +76,34 @@ function loginButton() {
     }
 }
 
+const body = document.querySelector('body');
+const toggle = document.getElementById('toggle');
+
+if(localStorage.getItem('darkMode')===null){
+    localStorage.setItem('darkMode', "false")
+}
+
+function checkStatus() {
+    console.log('hello')
+    if(localStorage.getItem('darkMode') === 'true'){
+        toggle.classList.remove('active');
+        body.classList.remove('active');
+    } else {
+        toggle.setAttribute('class', 'active');
+        body.setAttribute('class', 'active');
+    }
+}
+
+checkStatus();
+
+function changeStatus() {
+    if(localStorage.getItem('darkMode')==='true'){
+        localStorage.setItem('darkMode', 'false');
+        toggle.setAttribute('class', 'active');
+        body.setAttribute('class', 'active');
+    } else {
+        localStorage.setItem('darkMode', 'true');
+        toggle.classList.remove('active');
+        body.classList.remove('active');
+    }
+}
