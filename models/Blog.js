@@ -37,6 +37,7 @@ const BlogSchema = new Schema({
     totalLikes: {
         type: Number
     },
+    likedBy: [],
     totalComments: {
         type: Number
     },
