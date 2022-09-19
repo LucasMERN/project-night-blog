@@ -18,8 +18,13 @@
             </span>
             <form id="likesForm" action="/like/<%= blog._id %>?_method=PUT" method="POST">
                 <button type="submit" class="likesButton">
-                    <i class="fa-solid fa-thumbs-up"></i>
-                    <div>Like</div>
+                    <% if(liked.length > 0){ %>
+                        <i class="fa-solid fa-thumbs-down"></i>
+                        <div>Unlike</div>
+                    <% }else { %>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <div>Like</div>
+                   <% } %>
                 </button>
             </form>
 
