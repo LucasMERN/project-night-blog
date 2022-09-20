@@ -1,32 +1,16 @@
-.userLogo {
-    height: 50px;
-    width: 30%;
+.userLogo a {
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
-    justify-content: space-around;
 }
 
-.profileLink {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    height: 50px;
-    min-width: 100px;
-}
-
-#tinyProfilePic {
-    display: inline-block;
-    /* background-image: url(pic.jpg); */
-    /* border: 2px solid red; */
-    width: 50px;
-    height: 50px;
+img {
     border-radius: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: left;
+    height: 40px;
+    margin: .5rem 10px .5rem 0;
 }
 
-.username {
-    padding-left: 10px;
+span {
+    align-items: center;
+    font-size: .7rem;
 }

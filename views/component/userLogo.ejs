@@ -2,21 +2,12 @@
 
 <div class="userLogo">
     <%# if (user) { %>
-        <!-- <a class="profileLink" href="/user/<%#= user.name %>"> -->
+        <a class="profileLink" href="/user/<%#= user.name %>">
             <%# if (user.img) { %>
                 <!-- <img src="<%#= user.img %>" alt="user image"> -->
             <%# } else { %>
-                <!-- <img src="images/assets/freddy.svg" alt="alt user image"> -->
+                <img src="images/defaultUser.png" alt="default user image">
+                <span>Username</span>
             <%# } %>
-            <!-- <span class="username"><%#= user.name %></span>
-        </a> -->
-    <%# } else { %> 
-        <a class="profileLink" href="/login">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <span class="username">Login</span>
         </a>
-        <a href="/login/logout">
-            <span class="logout">Logout</span>
-        </a>
-    <%# } %>
 </div>

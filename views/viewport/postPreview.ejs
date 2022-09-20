@@ -1,55 +1,24 @@
 <link rel="stylesheet" href="/css/postPreview.css">
-
-<div class="viewContainer">
-    <div class="headerContainer">
-        <h1>Post Preview</h1> <!-- later we can add the filter conditionals here -->
-    </div>
-    <div class="bodyContainer">
-        <!-- For each post in an array of posts create a new card -->
-        <!-- We will need to figure out how to eventually lazy load a cetain number of posts due to potential performance issues -->
-        <div class="cardContainer">
-            <% articles.forEach(article => { %>
-                <article class="postcard">
-                    
-                    <!-- Defines the Card content -->
-                    <div class="titleContent">
-                        <a href="/<%= article.slug %>/article">
-                            <h2 class="title"><%= article.title %></h2>
-                            <span>by <%= article.author %></span>
-                        </a>
-                    </div>
-                    <div class="cardContent">
-                        <a href="#"><%= article.intro %></a>
-                    </div>
-
-                    <!-- Adds icons to bottom of card -->
-                    <ul class="utilityContainer">
-                        <li class="iconInline"><i class="fa-regular fa-thumbs-up"></i><a href="#"><%= article.totalLikes %></a></li>
-                        <li class="iconInline"><i class="fa-regular fa-comment"></i><a href="#"><%= article.totalComments %></a></li>
-                        
-                        <!-- tooltip to show the article date-->
-                        <li><i class="fa-solid fa-tag"></i>
-                            <div class="tooltip"><%= article.tags %></div>
-                        </li>
-                        <li><i class="fa-regular fa-calendar-days"></i>
-                            <div class="tooltip"><%= article.createdAt.toLocaleDateString() %></div>
-                        </li>
-
-                        <!-- This should be asigned soley to admin and authors users. Something like this -->
-                        <%# if (article.author === req.user.username || req.user.role === 'admin') { %>
-                        <li><a href="/edit/<%= article.id %>"><i class="fa-solid fa-pen-to-square"></i></i></a></li>
-                        
-                        <!-- We need to fix this icon. the button adds style and shrinks it. -->
-                        <li>
-                            <form action="/<%= article.id %>?_method=DELETE" method="POST">
-                                <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
-                            </form>
-                        </li>
-                        <%# } %>
-                    </ul>
-                    
-                </article>
-            <% }) %>
-        </div>
-    </div>
-</div>
+<link rel="stylesheet" href="/css/main.css">
+    <% articles.forEach(article => { %>
+    <figure class="postcard">
+        <form action="/<%= article.id %>?_method=DELETE" method="POST">
+            <button type="submit"><i class="fa-solid fa-trash"></i></button>
+        </form>
+        <%# if (article.author === req.user.username || req.user.role === 'admin') { %>
+        <div><a href="/edit/<%= article.id %>"><i class="fa-solid fa-pencil"></i></a></div>
+        <%# } %>
+        <a class="title" href="/<%= article.slug %>/article">
+            <h2><%= article.title %></h2>
+            <h4><%= article.author %></h4>
+            <figcaption>
+                <p><%= article.intro %></p>
+            </figcaption>
+        </a>
+        <ul>
+            <li><a href="#"><%= article.totalLikes %><i class="fa-solid fa-thumbs-up"></i></a></li>
+            <li><a href="#"><%= article.totalComments %><i class="fa-solid fa-comments"></i></a></li>
+            <li><%= article.createdAt.toLocaleDateString() %></li>
+        </ul>
+    </figure>
+    <% }) %>
