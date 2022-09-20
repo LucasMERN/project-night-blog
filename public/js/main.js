@@ -107,3 +107,12 @@ function changeStatus() {
         body.classList.remove('active');
     }
 }
+
+function toggleMenu(){
+    let menu = document.getElementById('submenuWrap')
+    if(menu.style.display === "none") {
+        menu.style.display = "block"
+    }else{
+        menu.style.display = "none"
+    }
+}
