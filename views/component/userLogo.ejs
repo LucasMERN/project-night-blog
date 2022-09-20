@@ -1,13 +1,27 @@
 <link rel="stylesheet" href="/css/userLogo.css">
 
-<div class="userLogo">
-    <%# if (user) { %>
-        <a class="profileLink" href="/user/<%#= user.name %>">
-            <%# if (user.img) { %>
-                <!-- <img src="<%#= user.img %>" alt="user image"> -->
-            <%# } else { %>
-                <img src="images/defaultUser.png" alt="default user image">
-                <span>Username</span>
-            <%# } %>
+<% if(typeof user == "undefined") { %>
+
+    <div class="userLogo">
+        <a href="/login">
+            <span>Login</span>
         </a>
-</div>
+    </div>
+
+<% }else{ %>
+
+    <div class="userLogo" onclick="toggleMenu()">
+            <a class="profileLink" href="#">
+                    <img src="images/defaultUser.png" alt="default user image">
+                    <span><%= user.userName %></span>
+            </a>
+    </div>
+
+    <nav id="submenuWrap">
+        <a><h2><i class="fa-regular fa-user"></i>My Profile</h2></a>
+        <a href="/login/logout"><h2><i class="fa-solid fa-right-from-bracket"></i>Logout</h2></a>
+    </nav>
+
+<% } %>
+
+<script src="/js/main.js"></script>

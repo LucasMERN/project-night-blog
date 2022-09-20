@@ -1,3 +1,7 @@
+.userLogo{
+    display: relative;
+}
+
 .userLogo a {
     display: flex;
     flex-flow: row wrap;
@@ -14,3 +18,23 @@ span {
     align-items: center;
     font-size: .7rem;
 }
+
+#submenuWrap{
+    position: absolute;
+    display: none;
+    top: 100%;
+    right: 0%;
+    width: 125px;
+    max-height: 75px;
+    color: white;
+    background: rgba(0, 75, 133, .9);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#submenuWrap h2{
+    font-size: .8rem;
+    padding: 10px;
+    font-weight: lighter;
+}
+
