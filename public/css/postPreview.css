@@ -1,6 +1,4 @@
 figure {
-    height: 100%;
-    width: 100%;
     border: solid 3px black;
     display: flex;
     flex-flow: row wrap;

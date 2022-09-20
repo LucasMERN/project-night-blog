@@ -19,6 +19,8 @@ nav li:nth-child(1) {
 nav li{
     flex-basis: 18.5%;
     text-align: center;
+    margin-top: .5rem;
+    text-shadow: 1px 1px #222;
 }
 
 nav li:nth-child(3), nav li:nth-child(2){
@@ -43,8 +45,9 @@ nav li:nth-child(4), nav li:nth-child(5){
 /************************/
 
 @media screen and (min-width: 550px) {
-    .search {
-        display: inline;
+    .navbar {
+        width: 15%;
+        height: 95%;
     }
 
     .upload {
@@ -53,6 +56,7 @@ nav li:nth-child(4), nav li:nth-child(5){
 
     .navbar ul {
         display: block;
+        width: 100%;
     }
 
     .navbar li {

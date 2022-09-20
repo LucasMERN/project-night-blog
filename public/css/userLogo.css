@@ -6,10 +6,11 @@
 
 img {
     border-radius: 100%;
-    margin-right: 10px;
     height: 40px;
+    margin: .5rem 10px .5rem 0;
 }
 
 span {
     align-items: center;
+    font-size: .7rem;
 }
