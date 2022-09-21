@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/sign-up.css">
+    <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
+    <title>Register</title>
+</head>
+<body>
+  <div class="form-side">
+    <div class="logo-header">
+      <img src='/images/Assets/logo.svg' alt='PNB logo' />
+      <h2>Project. Night. Blog.</h2>
+    </div>
+    <div class="content-container">
+      <section class="content">
+        <header>
+          <h1>Hello, thanks for joining us!</h1>
+          <h5>please register below</h5>
+        </header>
+        <% if(typeof errors !== 'undefined'){ %>
+          <% errors.forEach((error)=> { %>
+            <div class="errorMsg"><%= error.msg %></div>
+        <% }) %>
+        <% } %>
+        <form action="/register/createUser" method="POST">
+          <fieldset>
+            <div>
+                <input
+                type="text"
+                id="text"
+                name="username"
+                class="form-control"
+                oninput="removeDisable()"
+                required
+                />
+                <label>
+                  Username
+                </label>
+            </div>
+            <div>
+                <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                oninput="removeDisable()"
+                required
+              />
+              <label>
+                Email
+              </label>
+            </div>
+            
+            <div class="password-container">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              oninput="pwValidation()"
+              required
+             />
+             <label>
+               Password
+             </label>
+            <div id="passwordError"></div>
+            <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
+          </div>
+          <div class="password-container">
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              class="form-control"
+              oninput="pwMatch()"
+              required
+              />
+              <label>
+                Confirm Password
+              </label>
+            <div id="passwordMatch"></div>
+            <i class="fa-regular fa-eye-slash" id="togglePassword2"></i>
+          </div>
+            <button type="submit" id="signUp-btn" disabled>Sign Up</button>
+          </fieldset>
+        </form>
+        <footer>
+          <h4>Already have an account? <a href="/login"> Login here!</a></h4>
+          <h5>or sign up with</h5>
+          <ul>
+            <li><a href="/login/google"><img class="socialIcon" src="/images/google.png"></a></li>
+            <li><a href="/login/facebook"><img class="socialIcon" src="/images/facebook.png"></a></li>
+            <li><a href="#"><img class="socialIcon" src="/images/github.png"></a></li>
+            <li><a href="#"><img class="socialIcon" src="/images/twitter.png"></a></li>
+          </ul>
+        </footer>
+      </section>
+    </div>
+  </div>
+  <div class="graphic-side"></div>
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -37,6 +37,7 @@ const BlogSchema = new Schema({
     totalLikes: {
         type: Number
     },
+    likedBy: [],
     totalComments: {
         type: Number
     },
@@ -46,6 +47,10 @@ const BlogSchema = new Schema({
         unique: true
     },
     sanitizedHtml: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true
     }

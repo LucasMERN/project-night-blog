@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/css/blogStyles.css">
+<div class="viewContainer">
+
+
+    <div class="headerContainer">
+        <h1><%= blog.title %></h1>
+    </div>
+
+
+
+    <div class="bodyContainer">
+        <h4 class="subContainer">by
+            <a href="#">
+                <%= blog.author %>
+            </a> on 
+            <span class="date">
+                <%= blog.createdAt.toLocaleDateString() %>
+            </span>
+            <form id="likesForm" action="/like/<%= blog._id %>?_method=PUT" method="POST">
+                <button type="submit" class="likesButton">
+                    <% if(liked.length > 0){ %>
+                        <i class="fa-solid fa-thumbs-down"></i>
+                        <div>Unlike</div>
+                    <% }else { %>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <div>Like</div>
+                   <% } %>
+                </button>
+            </form>
+
+        </h4>
+        <%- blog.sanitizedHtml %>
+    </div>
+
+    <div class="commentContainer">
+        <div class="commentSubContainer">
+            <h5><%= commentTotal %> comments</h5>
+            <h5>P.N.B.</h5>
+        </div>
+        <form action="/comment/addComment" method="POST">
+            <textarea type="text" rows="3" name="comment" placeholder="Join the discussion..."></textarea>
+            <input type="hidden" name="title" value="<%= blog.title %>">
+            <button type="submit">Share</button>
+        </form>
+        <% allComments.forEach((item)=> { %>
+            <div class="blogComment">
+                <div class="usernameContainer">
+                    <h6><%= item.userName %></h6>
+                    <% if (item.userName === user.userName) { %>
+                        <form id="deleteForm" action="/comment/deleteComment/<%= item._id %>?_method=DELETE" method="POST">
+                            <input type="hidden" name="title" value="<%= blog.title %>">
+                            <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                        </form>
+                    <% } %>
+                </div>
+                <h6><%= moment(item.date).format('MMMM Do YYYY, h:mm a') %></h6>
+                <h3><%= item.comment %></h3>
+            </div>
+        <% }) %>
+    </div>
+
+
+</div>

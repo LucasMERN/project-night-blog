@@ -1,94 +1,12 @@
-@import "https://unpkg.com/open-props";
-
-/* toggle switch */
-
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: var(--surface1);
-    transition: 0.5s;
-}
-
-body.active {
-    color-scheme: light;
-    --brand: var(--brand-light);
-    --brand-alt: var(--brand-light-alt);
-    --text1: var(--text1-light);
-    --text2: var(--text2-light);
-    --text3: var(--text1-brand-light);
-    --text4: var(--text2-brand-light);
-    --surface1: var(--surface1-light);
-    --surface2: var(--surface2-light);
-    --surface3: var(--surface3-light);
-    --surface4: var(--surface4-light);
-}
-
-
-/* end switch */
-
-html {
-
-    /* light */
-    --brand-light: var(--teal-6);
-    --brand-light-alt: var(--grape-6);
-    --text1-light: var(--gray-8);
-    --text2-light: var(--gray-7);
-    --text1-brand-light: var(--teal-6);
-    --text2-brand-light: var(--teal-5);
-    --surface1-light: var(--gray-6);
-    --surface2-light: var(--gray-4);
-    --surface3-light: var(--gray-3);
-    --surface4-light: var(--gray-2);
-
-    /* dark */
-    --brand-dark: var(--teal-3);
-    --text1-dark: var(--gray-1);
-    --text2-dark: var(--gray-3);
-    --text1-brand-dark: var(--teal-3);
-    --text2-brand-dark: var(--teal-2);
-    --surface1-dark: var(--gray-9);
-    --surface2-dark: var(--gray-8);
-    --surface3-dark: var(--gray-7);
-    --surface4-dark: var(--gray-6);
-}
-  
-@media (prefers-color-scheme: dark) {
-    :root {
-      color-scheme: dark;
-  
-        --brand: var(--brand-dark);
-        --text1: var(--text1-dark);
-        --text2: var(--text2-dark);
-        --text3: var(--text1-brand-dark);
-        --text4: var(--text2-brand-dark);
-        --surface1: var(--surface1-dark);
-        --surface2: var(--surface2-dark);
-        --surface3: var(--surface3-dark);
-        --surface4: var(--surface4-dark);
-    }
-}
-/* Sets global page container */
 
 body {
     font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--text1);
-    background-color: var(--surface1);
-}
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    background-color: rgb(229, 227, 220);
 }
 
 li {
@@ -97,7 +15,168 @@ li {
 }
 
 a {
-    color: var(--text1);
     text-decoration: none;
     display: block;
+    color: rgb(255, 255, 255);
+}
+
+#toggle {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 30px;
+    border-radius: 160px;
+    background: #222;
+    transition: 0.5s;
+    cursor: pointer;
+    box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
+                inset 0 8px 8px rgba(0,0,0,0.1),
+                inset 0 -4px 4px rgba(0,0,0,0.1);
+}
+
+
+#toggle.active {
+    background: rgb(52,58,64);
+    box-shadow: inset 0 2px 60px rgba(0,0,0,0.1),
+                inset 0 2px 8px rgba(0,0,0,0.1),
+                inset 0 -4px 4px rgba(0,0,0,0.05);   
+}
+
+#toggle .indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(to bottom, #444,#222);
+    border-radius: 50%;
+    transform: scale(0.9);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5),
+                inset 0 4px 4px rgba(255,255,255,0.2),
+                inset 0 -4px 4px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+
+#toggle.active .indicator {
+    left: 30px;
+    background: linear-gradient(to bottom, #9b9b9b,#aaaaaa);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1),
+                inset 0 4px 4px rgb(215, 215, 215),
+                inset 0 -4px 4px rgba(80, 79, 79,1);
+}
+
+.viewport {
+    width: 100%;
+}
+
+.postcard {
+    margin: .5rem;
+    border-radius: 15px;
+    border-color: rgb(0, 75, 133);
+    background-color: rgb(0, 148, 103);
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px #222;
+}
+
+.profileLink {
+    margin: .5rem 1rem .5rem 0;
+    justify-content: right;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px #222;
+}
+
+.navbar, .topNavbarContainer {
+    background-color: rgba(0, 75, 133, .9);
+}
+
+.topNavbarContainer {
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.topNavbar {
+    max-width: 750px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topNavbar h2 {
+    font-size: .5rem;
+    margin-right: auto;
+}
+
+.topNavbar img {
+    margin-left: 1rem;
+}
+
+.secret {
+    width: 100%;
+}
+
+@media screen and (min-width: 550px) {
+
+    .userLogo span {
+        color: rgb(0, 75, 133);
+        text-shadow: none;
+        font-size: 1rem;
+    }
+
+    .topNavbar h2 {
+        font-size: .7rem;
+    }
+
+    .navbar, .topNavbarContainer {
+        background-color: rgb(229, 227, 220);
+    }
+
+    .topNavbarContainer {
+        border-bottom: 3px solid #222;
+        width: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .nav-container {
+        flex-basis: 15%;
+        border-right: 3px solid #222;
+        height: 100vh;
+    }
+
+    .view-container {
+        flex-basis: 85%;
+        height: 100vh;
+    }
+}
+
+@media screen and (min-width: 850px) {
+
+    .nav-container {
+        max-width: 150px;
+        margin-left: auto;
+        border-left: 3px solid #222;
+    }
+
+    .view-container {
+        max-width: 750px;
+        border-right: 3px solid #222;
+        margin-right: auto;
+    }
+
+    .viewport {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    .secret {
+        height: 200px;
+        width: 50%;
+    }
+
 }

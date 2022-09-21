@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(-45deg, #aaee52, #23a6d5, #3ce792, #23c3d5);
+	background-size: 800% 800%;
+	animation: gradient 30s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.graphic-side {
+    display: none;
+}
+
+.form-side {
+    width: 100%;
+}
+
+.logo-header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 1rem;
+    align-items: center;
+    width: 100%;
+}
+
+img {
+    height: 3.5rem;
+}
+
+h2 {
+    flex-basis: 88%;
+    font-size: .9rem;
+    color: rgb(14, 16, 27)
+}
+
+.content-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.content {
+    flex-basis: 70%;
+}
+
+header {
+    text-align: center;
+    margin-top: 7rem;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: rgb(14, 16, 27);
+}
+
+h5 {
+    font-size: .8rem;
+    margin-bottom: 2rem;
+    color: rgb(14, 16, 27);
+    width: 100%; 
+    text-align: center;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+h5:before,
+h5:after {
+    background-color: rgb(34, 38, 60);
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  
+h5:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+  
+h5:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
+
+.errorMsg{
+    font-size: 1.1rem;
+    text-align: center;
+    color: red;
+    text-shadow: .5px .5px 2px rgba(0, 0, 0, 0.35);
+}
+
+form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+form div {
+    position: relative;
+}
+
+form div label {
+    position: absolute;
+    top: 0.1px;
+    left: 0;
+    color: rgb(66, 65, 65);
+    font-size: .9rem;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+form input:focus + label,
+form input:valid + label{
+    top: -20px;
+    left: 0;
+    color: rgb(31, 87, 81);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+form input:focus,
+form input:valid{
+    border-bottom: 1px solid black;
+}
+
+fieldset {
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid rgba(34, 38, 60, 0.3);
+    width: 100%;
+    margin-top: 1.5rem;
+    background: transparent;
+    display: block;
+    outline: none;
+    padding-bottom: 10px;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+}
+
+::placeholder {
+    color: rgb(14, 16, 27);
+}
+
+#passwordError, #passwordMatch {
+    margin: 1rem;
+    color: red;
+    font-size: 1.1rem;
+    text-shadow: .5px .5px 2px rgba(0, 0, 0, 0.35);
+}
+
+button {
+    margin-top: 3rem;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(14, 16, 27, 0.38);
+    color: rgba(255, 255, 255, 0.38);
+    height: 2rem;
+    width: 100%;
+    cursor: not-allowed;
+}
+
+footer {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+h4 {
+    text-align: left;
+    font-size: .8rem;
+    margin-bottom: 3rem;
+}
+
+li {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+a {
+    color: var(--text1);
+    color: rgb(14, 16, 27);
+    margin-left: 5px;
+}
+
+ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+
+.socialIcon {
+    flex-basis: 22.5%;
+}
+
+.password-container{
+    position: relative;
+}
+
+form i {
+    position: absolute;
+    top: 1%;
+    right: 4%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 380px) {
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+}
+
+@media screen and (min-width: 550px) {
+
+    .form-side {
+        width: 550px;
+        margin: 0 auto
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+
+    .graphic-side {
+        display: block;
+        width: 50%;
+        min-height: 100vh;
+        background: url(/images/graphic2.svg) no-repeat center center;
+        background-size: cover;
+        object-position: 50% 50%;
+    }
+
+    .form-side {
+        width: 50%;
+    }
+
+}

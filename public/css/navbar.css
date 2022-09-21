@@ -1,18 +1,26 @@
-/* NAV STYLING */
-
-.logo-img {
+nav li:nth-child(1) {
     display: none;
 }
 
-ul {
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.navbar ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    list-style: none;
 }
 
 nav li{
     flex-basis: 18.5%;
     text-align: center;
+    margin-top: .5rem;
+    text-shadow: 1px 1px #222;
 }
 
 nav li:nth-child(3), nav li:nth-child(2){
@@ -28,14 +36,8 @@ nav li:nth-child(4), nav li:nth-child(5){
 }
 
 .upload i {
+    padding-top: 1rem;
     font-size: 2.4em;
-}
-
-nav {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin-bottom: 1rem;
 }
 
 /************************/
@@ -43,42 +45,34 @@ nav {
 /************************/
 
 @media screen and (min-width: 550px) {
-    .logo-img {
-        display: block;
+
+    .navbar {
+        position: static;
+        width: 100%;
+        height: 100%;
     }
 
-    .search {
-        display: none;
+    .hidden img{
+        display: block;
     }
 
     .upload {
         font-size: 1em;
     }
 
-    .logo-img img {
-        height: 60px;
-    }
-
-    .logo-img {
-        margin-bottom: 8rem;
-    }
-
-    ul {
+    .navbar ul {
         display: block;
-        width: 20%;
+        width: 100%;
+        margin: 0;
     }
 
-    nav li {
+    .navbar li {
         text-align: center;
-        margin-top: 4rem;
     }
 
-    nav {
-        position: fixed;
-        top: 0;
+    .navbar i {
+        color: rgb(0, 75, 133);
+        margin-top: 8rem;
     }
-}
 
-@media screen and (min-width: 800px) {
-    
 }
