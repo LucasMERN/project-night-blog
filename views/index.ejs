@@ -10,8 +10,10 @@
     <title>Blog</title>
 </head>
 <body>
-    <%- include('component/navbar.ejs') %>
-    <div class="tn-mv-rn">
+    <div class="nav-container">
+        <%- include('component/navbar.ejs') %>
+    </div>
+    <div class="view-container">
         <%- include('component/topNavbar.ejs') %>
         <div class="viewport">
             <% if (routeName == 'home') { %>
@@ -25,6 +27,7 @@
             <% } else { %>
                 <%- include('viewport/404.ejs') %>
             <% } %>
+            <div class="secret"></div>
         </div>
     </div>
 </body>
