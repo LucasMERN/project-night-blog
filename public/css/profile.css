@@ -1,0 +1,41 @@
+.profilePhotoContainer{
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.profilePhoto{
+    height: 150px;
+}
+
+h2{
+    text-align: center;
+    margin-top: 0.2rem;
+}
+
+h4{
+    text-align: center;
+}
+
+.userStats{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem 3rem;
+}
+
+form textarea{
+    height: 100px;
+}
+
+.bio{
+    margin: 3rem;
+}

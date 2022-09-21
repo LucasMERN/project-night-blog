@@ -14,6 +14,9 @@ const UserSchema = new mongoose.Schema({    // create a new schema for the user 
   password: {
     type: String,
     required: true
+  },
+  bio: {
+    type: String
   }
 })
 

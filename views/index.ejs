@@ -24,11 +24,14 @@
                 <%- include('viewport/edit.ejs') %>
             <% } else if (routeName == 'newPost') { %>
                 <%- include('viewport/newPost.ejs') %>
-            <% } else { %>
+            <% } else if (routeName == 'profile') { %>
+                <%- include('viewport/profile.ejs') %>
+            <%  }else { %>
                 <%- include('viewport/404.ejs') %>
             <% } %>
             <div class="secret"></div>
         </div>
     </div>
+    <script src="/js/main.js"></script>
 </body>
 </html>
