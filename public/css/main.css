@@ -6,6 +6,7 @@
 
 body {
     font-family: "Open Sans", sans-serif;
+    background-color: rgb(229, 227, 220);
 }
 
 li {
@@ -111,21 +112,71 @@ a {
     margin-left: 1rem;
 }
 
+.secret {
+    width: 100%;
+}
+
 @media screen and (min-width: 550px) {
 
-    .navbar, .topNavbarContainer {
-        background-color: rgb(0, 75, 133);
+    .userLogo span {
+        color: rgb(0, 75, 133);
+        text-shadow: none;
+        font-size: 1rem;
     }
 
-    .navbar {
-        border-right: 3px solid #222;
+    .topNavbar h2 {
+        font-size: .7rem;
+    }
+
+    .navbar, .topNavbarContainer {
+        background-color: rgb(229, 227, 220);
     }
 
     .topNavbarContainer {
         border-bottom: 3px solid #222;
+        width: 100%;
     }
 
-    .postcard {
-        width: 80%;
+    body {
+        display: flex;
+        flex-flow: row wrap;
     }
+
+    .nav-container {
+        flex-basis: 15%;
+        border-right: 3px solid #222;
+        height: 100vh;
+    }
+
+    .view-container {
+        flex-basis: 85%;
+        height: 100vh;
+    }
+}
+
+@media screen and (min-width: 850px) {
+
+    .nav-container {
+        max-width: 150px;
+        margin-left: auto;
+        border-left: 3px solid #222;
+    }
+
+    .view-container {
+        max-width: 750px;
+        border-right: 3px solid #222;
+        margin-right: auto;
+    }
+
+    .viewport {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    .secret {
+        height: 200px;
+        width: 50%;
+    }
+
 }

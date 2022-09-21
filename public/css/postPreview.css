@@ -2,6 +2,8 @@ figure {
     border: solid 3px black;
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 figure form {
@@ -50,4 +52,14 @@ ul {
 
 li i {
     margin-left: 5px;
+}
+
+@media screen and (min-width: 850px) {
+
+    .postcardContainer{
+        width: 49%;
+        display: inline-block;
+        margin: 0 auto;
+    }
+
 }
