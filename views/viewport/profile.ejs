@@ -21,9 +21,17 @@
         <h4>0</h4>
     </div>
 </section>
-<form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
-    <h3>Enter a Bio:</h3>
-    <textarea name="bio"></textarea>
-    <input type="submit">
-    <input type="hidden" name="user" value="<%= user._id %>">
-</form>
+
+<% if(!user.bio) { %>
+    <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
+        <h3>Enter a Bio:</h3>
+        <textarea maxlength="275" placeholder="Tell us about yourself." name="bio"></textarea>
+        <input type="submit">
+        <input type="hidden" name="user" value="<%= user._id %>">
+    </form>
+<% }else { %>
+    <section class="bio">
+        <h4>Bio</h4>
+        <h5><%= user.bio %></h5>
+    </section>
+<% } %> 

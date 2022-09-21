@@ -16,7 +16,7 @@ module.exports = {
                     $set: {bio: req.body.bio}
                 }
             );
-            res.send('works')
+            res.redirect('back')
         } catch (error) {
             console.log(error)
         }
