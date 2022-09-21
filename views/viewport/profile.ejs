@@ -23,6 +23,7 @@
 </section>
 <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
     <h3>Enter a Bio:</h3>
-    <textarea></textarea>
+    <textarea name="bio"></textarea>
     <input type="submit">
+    <input type="hidden" name="user" value="<%= user._id %>">
 </form>
