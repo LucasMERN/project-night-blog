@@ -20,7 +20,7 @@ nav li{
     flex-basis: 18.5%;
     text-align: center;
     margin-top: .5rem;
-    text-shadow: 1px 1px #222;
+    /* text-shadow: 1px 1px #222; */
 }
 
 nav li:nth-child(3), nav li:nth-child(2){
