@@ -3,7 +3,7 @@ const router = express.Router();
 const Blog = require('../models/Blog');
 const Comment = require('../models/Comment');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
-const homeController = require('../controllers/home');
+const homeController = require('../controllers/homeController');
 
 //Load home page
 router.get('/', homeController.getIndex);
