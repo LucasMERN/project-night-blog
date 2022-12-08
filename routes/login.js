@@ -19,6 +19,8 @@ router.post('/loginLocal', (req, res, next)=>{
 //Get facebook login page
 router.get('/facebook', passport.authenticate('facebook'));
 router.get('/google', passport.authenticate('google'));
+router.get('/github', passport.authenticate('github'));
+router.get('/twitter', passport.authenticate('twitter'));
 
 //Facebook auth callback, determines what to do if login is successful/fails
 router.get('/facebook/callback',
@@ -28,8 +30,22 @@ router.get('/facebook/callback',
     res.redirect('/');
   });
 
-  router.get('/google/callback',
+router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+router.get('/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+  router.get('/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
