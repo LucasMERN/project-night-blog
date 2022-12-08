@@ -1,4 +1,4 @@
-const Blog = require('../models/Blog')
+const Blog = require('../models/BlogSchema')
 
 module.exports = {
     updateLike: async (req, res) => {

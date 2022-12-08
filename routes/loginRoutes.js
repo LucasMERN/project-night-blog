@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
-const loginController = require('../controllers/login')
+const loginController = require('../controllers/loginController')
 
 //Get login page
 router.get('/', ensureGuest, loginController.loadLoginPage)
