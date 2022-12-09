@@ -138,7 +138,8 @@ form div label {
 }
 
 form input:focus + label,
-form input:valid + label{
+form input:valid + label,
+.float{
     top: -20px;
     left: 0;
     color: rgb(31, 87, 81);
