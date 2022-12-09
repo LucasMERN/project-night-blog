@@ -148,7 +148,8 @@ form input:valid + label,
 }
 
 form input:focus,
-form input:valid{
+form input:valid,
+.float{
     border-bottom: 1px solid black;
 }
 
