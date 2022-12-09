@@ -2,9 +2,9 @@ const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
-const TwitterStrategy = require('passport-twitter').Strategy;
+// const TwitterStrategy = require('passport-twitter').Strategy;
 const mongoose = require('mongoose')
-const User = require('../models/User')
+const User = require('../models/UserSchema')
 
 module.exports = function (passport) {
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -117,33 +117,33 @@ async (accessToken, refreshToken, profile, done) => {
 }
 ));
 
-passport.use(new TwitterStrategy({
-  consumerKey: process.env.TWITTER_CONSUMER_KEY,
-  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-  callbackURL: "http://localhost:2002/login/twitter/callback"
-},
-async (accessToken, refreshToken, profile, done) => {
-  console.log(profile)
-  const newUser = {
-    userName: profile.displayName,
-    // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
-    email: profile.id,
-    password: 'N/A',
-  }
-try {
-  let user = await User.findOne({ email: profile.id })
+// passport.use(new TwitterStrategy({
+//   consumerKey: process.env.TWITTER_CONSUMER_KEY,
+//   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+//   callbackURL: "http://localhost:2002/login/twitter/callback"
+// },
+// async (accessToken, refreshToken, profile, done) => {
+//   console.log(profile)
+//   const newUser = {
+//     userName: profile.displayName,
+//     // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
+//     email: profile.id,
+//     password: 'N/A',
+//   }
+// try {
+//   let user = await User.findOne({ email: profile.id })
 
-  if (user) {
-    done(null, user)
-  } else {
-    user = await User.create(newUser)
-    done(null, user)
-  }
-} catch (error) {
-  console.log(error)
-}
-}
-));
+//   if (user) {
+//     done(null, user)
+//   } else {
+//     user = await User.create(newUser)
+//     done(null, user)
+//   }
+// } catch (error) {
+//   console.log(error)
+// }
+// }
+// ));
 
   passport.serializeUser((user, done) => {
     done(null, user.id)

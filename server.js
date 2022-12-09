@@ -46,7 +46,6 @@ app.use(passport.session())
 app.use('/', mainRoutes)
 app.use('/login', loginRoutes)
 app.use('/register', registerRoutes)
-app.use('/comment', commentRoutes)
 app.use('/like', likeRoutes)
 app.use('/profile', profileRoutes)
 

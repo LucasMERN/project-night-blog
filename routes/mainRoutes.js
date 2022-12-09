@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Blog = require('../models/Blog');
-const Comment = require('../models/Comment');
+const Blog = require('../models/BlogSchema');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const homeController = require('../controllers/homeController');
 
@@ -23,8 +22,6 @@ router.delete('/:id', async (req, res) => {
 // The 'slug' is generated in our model. Basically, each blog will have an id (1234213452), instead of presenting that ugly string of numbers in our URL, we change the string of numbers into what is called a slug. I set the slug to be whatever the title of our blog is. This makes a more user-friendly URL.
 router.get('/:slug/article', ensureAuth, async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
-    const commentTotal = await Comment.countDocuments({title: blog.title})
-    const comments = await Comment.find({title: blog.title}).sort({date: -1})
     const liked = await Blog.find({likedBy: req.user.email})
     if(blog == null) res.redirect('/')
     res.render('index.ejs', {blog: blog, commentTotal: commentTotal, allComments: comments, username: req.user.userName, user: req.user, liked: liked, routeName: 'slug'})
@@ -51,7 +48,6 @@ function saveArticleAndRedirect(path){
             blog.author = req.body.author,
             blog.markdown = req.body.markdown,
             blog.totalLikes = req.body.totalLikes
-            blog.totalComments = req.body.totalLikes
         try {
             blog = await blog.save()
             res.redirect(`/${blog.slug}`)
