@@ -2,6 +2,8 @@ const togglePassword = document.querySelector('#togglePassword')
 const togglePassword2 = document.querySelector('#togglePassword2')
 const password = document.querySelector('#password')
 const password2 = document.querySelector('#password2')
+const label = document.querySelector('.label')
+const email = document.querySelector('#email')
 
 // Make sure password id is not null. If not, toggle visibility of password with 'password' id, toggle eye icon as well
 if(togglePassword){
@@ -114,5 +116,13 @@ function toggleMenu(){
         menu.style.display = "block"
     }else{
         menu.style.display = "none"
+    }
+}
+
+function hoverLabel(){
+    if(email.value.length > 0){
+        label.classList.add('float')
+    }if(email.value.length == 0){
+        label.classList.remove('float')
     }
 }
