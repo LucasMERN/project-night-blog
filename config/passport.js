@@ -67,16 +67,21 @@ passport.use(new GoogleStrategy({
   callbackURL: "http://localhost:2002/login/google/callback"
 },
 async (accessToken, refreshToken, profile, done) => {
-  console.log(profile)
+  // console.log(profile)
   const newUser = {
     userName: profile._json.name,
-    // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
     email: profile._json.email,
     profilePic: profile._json.picture,
     password: 'N/A',
   }
-  try {
-    let user = await User.findOne({ email: profile.id })
+  console.log(newUser)
+   try {
+    let user = await User.findOne({
+      $or: [
+        { userName: newUser.userName },
+        { email: newUser.email }
+      ]
+    })
 
     if (user) {
       done(null, user)
@@ -93,18 +98,26 @@ async (accessToken, refreshToken, profile, done) => {
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: "http://localhost:2002/login/github/callback"
+  accessToken: process.env.GITHUB_ACCESS_TOKEN,
+  callbackURL: "http://localhost:2002/login/github/callback",
+  scope: [ 'user:email' ],
 },
 async (accessToken, refreshToken, profile, done) => {
-    console.log(profile)
+    // console.log(profile)
     const newUser = {
-      userName: profile.displayName,
-      // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
-      email: profile.id,
+      userName: profile._json.login,
+      email: profile.emails[0].value,
+      profilePic: profile._json.avatar_url,
       password: 'N/A',
     }
+    console.log(newUser)
   try {
-    let user = await User.findOne({ email: profile.id })
+    let user = await User.findOne({
+      $or: [
+        { userName: newUser.userName },
+        { email: newUser.email }
+      ]
+    })
 
     if (user) {
       done(null, user)
@@ -117,6 +130,7 @@ async (accessToken, refreshToken, profile, done) => {
   }
 }
 ));
+
 
 // passport.use(new TwitterStrategy({
 //   consumerKey: process.env.TWITTER_CONSUMER_KEY,
