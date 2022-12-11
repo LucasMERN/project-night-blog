@@ -1,4 +1,5 @@
 const Blog = require('../models/BlogSchema')
+const User = require('../models/UserSchema')
 
 module.exports = {
     getIndex: async (req,res)=>{
@@ -17,11 +18,15 @@ module.exports = {
     // Create new blog 
     // TODO: Refactor name to newPost
     newBlogPost: async(req, res)=>{
+        // Grab the current email of our logged in user
+        let currentEmail = await req.user.email
+        // Search for the user object we want to assign to the property value
+        let currentUser = await User.find({email: currentEmail})
         try {
             await Blog.create({
                 title: req.body.title,
                 intro: req.body.intro,
-                author: req.body.author,
+                author: currentUser[0],
                 markdown: req.body.markdown,
                 email: req.user.email,
                 totalLikes: 0,
