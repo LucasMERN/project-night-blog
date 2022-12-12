@@ -15,6 +15,9 @@ const UserSchema = new mongoose.Schema({    // create a new schema for the user 
     type: String,
     required: true
   },
+  provider: {
+    type: String,
+  },
   bio: {
     type: String
   }

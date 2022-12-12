@@ -22,15 +22,6 @@ module.exports = function (passport) {
       })
     })
   }))
-  
-
-  passport.serializeUser((user, done) => {
-    done(null, user.id)
-  })
-
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
-  }),
 
   passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
@@ -41,12 +32,13 @@ module.exports = function (passport) {
     console.log(profile)
     const newUser = {
       userName: profile.displayName,
-      // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
-      email: profile.id,
+      email: profile.id, // Facebook does not seem to give us access to the email address
+      profilePic: profile.profileUrl,
       password: 'N/A',
+      provider: 'Facebook'
     }
     try {
-      let user = await User.findOne({ email: profile.id })
+      let user = await User.findOne({ userName: newUser.userName, email: newUser.email, provider: 'Facebook' })
 
       if (user) {
         done(null, user)
@@ -73,15 +65,11 @@ async (accessToken, refreshToken, profile, done) => {
     email: profile._json.email,
     profilePic: profile._json.picture,
     password: 'N/A',
+    provider: 'Google'
   }
   console.log(newUser)
    try {
-    let user = await User.findOne({
-      $or: [
-        { userName: newUser.userName },
-        { email: newUser.email }
-      ]
-    })
+    let user = await User.findOne({ userName: newUser.userName, email: newUser.email, provider: 'Google' })
 
     if (user) {
       done(null, user)
@@ -109,15 +97,11 @@ async (accessToken, refreshToken, profile, done) => {
       email: profile.emails[0].value,
       profilePic: profile._json.avatar_url,
       password: 'N/A',
+      provider: 'Github'
     }
     console.log(newUser)
   try {
-    let user = await User.findOne({
-      $or: [
-        { userName: newUser.userName },
-        { email: newUser.email }
-      ]
-    })
+    let user = await User.findOne({ userName: newUser.userName, email: newUser.email, provider: 'Github' })
 
     if (user) {
       done(null, user)
@@ -130,6 +114,13 @@ async (accessToken, refreshToken, profile, done) => {
   }
 }
 ));
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => done(err, user))
+})
 
 
 // passport.use(new TwitterStrategy({
@@ -159,13 +150,4 @@ async (accessToken, refreshToken, profile, done) => {
 // }
 // }
 // ));
-
-  passport.serializeUser((user, done) => {
-    done(null, user.id)
-  })
-
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
-  })
-
 }

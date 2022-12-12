@@ -41,6 +41,17 @@ app.use(
 // Set passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+app.use((err, req, res, next) => {
+    // Check for the specific error thrown by Passport when the email address is already taken
+    if (err.name === 'MongoError' && err.code === 11000) {
+      // Display a message to the user indicating that the email address is already in use
+      return res.status(400).send({
+        message: 'This email address is already in use.'
+      });
+    }
+    // Handle other errors
+    next(err);
+  });
 
 // Routes
 app.use('/', mainRoutes)
