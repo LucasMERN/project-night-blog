@@ -12,9 +12,7 @@ const UserSchema = new mongoose.Schema({    // create a new schema for the user 
   bookmarks: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
   drafts: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
   likes: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
-  followers: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
-  following: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
-  blockedList: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  following: Boolean,
   blocked: Boolean,
   pinned: {type: Schema.Types.ObjectId, ref: 'Blog'},
 }, { timestamps: true })
