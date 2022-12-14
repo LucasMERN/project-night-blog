@@ -18,19 +18,19 @@ module.exports = {
     // Create new blog 
     // TODO: Refactor name to newPost
     newBlogPost: async(req, res)=>{
-        let postData = {
-            title: req.body.title,
-            intro: req.body.intro,
-            author: req.session.user,
-            markdown: req.body.markdown,
-            email: req.user.email,
-            totalLikes: 0
-        }
-
+        // Grab the current email of our logged in user
+        let currentEmail = await req.user.email
+        // Search for the user object we want to assign to the property value
+        let currentUser = await User.find({email: currentEmail})
         try {
-            await Blog.create(postData, newPost => {
-                newPost = User.populate(newPost, { path: "author" })
-                res.redirect('/')
+            await Blog.create({
+                title: req.body.title,
+                intro: req.body.intro,
+                author: currentUser[0],
+                markdown: req.body.markdown,
+                email: req.user.email,
+                totalLikes: 0,
+                totalComments: 0,
             })
 
         } catch (error) {
