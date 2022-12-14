@@ -3,22 +3,21 @@ const mongoose = require('mongoose')
 
 
 const UserSchema = new mongoose.Schema({    // create a new schema for the user model
-  userName: { 
-    type: String, 
-    required: true 
-  },
-  email: { 
-    type: String, 
-    required: true 
-  },    
-  password: {
-    type: String,
-    required: true
-  },
-  bio: {
-    type: String
-  }
-})
+  userName: { type: String, required: true, unique: true, trim: true },
+  email: { type: String, required: true, trim: true, unique: true },    
+  password: { type: String, required: true },
+  profilePic: { type: String, default: "/images/defaultUser.png"},
+  bio: { type: String },
+  posts: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  bookmarks: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  drafts: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  likes: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  followers: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  following: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  blockedList: [{type: Schema.Types.ObjectId, ref: 'Blog'}],
+  blocked: Boolean,
+  pinned: {type: Schema.Types.ObjectId, ref: 'Blog'},
+}, { timestamps: true })
 
  UserSchema.pre('save', function save(next) {   // hash the password before saving the user
   const user = this   // get the user from the context
