@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/BlogSchema');
+const User = require('../models/UserSchema');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const homeController = require('../controllers/homeController');
 
@@ -24,7 +25,7 @@ router.get('/:slug/article', ensureAuth, async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
     const liked = await Blog.find({likedBy: req.user.email})
     if(blog == null) res.redirect('/')
-    res.render('index.ejs', {blog: blog, commentTotal: commentTotal, allComments: comments, username: req.user.userName, user: req.user, liked: liked, routeName: 'slug'})
+    res.render('index.ejs', {blog: blog, username: req.user.userName, user: req.user, liked: liked, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view
@@ -45,7 +46,7 @@ function saveArticleAndRedirect(path){
         let blog = req.blog
             blog.title = req.body.title
             blog.intro = req.body.intro,
-            blog.author = req.body.author,
+            author = req.session.author,
             blog.markdown = req.body.markdown,
             blog.totalLikes = req.body.totalLikes
         try {

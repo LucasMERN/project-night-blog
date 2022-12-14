@@ -1,12 +1,12 @@
 const Blog = require('../models/BlogSchema')
-const User = require('../models/UserSchema')
+const User = require('../models/UserSchema');
 
 module.exports = {
     getIndex: async (req,res)=>{
         try {
             // find all of our blogs, sort them in descending order so the newest ones are on top
             const blogs = await Blog.find().sort({createdAt: 'desc'})
-            res.render('index.ejs', {articles: blogs, user: req.user, routeName: 'home'})
+            res.render('index.ejs', {articles: blogs, user: req.session.user, routeName: 'home'})
         } catch (error) {
             console.log(error)
         }
@@ -32,7 +32,7 @@ module.exports = {
                 totalLikes: 0,
                 totalComments: 0,
             })
-            res.redirect('/')
+
         } catch (error) {
             console.log(error)
         }

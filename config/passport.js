@@ -69,9 +69,10 @@ passport.use(new GoogleStrategy({
 async (accessToken, refreshToken, profile, done) => {
   console.log(profile)
   const newUser = {
-    userName: profile.displayName,
+    userName: profile._json.name,
     // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
-    email: profile.id,
+    email: profile._json.email,
+    profilePic: profile._json.picture,
     password: 'N/A',
   }
   try {

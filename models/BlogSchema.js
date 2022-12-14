@@ -14,47 +14,18 @@ const DOMPurify = createDOMPurify(window)
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    author: {
-        type: Object,
-        required: true
-    },
-    intro: {
-        type: String,
-        required: true
-    },
-    markdown: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    totalLikes: {
-        type: Number
-    },
-    likedBy: [],
-    totalComments: {
-        type: Number
-    },
-    slug: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    sanitizedHtml: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    }
-});
+    title: { type: String, required: true, trim: true },
+    intro: { type: String, required: true, trim: true },
+    markdown: { type: String, required: true, trim: true },
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    pinned: Boolean,
+    draft: Boolean,
+    likedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    bookmarked: Boolean,
+    slug: { type: String, required: true, unique: true },
+    sanitizedHtml: { type: String, required: true },
+    email: { type: String, required: true }
+}, { timestamps: true });
 
 //Set validations and before attributes (pre validate)
 BlogSchema.pre('validate', function(next){
