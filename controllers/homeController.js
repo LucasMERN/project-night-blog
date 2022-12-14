@@ -4,7 +4,7 @@ const User = require('../models/UserSchema')
 module.exports = {
     getIndex: async (req,res)=>{
         try {
-            // Find all of our blogs and make sure to populate the 'author'
+            // Populate author
             const blogs = await Blog.find().populate('author').exec()
             res.render('index.ejs', {articles: blogs, user: req.user, routeName: 'home'})
         } catch (error) {
