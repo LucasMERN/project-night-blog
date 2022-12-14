@@ -19,8 +19,9 @@ const BlogSchema = new Schema({
         required: true
     },
     author: {
-        type: Object,
-        required: true
+        // We let the db know the value is going to be an ObjectId, specifically the User object
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     intro: {
         type: String,
