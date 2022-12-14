@@ -16,11 +16,12 @@ const Schema = mongoose.Schema;
 const BlogSchema = new Schema({
     title: { type: String, required: true, trim: true },
     intro: { type: String, required: true, trim: true },
-    markdown: { type: String, required: true, trime: true },
+    markdown: { type: String, required: true, trim: true },
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     pinned: Boolean,
-    totalLikes: { type: Number },
-    likedBy: [],
+    draft: Boolean,
+    likedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    bookmarked: Boolean,
     slug: { type: String, required: true, unique: true },
     sanitizedHtml: { type: String, required: true },
     email: { type: String, required: true }
