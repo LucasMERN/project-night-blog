@@ -19,7 +19,7 @@ module.exports = {
     // TODO: Refactor name to newPost
     newBlogPost: async(req, res)=>{
         try {
-            await Blog.create({
+            const blog = new Blog({
                 title: req.body.title,
                 intro: req.body.intro,
                 author: req.user.id,
@@ -28,7 +28,11 @@ module.exports = {
                 totalLikes: 0,
                 totalComments: 0,
             })
-
+            const savedBlog = await blog.save()
+            await User.updateOne({_id: savedBlog.author},
+                { 
+                    $push: {posts: savedBlog._id}
+                })
         } catch (error) {
             console.log(error)
         }
