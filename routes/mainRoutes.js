@@ -25,13 +25,13 @@ router.get('/:slug/article', ensureAuth, async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug});
     const liked = await Blog.find({likedBy: req.user.email})
     if(blog == null) res.redirect('/')
-    res.render('index.ejs', {blog: blog, username: req.user.userName, user: req.user, liked: liked, routeName: 'slug'})
+    res.render('mainLayout.ejs', {blog: blog, username: req.user.userName, user: req.user, liked: liked, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view
 router.get('/edit/:id', async (req, res)=>{
     const blog = await Blog.findById(req.params.id)
-    res.render('index.ejs', {blog: blog, routeName: 'edit'})
+    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit'})
 })
 
 // Grab our specific article and update based upon saveArticleAndRedirect function
