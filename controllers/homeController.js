@@ -25,8 +25,6 @@ module.exports = {
                 author: req.user.id,
                 markdown: req.body.markdown,
                 email: req.user.email,
-                totalLikes: 0,
-                totalComments: 0,
             })
             const savedBlog = await blog.save()
             await User.updateOne({_id: savedBlog.author},
