@@ -24,7 +24,6 @@ const BlogSchema = new Schema({
     bookmarked: Boolean,
     slug: { type: String, required: true, unique: true },
     sanitizedHtml: { type: String, required: true },
-    email: { type: String, required: true }
 }, { timestamps: true });
 
 //Set validations and before attributes (pre validate)

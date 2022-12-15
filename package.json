@@ -4,41 +4,42 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "dev": "nodemon server.js"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/LucasMERN/project-night-blog.git"
+        "type": "git",
+        "url": "git+https://github.com/LucasMERN/project-night-blog.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/LucasMERN/project-night-blog/issues"
+        "url": "https://github.com/LucasMERN/project-night-blog/issues"
     },
     "homepage": "https://github.com/LucasMERN/project-night-blog#readme",
     "devDependencies": {
-      "nodemon": "^2.0.19"
+        "nodemon": "^2.0.19"
     },
     "dependencies": {
-      "bcrypt": "^5.0.1",
-      "connect-mongo": "^4.6.0",
-      "dompurify": "^2.4.0",
-      "dotenv": "^16.0.2",
-      "ejs": "^3.1.8",
-      "express": "^4.18.1",
-      "express-session": "^1.17.3",
-      "jsdom": "^20.0.0",
-      "marked": "^4.1.0",
-      "method-override": "^3.0.0",
-      "moment": "^2.29.4",
-      "mongodb": "^4.9.1",
-      "mongoose": "^6.5.4",
-      "passport": "^0.6.0",
-      "passport-facebook": "^3.0.0",
-      "passport-google-oauth2": "^0.2.0",
-      "passport-google-oauth20": "^2.0.0",
-      "passport-local": "^1.0.0",
-      "slugify": "^1.6.5"
+        "bcrypt": "^5.0.1",
+        "connect-mongo": "^4.6.0",
+        "dompurify": "^2.4.0",
+        "dotenv": "^16.0.2",
+        "ejs": "^3.1.8",
+        "express": "^4.18.1",
+        "express-session": "^1.17.3",
+        "jsdom": "^20.0.0",
+        "marked": "^4.1.0",
+        "method-override": "^3.0.0",
+        "moment": "^2.29.4",
+        "mongodb": "^4.9.1",
+        "mongoose": "^6.5.4",
+        "passport": "^0.6.0",
+        "passport-facebook": "^3.0.0",
+        "passport-github2": "^0.1.12",
+        "passport-google-oauth2": "^0.2.0",
+        "passport-google-oauth20": "^2.0.0",
+        "passport-local": "^1.0.0",
+        "slugify": "^1.6.5"
     }
-  }
+}

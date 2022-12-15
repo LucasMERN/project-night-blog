@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')    // bcrypt is a library for hashing passwords
 const mongoose = require('mongoose')
-
+const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({    // create a new schema for the user model
   userName: { type: String, required: true, unique: true, trim: true },
