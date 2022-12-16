@@ -23,8 +23,10 @@ router.delete('/:id', async (req, res) => {
 // The 'slug' is generated in our model. Basically, each blog will have an id (1234213452), instead of presenting that ugly string of numbers in our URL, we change the string of numbers into what is called a slug. I set the slug to be whatever the title of our blog is. This makes a more user-friendly URL.
 router.get('/:slug/article', ensureAuth, async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug}).populate('author');
+    const liked = await User.findOne({_id: req.user.id, likes: {$in: [blog._id]}});
+    const totalLikes = blog.likedBy.length
     if(blog == null) res.redirect('/')
-    res.render('mainLayout.ejs', {blog: blog, username: req.user.userName, user: req.user, routeName: 'slug'})
+    res.render('mainLayout.ejs', {blog: blog, liked: liked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view
