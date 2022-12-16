@@ -1,36 +1,17 @@
-<link rel="stylesheet" href="/css/blogStyles.css">
-<div class="viewContainer">
-
-
-    <div class="headerContainer">
+<link rel="stylesheet" href="/css/markdown.css">
+<div class="markdownContainer">
+    <header class="markdownHeader">
         <h1><%= blog.title %></h1>
+    </header>
+    <div class="markdownIcons">
+        <i class="fa-regular fa-bookmark"></i>
+        <i class="fa-regular fa-heart"> 4</i>
+        <i class="fa-regular fa-share-from-square"></i>
     </div>
-
-
-
-    <div class="bodyContainer">
-        <h4 class="subContainer">by
-            <a href="#">
-                <%= blog.author %>
-            </a> on 
-            <span class="date">
-                <%= blog.createdAt.toLocaleDateString() %>
-            </span>
-            <form id="likesForm" action="/like/<%= blog._id %>?_method=PUT" method="POST">
-                <button type="submit" class="likesButton">
-                    <% if(liked.length > 0){ %>
-                        <i class="fa-solid fa-thumbs-down"></i>
-                        <div>Unlike</div>
-                    <% }else { %>
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        <div>Like</div>
-                   <% } %>
-                </button>
-            </form>
-
-        </h4>
+    <div class="author">
+        <h5>Written by <a href="#"><%= blog.author.userName %></a> &bull; <%= moment(blog.createdAt).format('MMMM Do') %></h5>
+    </div>
+    <section class="blogContent">
         <%- blog.sanitizedHtml %>
-    </div>
-
-
+    </section>
 </div>
