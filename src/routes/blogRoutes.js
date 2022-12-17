@@ -19,9 +19,6 @@ router.delete('/:id', blogController.deleteBlog);
 // The 'slug' is generated in our model. Basically, each blog will have an id (1234213452), instead of presenting that ugly string of numbers in our URL, we change the string of numbers into what is called a slug. I set the slug to be whatever the title of our blog is. This makes a more user-friendly URL.
 router.get('/:slug/read', ensureAuth, blogController.readBlog);
 
-// Open the view that allows us to edit page
-router.get('/edit/:id', blogController.editBlog);
-
 // Grab our specific blog and update based upon saveBlogAndRedirect function
 router.put('/:id', async (req, res, next)=>{
     req.blog = await Blog.findById(req.params.id)

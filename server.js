@@ -2,24 +2,24 @@ const express = require('express'); // expressjs is a framework for node.js
 const app = express();  // create an instance of express
 const mongoose = require('mongoose');   // mongoose is a library that allows us to connect to mongodb
 const passport = require('passport');   // passport is a middleware for authentication
-const connectDB = require('./config/database'); // connect to mongodb
+const connectDB = require('./src/config/database'); // connect to mongodb
 const session = require('express-session'); // express-session is a middleware for session management
 const MongoStore = require('connect-mongo'); // connect-mongo is a store for Connect and Express
 const methodOverride = require('method-override') // allows us to override forms to use put and delete
-const mainRoutes = require('./routes/mainRoutes'); // import the main routes
-const loginRoutes = require('./routes/loginRoutes'); // import the login routes
-const registerRoutes = require('./routes/registerRoutes'); // import the register routes
-const likeRoutes = require('./routes/likesRoutes'); // import the likes routes
-const profileRoutes = require('./routes/profileRoutes'); // import the profile routes
-const settingsRoutes = require('./routes/settingsRoutes');
-const bookmarkRoutes = require('./routes/bookmarkRoutes');
-const blogRoutes = require('./routes/blogRoutes')
+const mainRoutes = require('./src/routes/mainRoutes'); // import the main routes
+const loginRoutes = require('./src/routes/loginRoutes'); // import the login routes
+const registerRoutes = require('./src/routes/registerRoutes'); // import the register routes
+const likeRoutes = require('./src/routes/likesRoutes'); // import the likes routes
+const profileRoutes = require('./src/routes/profileRoutes'); // import the profile routes
+const settingsRoutes = require('./src/routes/settingsRoutes');
+const bookmarkRoutes = require('./src/routes/bookmarkRoutes');
+const blogRoutes = require('./src/routes/blogRoutes')
 app.locals.moment = require('moment'); // allows us to format our date
 
-require('dotenv').config({path: './config/.env'});  // dotenv is used to store the secret keys in a .env file
+require('dotenv').config({path: './src/config/.env'});  // dotenv is used to store the secret keys in a .env file
 
 // Require passport in our config
-require('./config/passport')(passport)
+require('./src/config/passport')(passport)
 
 connectDB();    // Connect to database
 

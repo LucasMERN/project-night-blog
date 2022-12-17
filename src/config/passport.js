@@ -32,33 +32,33 @@ module.exports = function (passport) {
     User.findById(id, (err, user) => done(err, user))
   }),
 
-  passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_APP_ID,
-    clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:2002/login/facebook/callback"
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    console.log(profile)
-    const newUser = {
-      userName: profile.displayName,
-      // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
-      email: profile.id,
-      password: 'N/A',
-    }
-    try {
-      let user = await User.findOne({ email: profile.id })
+//   passport.use(new FacebookStrategy({
+//     clientID: process.env.FACEBOOK_APP_ID,
+//     clientSecret: process.env.FACEBOOK_APP_SECRET,
+//     callbackURL: "http://localhost:2002/login/facebook/callback"
+//   },
+//   async (accessToken, refreshToken, profile, done) => {
+//     console.log(profile)
+//     const newUser = {
+//       userName: profile.displayName,
+//       // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
+//       email: profile.id,
+//       password: 'N/A',
+//     }
+//     try {
+//       let user = await User.findOne({ email: profile.id })
 
-      if (user) {
-        done(null, user)
-      } else {
-        user = await User.create(newUser)
-        done(null, user)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-));
+//       if (user) {
+//         done(null, user)
+//       } else {
+//         user = await User.create(newUser)
+//         done(null, user)
+//       }
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// ));
 
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -76,7 +76,12 @@ async (accessToken, refreshToken, profile, done) => {
     password: 'N/A',
   }
   try {
-    let user = await User.findOne({ email: profile._json.email })
+    let user = await User.findOne({ 
+      $or: [
+        { email: profile._json.email },
+        { userName: profile._json.name }
+      ]
+    })
 
     if (user) {
       done(null, user)
@@ -93,18 +98,26 @@ async (accessToken, refreshToken, profile, done) => {
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: "http://localhost:2002/login/github/callback"
+  accessToken: process.env.GITHUB_ACCESS_TOKEN,
+  callbackURL: "http://localhost:2002/login/github/callback",
+  scope: ['user:email'],
 },
 async (accessToken, refreshToken, profile, done) => {
     console.log(profile)
     const newUser = {
-      userName: profile.displayName,
+      userName: profile._json.login,
       // We will be filtering our database by email address which must be unique, therefore we will assign the unique profile id to our email property
-      email: profile.id,
+      email: profile.emails[0].value,
+      profilePic: profile._json.avatar_url,
       password: 'N/A',
     }
   try {
-    let user = await User.findOne({ email: profile.id })
+    let user = await User.findOne({ 
+      $or: [
+        { email: profile.emails[0].value },
+        { userName: profile._json.login }
+      ]
+    })
 
     if (user) {
       done(null, user)

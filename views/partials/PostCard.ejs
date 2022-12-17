@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/css/postCard.css">
+<link rel="stylesheet" href="/css/main.css">
+    <% articles.forEach(article => { %>
+    <div class="postcardContainer">
+        <div class="postcard">
+            <header>
+            <article><%- include('./userLogo.ejs') %></article>
+            <h1 class="postTitle"><%= article.title %></h2>
+            <span><%= article.createdAt.toLocaleDateString() %></span>
+            </header>
+            <section>
+                <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+                <p><%= article.intro %></p>
+            </section>
+            <ul>
+                <li><button method="POST">(bookmark icon)Save for later</button></li>
+                <li><a class="title" href="/<%= article.slug %>/article">Read More (arrow button)</a></li>
+            </ul>
+        </div>
+    </div>
+    <% }) %>

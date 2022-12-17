@@ -51,8 +51,4 @@ module.exports = {
             console.log(error)   
         }
     },
-    editBlog: async (req, res)=>{
-        const blog = await Blog.findById(req.params.id)
-        res.render('mainLayout.ejs', {user: req.user, blog: blog, routeName: 'edit'})
-    }
 }
