@@ -3,12 +3,11 @@ const Blog = require('../models/BlogSchema');
 const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
-     // Render our newPost page Refactor name to newPostPage
+     // Render view to create a new blog
      newBlogPage: (req, res)=>{
         res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost'})
     },
     // Create new blog 
-    // TODO: Refactor name to newPost
     newBlogPost: async(req, res)=>{
         try {
             let image = null;
