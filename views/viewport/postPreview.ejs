@@ -1,30 +1,29 @@
 <link rel="stylesheet" href="/css/postPreview.css">
 <link rel="stylesheet" href="/css/main.css">
-    <% articles.forEach(article => { %>
+    <% blogs.forEach(blog => { %>
     <div class="postcardContainer">
         <figure class="postcard">
-            <form action="/blog/<%= article.id %>?_method=DELETE" method="POST">
+            <form action="/blog/<%= blog.id %>?_method=DELETE" method="POST">
                 <button type="submit"><i class="fa-solid fa-trash"></i></button>
             </form>
             <%# if (article.author === req.user.username || req.user.role === 'admin') { %>
-            <div><a href="/blog/edit/<%= article.id %>"><i class="fa-solid fa-pencil"></i></a></div>
+            <div><a href="/blog/edit/<%= blog.id %>"><i class="fa-solid fa-pencil"></i></a></div>
             <%# } %>
-            <a class="title" href="/blog/<%= article.slug %>/article">
-                <h2><%= article.title %></h2>
-                <h4><%= article.author.userName %></h4>
+            <a class="title" href="/blog/<%= blog.slug %>/read">
+                <h2><%= blog.title %></h2>
+                <h4><%= blog.author.userName %></h4>
                 <figcaption>
-                    <p><%= article.intro %></p>
+                    <p><%= blog.intro %></p>
                 </figcaption>
-                <% if (article.image) { %>
+                <% if (blog.image) { %>
                     <div class="postImage">
-                        <img id="image" src="<%= article.image %>" alt="blog photo">
+                        <img id="image" src="<%= blog.image %>" alt="blog photo">
                     </div> 
                 <% } %>
             </a>
             <ul>
-                <li><a href="#"><%= article.totalLikes %><i class="fa-solid fa-thumbs-up"></i></a></li>
-                <li><a href="#"><%= article.totalComments %><i class="fa-solid fa-comments"></i></a></li>
-                <li><%= article.createdAt.toLocaleDateString() %></li>
+                <li><a href="#"><%= blog.totalLikes %><i class="fa-solid fa-thumbs-up"></i></a></li>
+                <li><%= blog.createdAt.toLocaleDateString() %></li>
             </ul>
         </figure>
     </div>
