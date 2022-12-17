@@ -24,9 +24,10 @@ router.delete('/:id', async (req, res) => {
 router.get('/:slug/article', ensureAuth, async (req, res)=>{
     const blog = await Blog.findOne({slug: req.params.slug}).populate('author');
     const liked = await User.findOne({_id: req.user.id, likes: {$in: [blog._id]}});
+    const bookmarked = await User.findOne({_id: req.user.id, bookmarks: {$in: [blog._id]}});
     const totalLikes = blog.likedBy.length
     if(blog == null) res.redirect('/')
-    res.render('mainLayout.ejs', {blog: blog, liked: liked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug'})
+    res.render('mainLayout.ejs', {blog: blog, liked: liked != null, bookmarked: bookmarked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view

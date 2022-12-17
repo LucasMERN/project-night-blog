@@ -140,3 +140,17 @@ async function updateLike(id){
         console.log(error)
     }
 }
+
+async function bookmarkPost(id){
+    try {
+        const response = await fetch(`/bookmark/${id}`, {
+            method: 'post',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}

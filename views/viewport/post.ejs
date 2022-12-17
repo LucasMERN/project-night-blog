@@ -4,7 +4,7 @@
         <h1><%= blog.title %></h1>
     </header>
     <div class="markdownIcons">
-        <i class="fa-regular fa-bookmark"></i>
+        <i onclick="bookmarkPost('<%= blog._id %>')"class="<%= bookmarked === true ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark' %>"></i>
         <i onclick="updateLike('<%= blog._id %>')"class="<%= liked === true ? 'fa-solid fa-heart' : 'fa-regular fa-heart'  %>"> <%= totalLikes %></i>
         <i class="fa-regular fa-share-from-square"></i>
     </div>
