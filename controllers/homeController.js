@@ -7,14 +7,14 @@ module.exports = {
         try {
             // find all of our blogs, sort them in descending order so the newest ones are on top
             const blogs = await Blog.find().populate('author').exec()
-            res.render('mainLayout.ejs', {articles: blogs, user: req.session.user, routeName: 'home'})
+            res.render('mainLayout.ejs', {articles: blogs, user: req.user, routeName: 'home'})
         } catch (error) {
             console.log(error)
         }
     },
     // Render our newPost page Refactor name to newPostPage
     newBlogPage: (req, res)=>{
-        res.render('mainLayout.ejs', {routeName: 'newPost'})
+        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost'})
     },
     // Create new blog 
     // TODO: Refactor name to newPost
