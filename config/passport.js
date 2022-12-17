@@ -76,7 +76,7 @@ async (accessToken, refreshToken, profile, done) => {
     password: 'N/A',
   }
   try {
-    let user = await User.findOne({ email: profile.id })
+    let user = await User.findOne({ email: profile._json.email })
 
     if (user) {
       done(null, user)
