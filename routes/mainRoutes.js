@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const upload = require("../middleware/multer");
 const Blog = require('../models/BlogSchema');
 const User = require('../models/UserSchema');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const homeController = require('../controllers/homeController');
+
 
 //Load home page
 router.get('/', homeController.getIndex);
@@ -12,7 +14,7 @@ router.get('/', homeController.getIndex);
 router.get('/new', ensureAuth, homeController.newBlogPage);
 
 //Post the form and add it to our database
-router.post('/create', homeController.newBlogPost);
+router.post('/create', upload.single("image"), homeController.newBlogPost);
 
 //Delete the article and remove from database
 router.delete('/:id', async (req, res) => {

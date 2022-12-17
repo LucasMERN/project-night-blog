@@ -15,7 +15,7 @@ const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
     title: { type: String, required: true, trim: true },
-    intro: { type: String, required: true, trim: true },
+    intro: { type: String, trim: true },
     markdown: { type: String, required: true, trim: true },
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     pinned: Boolean,
@@ -24,6 +24,7 @@ const BlogSchema = new Schema({
     bookmarked: Boolean,
     slug: { type: String, required: true, unique: true },
     sanitizedHtml: { type: String, required: true },
+    image: {type: String}
 }, { timestamps: true });
 
 //Set validations and before attributes (pre validate)
