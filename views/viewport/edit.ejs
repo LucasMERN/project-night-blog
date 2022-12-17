@@ -3,7 +3,7 @@
         <h1>Edit Blog</h1>
     </div>
     <div class="bodyContainer">
-        <form action="/<%= blog.id %>?_method=PUT" method="POST">
+        <form action="/blog/<%= blog.id %>?_method=PUT" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input required value="<%= blog.title %>" type="text" name="title" id="title" class="form-control">

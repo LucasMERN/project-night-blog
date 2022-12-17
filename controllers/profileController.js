@@ -3,7 +3,7 @@ const User = require('../models/UserSchema')
 module.exports = {
     getProfile: async (req, res) => {
         try {
-            res.render('mainLayout.ejs', {routeName: 'profile', user: req.user})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', user: req.user})
         } catch (error) {
             console.log(error)
         }
