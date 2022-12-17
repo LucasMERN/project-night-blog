@@ -6,8 +6,6 @@ module.exports = {
         try {
             const user = await User.findOne({_id: req.user.id});
             const liked = user.likes.includes(req.params.id);
-            console.log(liked)
-            console.log(req.params.id)
             if(liked){
                 await User.updateOne({_id: req.user.id}, {
                     $pull: {likes: req.params.id}
