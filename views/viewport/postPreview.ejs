@@ -15,6 +15,11 @@
                 <figcaption>
                     <p><%= article.intro %></p>
                 </figcaption>
+                <% if (article.image) { %>
+                    <div class="postImage">
+                        <img id="image" src="<%= article.image %>" alt="blog photo">
+                    </div> 
+                <% } %>
             </a>
             <ul>
                 <li><a href="#"><%= article.totalLikes %><i class="fa-solid fa-thumbs-up"></i></a></li>

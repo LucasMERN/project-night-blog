@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const upload = require("../middleware/multer");
 const Blog = require('../models/BlogSchema');
 const User = require('../models/UserSchema');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const homeController = require('../controllers/homeController');
+
 
 //Load home page
 router.get('/', homeController.getIndex);
@@ -12,7 +14,7 @@ router.get('/', homeController.getIndex);
 router.get('/new', ensureAuth, homeController.newBlogPage);
 
 //Post the form and add it to our database
-router.post('/create', homeController.newBlogPost);
+router.post('/create', upload.single("image"), homeController.newBlogPost);
 
 //Delete the article and remove from database
 router.delete('/:id', async (req, res) => {
@@ -22,10 +24,12 @@ router.delete('/:id', async (req, res) => {
 
 // The 'slug' is generated in our model. Basically, each blog will have an id (1234213452), instead of presenting that ugly string of numbers in our URL, we change the string of numbers into what is called a slug. I set the slug to be whatever the title of our blog is. This makes a more user-friendly URL.
 router.get('/:slug/article', ensureAuth, async (req, res)=>{
-    const blog = await Blog.findOne({slug: req.params.slug});
-    const liked = await Blog.find({likedBy: req.user.email})
+    const blog = await Blog.findOne({slug: req.params.slug}).populate('author');
+    const liked = await User.findOne({_id: req.user.id, likes: {$in: [blog._id]}});
+    const bookmarked = await User.findOne({_id: req.user.id, bookmarks: {$in: [blog._id]}});
+    const totalLikes = blog.likedBy.length
     if(blog == null) res.redirect('/')
-    res.render('mainLayout.ejs', {blog: blog, username: req.user.userName, user: req.user, liked: liked, routeName: 'slug'})
+    res.render('mainLayout.ejs', {blog: blog, liked: liked != null, bookmarked: bookmarked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug'})
 })
 
 // Grab the id of the file we would like to edit and then render our edit view

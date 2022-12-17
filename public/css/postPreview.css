@@ -54,6 +54,21 @@ li i {
     margin-left: 5px;
 }
 
+.postImage{
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+#image{
+   border-radius: 0;
+   height: 200px;
+   padding-bottom: 1rem;
+   margin: 0;
+}
+
 @media screen and (min-width: 850px) {
 
     .postcardContainer{

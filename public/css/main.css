@@ -168,12 +168,6 @@ a {
         margin-right: auto;
     }
 
-    .viewport {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-    }
-
     .secret {
         height: 200px;
         width: 50%;

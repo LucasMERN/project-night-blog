@@ -1,25 +1,25 @@
 
+<link rel="stylesheet" href="/css/blog.css"/>
 <div class="viewContainer">
-    <div class="headerContainer">
-        <h1>New Blog</h1>
-    </div>
     <div class="bodyContainer">
-        <form action="/create" method="POST">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input required type="text" name="title" id="title" class="form-control">
+        <form action="/create" enctype="multipart/form-data" method="POST">
+            <div class="submitContainer">
+                <input type="submit" value="Publish" class="btn btn-primary mt-2">
             </div>
-            <div>
+            <label class="imageInputBtn" for="imageUpload">
+                <i class="fa-solid fa-image fa-lg"></i>
+                Add Cover Image
+                <input type="file" name="image" id='imageUpload' class="image">
+            </label>
+            <input required type="text" name="title" id="title" class="blogTitle" placeholder="Blog Title...">
+            <!-- <div>
                 <label for="intro">Intro</label>
                 <textarea name="intro" id="intro" class="form-control"></textarea>
-            </div>
-            <div>
-                <label for="markdown">Markdown</label>
-                <textarea required name="markdown" id="markdown" class="form-control"></textarea>
-            </div>
+            </div> -->
 
-            <a href="/" class="btn btn-danger mt-2">Cancel</a>
-            <input type="submit" class="btn btn-primary mt-2">
+            <div class="textareaContainer">
+                <textarea required name="markdown" id="markdown" class="form-control" placeholder="Tell your story..."></textarea>
+            </div>
         </form>
     </div>
 </div>

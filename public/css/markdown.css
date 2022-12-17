@@ -1,0 +1,33 @@
+.markdownHeader{
+    text-align: center;
+}
+
+.markdownContainer{
+    padding: 2rem;
+}
+
+.markdownIcons{
+    margin: 1rem auto;
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.markdownIcons i {
+    cursor: pointer;
+}
+
+.author{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.author a{
+    display: inline;
+    color: black;
+}
+
+.blogContent p{
+    margin: 1rem 0;
+}

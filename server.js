@@ -12,6 +12,7 @@ const registerRoutes = require('./routes/registerRoutes'); // import the registe
 const likeRoutes = require('./routes/likesRoutes'); // import the likes routes
 const profileRoutes = require('./routes/profileRoutes'); // import the profile routes
 const settingsRoutes = require('./routes/settingsRoutes');
+const bookmarkRoutes = require('./routes/bookmarkRoutes')
 app.locals.moment = require('moment'); // allows us to format our date
 
 require('dotenv').config({path: './config/.env'});  // dotenv is used to store the secret keys in a .env file
@@ -50,6 +51,7 @@ app.use('/register', registerRoutes)
 app.use('/like', likeRoutes)
 app.use('/profile', profileRoutes)
 app.use('/settings', settingsRoutes)
+app.use('/bookmark', bookmarkRoutes)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running. http://localhost:${process.env.PORT}`);

@@ -126,3 +126,31 @@ function hoverLabel(){
         label.classList.remove('float')
     }
 }
+
+async function updateLike(id){
+    try {
+        const response = await fetch(`/like/${id}`, {
+            method: 'put',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function bookmarkPost(id){
+    try {
+        const response = await fetch(`/bookmark/${id}`, {
+            method: 'post',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
