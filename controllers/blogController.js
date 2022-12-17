@@ -5,7 +5,7 @@ const cloudinary = require("../middleware/cloudinary");
 module.exports = {
      // Render our newPost page Refactor name to newPostPage
      newBlogPage: (req, res)=>{
-        res.render('mainLayout.ejs', {routeName: 'newPost'})
+        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost'})
     },
     // Create new blog 
     // TODO: Refactor name to newPost
@@ -54,6 +54,6 @@ module.exports = {
     },
     editBlog: async (req, res)=>{
         const blog = await Blog.findById(req.params.id)
-        res.render('mainLayout.ejs', {blog: blog, routeName: 'edit'})
+        res.render('mainLayout.ejs', {user: req.user, blog: blog, routeName: 'edit'})
     }
 }
