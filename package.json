@@ -18,10 +18,12 @@
     },
     "homepage": "https://github.com/LucasMERN/project-night-blog#readme",
     "devDependencies": {
-        "nodemon": "^2.0.19"
+        "nodemon": "^2.0.19",
+        "parcel": "^2.8.2"
     },
     "dependencies": {
         "bcrypt": "^5.0.1",
+        "bootstrap": "^5.2.3",
         "cloudinary": "^1.33.0",
         "connect-mongo": "^4.6.0",
         "dompurify": "^2.4.0",
