@@ -1,3 +1,22 @@
 <% blogs.forEach(blog => { %>
-    <div><%- include('partials/PostCard.ejs') %></div>
+    <div class="postcardContainer">
+        <div class="postcard">
+            <article><%- include('partials/UserLogo.ejs') %></article>
+            <div class="postTitle"><%= blog.title %></div>
+            <span><%= blog.createdAt.toLocaleDateString() %></span>
+            <%# if (blog.author === req.user.username) { %>
+                <div><a href="/blog/edit/<%= blog.id %>"><i class="fa-solid fa-ellipsis"></i></a></div>
+            <%# } %>
+        </div>
+        <section class="picBlurb">
+            <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+            <p><%= blog.intro %></p>
+        </section>
+        <div>
+            <ul>
+                <li><button method="POST">(bookmark icon)Save for later</button></li>
+                <li><a class="title" href="/<%= blog.slug %>/blog">Read More (arrow button)</a></li>
+            </ul>
+        </div>
+    </div>
 <% }) %>
