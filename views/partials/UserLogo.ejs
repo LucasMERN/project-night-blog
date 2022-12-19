@@ -1,25 +1,14 @@
-<link rel="stylesheet" href="/css/main.css">
-
 <% if(typeof user == "undefined") { %>
-
     <div class="userLogo">
         <a class="profileLink" href="/login">
             <span>Login</span>
         </a>
     </div>
-
 <% }else{ %>
-
     <div class="userLogo" onclick="toggleMenu()">
-            <a class="profileLink" href="#">
-                    <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
-                    <span><%= user.userName %></span>
-            </a>
+        <a class="profileLink" href="#">
+            <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+            <span><%= user.userName %></span>
+        </a>
     </div>
-
-    <nav id="submenuWrap">
-        <a href="/profile/myprofile/<%= user._id %>"><h2><i class="fa-regular fa-user submenu-fa"></i>My Profile</h2></a>
-        <a href="/login/logout"><h2><i class="fa-solid fa-right-from-bracket submenu-fa"></i>Logout</h2></a>
-    </nav>
-
 <% } %>

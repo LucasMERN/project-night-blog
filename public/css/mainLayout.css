@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-flow: column wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.viewport{
+    width: 100%;
+}
+
+@media screen and (min-width: 550px) {
+
+    .nav-container{
+        width: 25%;
+        background-color: aqua;
+    }
+
+    .view-container{
+        display: flex;
+        width: 75%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+    }
+
+    .viewport .discovery{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .discovery{
+        width: 25%;
+    }
+    .view-wrapper {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+}
