@@ -130,6 +130,7 @@ header{
     border-bottom: 1px solid black;
     background-image: linear-gradient(to top, rgba(42, 48, 60, .9), rgba(42, 48, 60, 1));
     overflow: visible;
+    z-index: 1;
 }
 
 .searchBar{
@@ -311,6 +312,38 @@ span {
     margin-right: .5rem;
 }
 
+/* ////////////// PROFILE PAGE ////////////// */
+
+.profileHeader{
+    background-image: url('/images/profile-header.jpg');
+    background-size: cover;
+    height: 200px;
+    position: relative;
+    border-bottom: 2px solid black;
+    z-index: 0;
+}
+
+.profileImg{
+    position: absolute; 
+    top: 130px; 
+}
+
+.profileImg img{
+    height: 125px;
+}
+
+.profileUsername{
+    font-size: 1.5rem;
+}
+
+.followerContainer{
+    display: flex;
+}
+
+.profilePostsBookmarks{
+    display: flex;
+    justify-content: space-around;
+}
 
 @media screen and (min-width: 550px) {
 
