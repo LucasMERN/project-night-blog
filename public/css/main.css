@@ -325,11 +325,11 @@ span {
 
 .profileImg{
     position: absolute; 
-    top: 130px; 
+    top: 100px; 
 }
 
 .profileImg img{
-    height: 125px;
+    height: 150px;
 }
 
 .profileUsername{
