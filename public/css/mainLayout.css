@@ -9,6 +9,7 @@
 
 .viewport{
     width: 100%;
+    margin-bottom: 82px;
 }
 
 @media screen and (min-width: 550px) {

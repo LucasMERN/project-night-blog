@@ -1,11 +1,12 @@
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/mainLayout.css">
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
 
 <section>
     <section class="profileHeader">
         <div class="profileImg ml-5">
-            <img class="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2" src="<%= profileUser.profilePic %>" referrerPolicy="no-referrer" alt="user image">
+            <img src="<%= profileUser.profilePic %>" referrerPolicy="no-referrer" alt="user image">
         </div>
         <% if(profileUser._id.toString() == user._id.toString()){ %>
             <div>
@@ -30,19 +31,19 @@
           <% } %>
         
     </section>
-    <section class="mt-[65px]">
+    <section class="profileStats">
         <h3 class="profileUsername m-5"><%= profileUser.userName %></h3>
         <p class="m-5"><%= profileUser.bio %></p>
         <div class="followerContainer m-5">
             <div class="mr-2">3 Following</div>
             <div class="mr-2">5 Followers</div>
         </div>
+        <div class="profilePostsBookmarks mt-10">
+          <span class="profileTab">Posts</span>
+          <span class="profileTab">Bookmarks</span>
+      </div>
+      
     </section>
-    <div class="profilePostsBookmarks mt-10">
-        <div class="underline underline-x-offset-1">Posts</div>
-        <div>Bookmarks</div>
-    </div>
-    <div class="divider"></div>
     <% if(blogs.length == 0){ %>
         <h4>What? No blogs yet?</h4>
     <%} else { %>

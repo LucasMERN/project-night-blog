@@ -39,3 +39,69 @@ form textarea{
 .bio{
     margin: 3rem;
 }
+
+.profileHeader{
+    background-image: url('/images/profile-header.jpg');
+    background-size: cover;
+    height: 200px;
+    position: relative;
+    border-bottom: 1px solid black;
+    z-index: 0;
+}
+
+.profileImg{
+    position: absolute; 
+    top: 100px;
+    background-color: black;
+    border-radius: 100%;
+}
+
+.profileImg img {
+    border-radius: 100%;
+    border: solid 1px black;
+}
+
+.editProfileBtn{
+    position: absolute;
+    right: 0px;
+    top: 225px;
+}
+
+.profileImg img{
+    height: 150px;
+}
+
+.profileStats{
+    padding: 65px 0 20px 0;
+    border-bottom: 1px solid black;
+}
+
+.profileUsername{
+    font-size: 1.5rem;
+}
+
+.followerContainer{
+    display: flex;
+}
+
+.profilePostsBookmarks{
+    display: flex;
+    justify-content: space-around;
+}
+
+.tabs{
+    display: flex;
+    justify-content: space-around;
+}
+
+.profileTab{
+    padding: 0 5rem 1rem 5rem;
+    border-bottom: 1px solid rgba(101, 101, 101, .6);
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.profileTab:hover{
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
