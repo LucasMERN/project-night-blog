@@ -5,5 +5,6 @@ const profileController = require('../controllers/profileController');
 router.get('/myprofile/:id', profileController.getProfile);
 router.put('/:id/updateBio', profileController.updateBio);
 router.put('/:id/follow', profileController.followUser);
+router.put('/:id/unfollow', profileController.unfollowUser);
 
 module.exports = router

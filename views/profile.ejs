@@ -25,8 +25,10 @@
                 </div>
               </div>
             </div>
-        <% }else{ %>
+        <% }else if(!following){ %>
             <button onclick="follow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
+          <% }else{ %>
+            <button onclick="unfollow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
           <% } %>
         
     </section>
