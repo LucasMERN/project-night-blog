@@ -177,3 +177,17 @@ function previewImage() {
       reader.readAsDataURL(input.files[0]);
     }
   }
+
+async function follow(id){
+    try {
+        const response = await fetch(`/profile/${id}/follow`, {
+            method: 'PUT',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}

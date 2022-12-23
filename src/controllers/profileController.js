@@ -22,5 +22,20 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    followUser: async (req, res) => {   
+        try {
+            const currentUser = await User.findOne({_id: req.user.id})
+            await User.updateOne({_id: req.user.id}, {
+                $push: {following: req.params.id}
+            })
+            await User.updateOne({_id: req.params.id},
+                {
+                    $push: {followers: req.user.id}
+                })
+            res.json('Follow updated')
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
