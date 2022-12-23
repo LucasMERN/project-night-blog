@@ -2,38 +2,80 @@
 <link rel="stylesheet" href="/css/profile.css">
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
 
-<div class="profilePhotoContainer">
-    <img class="profilePhoto" src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="default user image">
-</div>
 <section>
-    <h2><%= user.userName %></h2>
-</section>
-<section class="userStats">
-    <div>
-        <h3>Followers</h3>
-        <h4>0</h4>
-    </div>
-    <div>
-        <h3>Posts</h3>
-        <h4>0</h4>
-    </div>
-    <div>
-        <h3>Likes</h3>
-        <h4>0</h4>
-    </div>
-</section>
-
-<% if(!user.bio) { %>
-    <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
-        <h3>Enter a Bio:</h3>
-        <textarea maxlength="275" placeholder="Tell us about yourself." name="bio"></textarea>
-        <input type="submit">
-        <input type="hidden" name="user" value="<%= user._id %>">
-    </form>
-<% }else { %>
-    <section class="bio">
-        <h4>Bio</h4>
-        <h5><%= user.bio %></h5>
+    <section class="profileHeader">
+        <div class="profileImg ml-5">
+            <img class="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2" src="<%= profileUser.profilePic %>" referrerPolicy="no-referrer" alt="user image">
+        </div>
+        <% if(profileUser._id.toString() == user._id.toString()){ %>
+            <div>
+              <!-- The button to open modal -->
+              <a href="#my-modal-2 " class="btn btn-primary editProfileBtn btn-sm mr-5">Edit Profile</a>
+              <!-- The modal -->
+              <div class="modal" id="my-modal-2">
+                <div class="modal-box">
+                <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
+                  <h3 class="font-bold text-lg">Bio</h3>
+                  <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
+                    <textarea class="textarea textarea-bordered" name="bio"></textarea>
+                    <div class="modal-action">
+                      <a href="#" class="btn"><input type="submit" value="Save"></a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% }else{ %>
+            <button class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
+          <% } %>
+        
     </section>
-<% } %> 
+    <section class="mt-[65px]">
+        <h3 class="profileUsername m-5"><%= profileUser.userName %></h3>
+        <p class="m-5"><%= profileUser.bio %></p>
+        <div class="followerContainer m-5">
+            <div class="mr-2">3 Following</div>
+            <div class="mr-2">5 Followers</div>
+        </div>
+    </section>
+    <div class="profilePostsBookmarks mt-10">
+        <div class="underline underline-x-offset-1">Posts</div>
+        <div>Bookmarks</div>
+    </div>
+    <div class="divider"></div>
+    <% if(blogs.length == 0){ %>
+        <h4>What? No blogs yet?</h4>
+    <%} else { %>
+        <% blogs.forEach(blog => { %>
+            <div class="pcContainer"> <!-- flex column -->
+                <%# if (blog.author === req.user.username) { %>
+                    <div class="dropdown dropdown-end userOptions">
+                        <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
+                          <li><a>Pin to Profile</a></li>
+                          <li><a href="/blog/edit/<%= blog.id %>">Edit Blog</a></li>
+                          <li><a>Delete Blog</a></li>
+                        </ul>
+                      </div>
+                <%# } %>
+                <section class="pcHeading"> <!-- flex row -->
+                    <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+                    <div class="pcTitle text-3xl"><%= blog.title %></div>
+                    <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
+                </section>
+                <section class="pcPicAndBlurb"> <!-- flex row -->
+                    <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
+                    <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
+                </section>
+                <div class="pcActions">
+                    <ul> <!-- flex row -->
+                        <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
+                        <li><a class="title text-xs" href="/<%= blog.slug %>/blog">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        <% }) %>
+    <%}%>
+    
+</section>
 <script src="https://cdn.tailwindcss.com"></script>
