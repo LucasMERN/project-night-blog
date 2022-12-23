@@ -4,18 +4,18 @@ const Blog = require('../models/BlogSchema')
 module.exports = {
     getProfile: async (req, res) => {
         try {
-            const blogs = await Blog.find({author: req.params.id})
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', user: req.user, blogs: blogs})
+            const blogs = await Blog.find({author: req.params.id}).populate('author')
+            const profileUser = await User.findOne({_id: req.params.id})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, profileUser: profileUser})
         } catch (error) {
             console.log(error)
         }
     },
-    postBio: async (req, res) => {
+    updateBio: async (req, res) => {
         try {
-            await User.findOneAndUpdate(
-                {_id: req.body.user},
+            await User.findOneAndUpdate({_id: req.user.id},
                 {
-                    $set: {bio: req.body.bio}
+                bio: req.body.bio
                 }
             );
             res.redirect('back')

@@ -328,6 +328,12 @@ span {
     top: 100px; 
 }
 
+.editProfileBtn{
+    position: absolute;
+    right: 0px;
+    top: 225px;
+}
+
 .profileImg img{
     height: 150px;
 }
