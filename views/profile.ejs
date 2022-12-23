@@ -41,44 +41,71 @@
             <div class="mr-2">5 Followers</div>
         </div>
         <div class="profilePostsBookmarks mt-10">
-          <span class="profileTab">Posts</span>
-          <span class="profileTab">Bookmarks</span>
+          <span class="profileTab"><a class="PostsBookmarksAnchor" href="/profile/myprofile/<%=profileUser._id%>">Posts</a></span>
+         <span class="profileTab"> <a class="PostsBookmarksAnchor" href="/profile/bookmarks/<%=profileUser._id%>">Bookmarks</a></span>
       </div>
       
     </section>
-    <% if(blogs.length == 0){ %>
-        <h4>What? No blogs yet?</h4>
-    <%} else { %>
-        <% blogs.forEach(blog => { %>
-            <div class="pcContainer"> <!-- flex column -->
-                <%# if (blog.author === req.user.username) { %>
-                    <div class="dropdown dropdown-end userOptions">
-                        <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
-                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
-                          <li><a>Pin to Profile</a></li>
-                          <li><a href="/blog/edit/<%= blog.id %>">Edit Blog</a></li>
-                          <li><a>Delete Blog</a></li>
+    <!-- This is the default render, when a profile is visited, posts/blogs will load -->
+    <% if(typeof blogs !== 'undefined'){ %>
+        <!-- Check if the user has created any blogs -->
+        <% if(blogs.length == 0){ %>
+            <h4>What? No blogs yet?</h4>
+            <!-- If user HAS a history of blogs, display them -->
+        <%} else { %>
+            <% blogs.forEach(blog => { %>
+                <div class="pcContainer"> <!-- flex column -->
+                    <%# if (blog.author === req.user.username) { %>
+                        <div class="dropdown dropdown-end userOptions">
+                            <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
+                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
+                              <li><a>Pin to Profile</a></li>
+                              <li><a href="/blog/edit/<%= blog.id %>">Edit Blog</a></li>
+                              <li><a>Delete Blog</a></li>
+                            </ul>
+                          </div>
+                    <%# } %>
+                    <section class="pcHeading"> <!-- flex row -->
+                        <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+                        <div class="pcTitle text-3xl"><%= blog.title %></div>
+                        <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
+                    </section>
+                    <section class="pcPicAndBlurb"> <!-- flex row -->
+                        <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
+                        <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
+                    </section>
+                    <div class="pcActions">
+                        <ul> <!-- flex row -->
+                            <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
+                            <li><a class="title text-xs" href="/blog/<%= blog.slug %>/read">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
                         </ul>
-                      </div>
-                <%# } %>
-                <section class="pcHeading"> <!-- flex row -->
-                    <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
-                    <div class="pcTitle text-3xl"><%= blog.title %></div>
-                    <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
-                </section>
-                <section class="pcPicAndBlurb"> <!-- flex row -->
-                    <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
-                    <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
-                </section>
-                <div class="pcActions">
-                    <ul> <!-- flex row -->
-                        <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
-                        <li><a class="title text-xs" href="/<%= blog.slug %>/blog">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
-                    </ul>
+                    </div>
                 </div>
-            </div>
-        <% }) %>
-    <%}%>
-    
+            <% }) %>
+        <%}%>
+    <!-- If the user selects 'bookmarks' on the profile page, the bookmarked pages will load  -->
+    <% } else { %>
+        <% bookmarks.forEach(object => { %>
+            <% object.bookmarks.forEach(bookmark => { %>    
+                <div class="bookmarkContainer"> <!-- flex column -->
+                    <section class="pcHeading"> <!-- flex row -->
+                        <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+                        <div class="pcTitle text-3xl"><%= bookmark.title %></div>
+                        <span class="text-xs"><%= bookmark.createdAt.toLocaleDateString() %></span>
+                    </section>
+                    <section class="pcPicAndBlurb"> <!-- flex row -->
+                        <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
+                        <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
+                    </section>
+                    <div class="pcActions">
+                        <ul> <!-- flex row -->
+                            <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
+                            <li><a class="title text-xs" href="/blog/<%= bookmark.slug %>/read">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            <% }); %>
+          <% }); %>
+    <% } %>
 </section>
 <script src="https://cdn.tailwindcss.com"></script>

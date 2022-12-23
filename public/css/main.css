@@ -185,6 +185,14 @@ header{
     background-color: antiquewhite;
 }
 
+.bookmarkContainer{
+    display: flex;
+    flex-flow: column wrap;
+    border-bottom: 1px solid black;
+    padding: 25px 20px;
+    background-color: antiquewhite;
+}
+
 .pcHeading, .pcPicAndBlurb, .pcActions ul{
     display: flex;
     flex-flow: row nowrap;
