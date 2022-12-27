@@ -17,7 +17,6 @@ module.exports = {
             const bookmarks = await User.find({_id: req.params.id}).populate('bookmarks')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            console.log(bookmarks)
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
