@@ -46,12 +46,12 @@
         </div>
       
     </section>
-    <!-- This is the default render, when a profile is visited, posts/blogs will load -->
+    <!-- This is the default render, when a profile is visited, posts/blogs will load. We are making sure that blogs was passed on the request to see what information should render -->
     <% if(typeof blogs !== 'undefined'){ %>
-        <!-- Check if the user has created any blogs -->
+        <!-- Check if the user has created any blogs, if not, display a message -->
         <% if(blogs.length == 0){ %>
-            <h4>What? No blogs yet?</h4>
-            <!-- If user HAS a history of blogs, display them -->
+            <h4 class="profileMsg">What? No blogs yet?</h4>
+            <!-- If user DOES have a history of blogs, display them -->
         <%} else { %>
             <% blogs.forEach(blog => { %>
                 <div class="pcContainer"> <!-- flex column -->
@@ -85,27 +85,33 @@
         <%}%>
     <!-- If the user selects 'bookmarks' on the profile page, the bookmarked pages will load  -->
     <% } else { %>
-        <% bookmarks.forEach(object => { %>
-            <% object.bookmarks.forEach(bookmark => { %>    
-                <div class="bookmarkContainer"> <!-- flex column -->
-                    <section class="pcHeading"> <!-- flex row -->
-                        <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
-                        <div class="pcTitle text-3xl"><%= bookmark.title %></div>
-                        <span class="text-xs"><%= bookmark.createdAt.toLocaleDateString() %></span>
-                    </section>
-                    <section class="pcPicAndBlurb"> <!-- flex row -->
-                        <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
-                        <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
-                    </section>
-                    <div class="pcActions">
-                        <ul> <!-- flex row -->
-                            <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
-                            <li><a class="title text-xs" href="/blog/<%= bookmark.slug %>/read">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
-                        </ul>
+        <!-- Check if the user has any bookmarks, if not, display a message -->
+        <% if(bookmarks[0].bookmarks.length === 0){ %>
+            <h4 class="profileMsg">Your bookmarks will appear here.</h4>
+        <%} else { %>
+            <!-- Render bookmarks -->
+            <% bookmarks.forEach(object => { %>
+                <% object.bookmarks.forEach(bookmark => { %>    
+                    <div class="bookmarkContainer"> <!-- flex column -->
+                        <section class="pcHeading"> <!-- flex row -->
+                            <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+                            <div class="pcTitle text-3xl"><%= bookmark.title %></div>
+                            <span class="text-xs"><%= bookmark.createdAt.toLocaleDateString() %></span>
+                        </section>
+                        <section class="pcPicAndBlurb"> <!-- flex row -->
+                            <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
+                            <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
+                        </section>
+                        <div class="pcActions">
+                            <ul> <!-- flex row -->
+                                <li onclick="bookmarkPost('<%= bookmark._id %>')"><button method="POST" class="text-xs"><i class="fa-solid fa-bookmark text-xs"></i> Remove Bookmark</button></li>
+                                <li><a class="title text-xs" href="/blog/<%= bookmark.slug %>/read">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                <% }); %>
             <% }); %>
-          <% }); %>
+        <%} %>
     <% } %>
 </section>
 <script src="https://cdn.tailwindcss.com"></script>

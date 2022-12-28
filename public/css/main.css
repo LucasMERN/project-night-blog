@@ -177,7 +177,7 @@ header{
 
 /* //////////////POSTCARD/////////////////// */
 
-.pcContainer {
+.pcContainer, .bookmarkContainer {
     display: flex;
     flex-flow: column wrap;
     border-bottom: 1px solid black;
@@ -186,11 +186,7 @@ header{
 }
 
 .bookmarkContainer{
-    display: flex;
-    flex-flow: column wrap;
-    border-bottom: 1px solid black;
-    padding: 25px 20px;
-    background-color: antiquewhite;
+    padding-top: 45px;
 }
 
 .pcHeading, .pcPicAndBlurb, .pcActions ul{

@@ -110,3 +110,10 @@ form textarea{
 .PostsBookmarksAnchor{
     display: inline;
 }
+
+.profileMsg{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
