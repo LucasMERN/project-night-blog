@@ -76,7 +76,12 @@
                     </section>
                     <div class="pcActions">
                         <ul> <!-- flex row -->
-                            <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
+                            <!-- Check if user has bookmarked the rendered blog. If they have, give them option to remove bookmark. Else, give them the ability to save for later (bookmark) -->
+                            <% if(user.bookmarks.includes(blog._id)){ %>
+                                <li onclick="bookmarkPost('<%= blog._id %>')"><button method="POST" class="text-xs"><i class="fa-solid fa-bookmark text-xs"></i> Remove Bookmark</button></li>   
+                            <%} else { %>
+                                <li onclick="bookmarkPost('<%= blog._id %>')"><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>   
+                            <%}%>
                             <li><a class="title text-xs" href="/blog/<%= blog.slug %>/read">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
                         </ul>
                     </div>
