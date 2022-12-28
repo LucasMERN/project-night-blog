@@ -8,6 +8,7 @@
         <div class="profileImg ml-5">
             <img src="<%= profileUser.profilePic %>" referrerPolicy="no-referrer" alt="user image">
         </div>
+        <!-- Check if logged in user is on their own profile -->
         <% if(profileUser._id.toString() == user._id.toString()){ %>
             <div>
               <!-- The button to open modal -->
@@ -26,13 +27,15 @@
                 </div>
               </div>
             </div>
+        <!-- If user is on another profile, check if they are following them or not. Render btns accordingly -->
         <% }else if(!following){ %>
             <button onclick="follow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
           <% }else{ %>
             <button onclick="unfollow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
           <% } %>
-        
     </section>
+
+    <!-- Profile statistics: Username, bio, following amt, followers amt, posts/bookmarks -->
     <section class="profileStats">
         <h3 class="profileUsername m-5"><%= profileUser.userName %></h3>
         <p class="m-5"><%= profileUser.bio %></p>
@@ -44,9 +47,9 @@
             <span class="profileTab"><a class="PostsBookmarksAnchor" href="/profile/myprofile/<%=profileUser._id%>">Posts</a></span>
             <span class="profileTab"> <a class="PostsBookmarksAnchor" href="/profile/bookmarks/<%=profileUser._id%>">Bookmarks</a></span>
         </div>
-      
     </section>
-    <!-- This is the default render, when a profile is visited, posts/blogs will load. We are making sure that blogs was passed on the request to see what information should render -->
+
+    <!-- This is the default render, when a profile is visited, blogs will load on the prpfile. We are making sure that blogs was passed on the request to see what information should render -->
     <% if(typeof blogs !== 'undefined'){ %>
         <!-- Check if the user has created any blogs, if not, display a message -->
         <% if(blogs.length == 0){ %>
@@ -88,6 +91,8 @@
                 </div>
             <% }) %>
         <%}%>
+
+        
     <!-- If the user selects 'bookmarks' on the profile page, the bookmarked pages will load  -->
     <% } else { %>
         <!-- Check if the user has any bookmarks, if not, display a message -->
