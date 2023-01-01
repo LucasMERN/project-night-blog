@@ -7,8 +7,17 @@ module.exports = {
             const blogs = await Blog.find({author: req.params.id}).populate('author')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            console.log(following)
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, profileUser: profileUser, following: following})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    getProfileBookmarks: async (req, res) => {
+        try {
+            const bookmarks = await User.find({_id: req.params.id}).populate('bookmarks')
+            const profileUser = await User.findOne({_id: req.params.id})
+            const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
         }

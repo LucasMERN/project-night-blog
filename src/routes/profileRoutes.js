@@ -3,6 +3,7 @@ const router = express.Router();
 const profileController = require('../controllers/profileController');
 
 router.get('/myprofile/:id', profileController.getProfile);
+router.get('/bookmarks/:id', profileController.getProfileBookmarks);
 router.put('/:id/updateBio', profileController.updateBio);
 router.put('/:id/follow', profileController.followUser);
 router.put('/:id/unfollow', profileController.unfollowUser);
