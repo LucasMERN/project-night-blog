@@ -103,7 +103,8 @@ form textarea{
 }
 
 .profilePostsBookmarks a:hover{
-    border-bottom: 1px solid rgba(255, 255, 255, 1);
+    border-bottom: 1px solid rgb(255, 255, 255);
+    color:rgb(255, 255, 255)
 }
 
 .profileMsg{
