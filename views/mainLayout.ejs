@@ -4,36 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/mainLayout.css">
     <link rel="stylesheet" href="/css/main.css">
-    <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" href="/images/assets/logo-favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />  
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="/images/assets/bloglogo-favicon.png">
     <title>Blog</title>
 </head>
 <body>
-    <div class="nav-container">
-        <%- include('component/navbar.ejs') %>
-    </div>
-    <div class="view-container">
-        <%- include('component/topNavbar.ejs') %>
+    <div class="wrapper">
+        <%- include('partials/Header.ejs') %>
+        <div class="view-wrapper">
+            <%- include('partials/Navbar.ejs') %>
         <div class="viewport">
             <% if (routeName == 'home') { %>
-                <%- include('viewport/postPreview.ejs') %>
+                <%- include('timelinePosts.ejs') %>
             <% } else if (routeName == 'slug') { %>
-                <%- include('viewport/post.ejs') %>
-            <% } else if (routeName == 'edit') { %> 
-                <%- include('viewport/edit.ejs') %>
+                <%- include('individualPost.ejs') %>
             <% } else if (routeName == 'newPost') { %>
-                <%- include('viewport/newPost.ejs') %>
+                <%- include('markdown.ejs') %>
             <% } else if (routeName == 'profile') { %>
-                <%- include('viewport/profile.ejs') %>
+                <%- include('profile.ejs') %>
             <%  }else if (routeName == 'settings') { %>
-                <%- include('viewport/settings.ejs') %>
+                <%- include('settings.ejs') %>
+            <%  }else if (routeName == 'edit') { %>
+                <%- include('editBlog.ejs') %>
+            <%  }else if (routeName == 'notifications') { %>
+                <%- include('notifications.ejs') %>
             <%  }else { %>
-                <%- include('viewport/404.ejs') %>
+                <%- include('404.ejs') %>
             <% } %>
-            <!-- <div class="secret"></div> -->
+        </div>
+        <div class="discovery">
+            <% if (routeName == 'slug') { %>
+                <%- include('partials/Author.ejs') %>
+            <%  }else { %>
+                <%- include('partials/Discovery.ejs') %>
+            <% } %>
+        </div>
         </div>
     </div>
-    <script src="/js/main.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

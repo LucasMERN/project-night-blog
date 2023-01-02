@@ -154,3 +154,54 @@ async function bookmarkPost(id){
         console.log(error)
     }
 }
+
+function previewImage() {
+    // Get the file input field
+    let input = document.getElementById('imageUpload');
+
+    // Make sure a file was selected
+    if (input.files && input.files[0]) {
+      // Create a new FileReader object
+      let reader = new FileReader();
+
+      // Set the onload event handler for the FileReader
+      reader.onload = function (e) {
+        // Get the image preview div
+        let preview = document.getElementById('imagePreview');
+
+        // Set the src of the image element to the data URL of the selected file
+        preview.innerHTML = "<img src='" + e.target.result + "'>";
+      };
+
+      // Read the selected file as a data URL
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+async function follow(id){
+    try {
+        const response = await fetch(`/profile/${id}/follow`, {
+            method: 'PUT',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function unfollow(id){
+    try {
+        const response = await fetch(`/profile/${id}/unfollow`, {
+            method: 'PUT',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
