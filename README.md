@@ -81,7 +81,7 @@ TODO: Define Post views for Desktop and Mobile
 * [MongoDB](https://www.mongodb.com/)
 * [Mongoosejs](https://mongoosejs.com/)
 * [Node.js](https://nodejs.org/)
-* [Passport.js](https://www.passportjs.org/)\
+* [Passport.js](https://www.passportjs.org/)
 * [Marked.js](https://marked.js.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -113,37 +113,36 @@ To run the projects you will need to follow the instructions below. This will ru
 
 ### Features
 - [x] Set up a basic blog structure
-    - [ ] Add Layout based on Canva
+    - [x] Add Layout based on figma
           - [x] Left Navbar
           - [x] Top Navbar
-          - [ ] Index Page
-          - [ ] Post view
-          - [ ] Profile view
+          - [x] Index Page
+          - [x] Post view
+          - [x] Profile view
           - [ ] Search view: Feature Update
-- [ ] Set up Authentication system using Passport
+- [x] Set up Authentication system using Passport
 - [x] Routes
     - [x] '/' 
     - [x] '/blog'
-    - [ ] '/user'
+    - [x] '/user'
     - [x] '/login'
     - [x] '/register'
 - [x] Set up a Database (MongoDB) using Model
   - [x] post  Completed with PR #11
     - [x] create post
     - [x] edit post
+    - [x] favorite post
+    - [x] bookmark post
+    - [] pin post
   - [x] users
     - [x] username
     - [x] password
     - [x] email
-  - [ ] comments
-    - [ ] likes
-    - [ ] dislikes
 - [x] Darkmode toggle: Added with PR #10
-- [x] Add Footer.
 
 ### Future
 
-- [ ] Create User Profile pages
+- [x] Create User Profile pages
   - [ ] Edit Photo
   - [ ] Add/Edit Bio
   - Can use this for tooltips on hover in comment/Suggested follow sections
@@ -153,6 +152,7 @@ To run the projects you will need to follow the instructions below. This will ru
   - [ ] Authors Followed (filter by author)
   - [ ] Latest Posts (filter by CreateAt date)
 - [ ] Trending Posts
+- [ ] socket.io for DMs
 
 See the [open issues](https://github.com/LucasMERN/project-night-blog/issues) for a full list of proposed features (and known issues).
 
