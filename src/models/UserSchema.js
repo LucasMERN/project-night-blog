@@ -17,6 +17,24 @@ const UserSchema = new mongoose.Schema({    // create a new schema for the user 
   following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   blocked: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   pinned: {type: Schema.Types.ObjectId, ref: 'Blog'},
+  notifications: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      },
+      seen: {
+        type: Boolean,
+        default: false
+      },
+      content: {
+        type: String
+      },
+      type: {
+        type: String
+      },
+    }
+  ]
 }, { timestamps: true })
 
  UserSchema.pre('save', function save(next) {   // hash the password before saving the user
