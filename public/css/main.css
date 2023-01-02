@@ -449,3 +449,23 @@ header {
 /* //////////////POSTCARD/////////////////// */
 
 }
+
+/* ///////////NOTIFICATIONS////////////// */
+
+.notificationContainer{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    display: flex;
+}
+
+.notificationContainer i{
+    margin: 2rem 3rem;
+}
+
+.notificationInfo{
+    margin: 2rem 0;
+}
+
+.notificationInfo img{
+    margin-bottom: 1rem;
+}

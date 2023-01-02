@@ -1,2 +1,21 @@
 <link rel="stylesheet" href="/css/main.css">
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
+
+
+<section class="notifications">
+    <% notifications[0].notifications.forEach((notification) =>{ %>
+        <div class="notificationContainer">
+            <% if(notification.type === 'like'){ %>
+                <i class="fa-solid fa-user fa-2x"></i>
+                <%}else if(notification.type === 'bookmark'){ %>
+                <i class="fa-solid fa-bookmark fa-2x"></i>
+                <% } %> 
+                <div class="notificationInfo">
+                    <img class="rounded-full h-9" src="<%= notification.user.profilePic %>">
+                    <p><%= notification.content %></p>
+                </div>
+        </div>
+      <% }); %>
+</section>
+
+<script src="https://cdn.tailwindcss.com"></script>
