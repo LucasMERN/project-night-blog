@@ -7,8 +7,8 @@
         <i onclick="updateLike('<%= blog._id %>')"class="<%= liked === true ? 'fa-solid fa-heart' : 'fa-regular fa-heart'  %>"> <%= totalLikes %></i>
         <i class="fa-regular fa-share-from-square"></i>
     </div>
-    <div class="author">
-        <h5>Written by <a href="#"><%= blog.author.userName %></a> &bull; <%= moment(blog.createdAt).format('MMMM Do') %></h5>
+    <div class="markdownAuthor">
+        <h2>Written by <a href="#"><%= blog.author.userName %></a><span>&bull;</span><%= moment(blog.createdAt).format('MMMM Do') %></h2>
     </div>
     <section class="blogContent">
         <%- blog.sanitizedHtml %>

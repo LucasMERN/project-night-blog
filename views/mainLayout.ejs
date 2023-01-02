@@ -38,7 +38,11 @@
             <% } %>
         </div>
         <div class="discovery">
-            <%- include('partials/Discovery.ejs') %>
+            <% if (routeName == 'slug') { %>
+                <%- include('partials/Author.ejs') %>
+            <%  }else { %>
+                <%- include('partials/Discovery.ejs') %>
+            <% } %>
         </div>
         </div>
     </div>
