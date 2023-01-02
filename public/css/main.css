@@ -82,14 +82,18 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    list-style: none;
 }
 
 nav li{
     flex-basis: 18.5%;
     text-align: center;
     margin-top: .5rem;
+    transition: all .1s ease-in-out;
+}
+
+nav li:hover {
+    color: white;
+    transform: scale(1.1);
 }
 
 nav li:nth-child(2), nav li:nth-child(1){
@@ -133,6 +137,13 @@ header{
     z-index: 1;
 }
 
+.header-utils {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .searchBar{
     display: flex;
     flex-flow: row nowrap;
@@ -161,10 +172,6 @@ header{
 .pcDropdownStyle .headerDropdownStyle{
     top: 90px !important;
     padding-top: 10px !important;
-}
-
-.view-wrapper{
-    margin-top: 105px;
 }
 
 .logo-img{
@@ -322,25 +329,81 @@ span {
 /* //////////////NAVBAR///////////////////// */
 
 .nav {
-    position: static;
-    width: 100%;
+    width: 20%;
+    position: fixed;
+    top: 115px;
+    left: auto;
+    background-color: rgb(42, 48, 60);
+    border-right: 1px solid black;
 }
 
 .nav ul {
-    display: flex;
-    width: 100%;
-    list-style: none;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+    margin-right: 15%;
+}
+
+.nav li {
+    padding: 32px 0;
+    order: initial;
+}
+
+.nav li i {
+    width: 40px;
+}
+
+.nav .upload {
+    order: 3;
+}
+
+.upload i {
+    font-size: 1.25em;
 }
 
 /* //////////////DISCOVERY TAB////////////// */
 
 /* //////////////HEADER///////////////////// */
 
+header {
+    justify-content: unset;
+    align-items: unset;
+    padding: 0;
+    height: 115px;
+}
+
+.header-utils {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+}
+
 .profileLink img {
     height: 50px;
     width: 50px;
+}
+
+.logo {
+    display: flex;
+    justify-content: flex-end;
+    width: 20%;
+    border-right: 1px solid black;
+    transition: all .4s ease-in-out;
+}
+
+.logo a {
+    display: flex;
+    margin-right: 15%;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo a:hover {
+    transform: scale(1.1);
+}
+
+.logo-img {
+    width: 40px;
 }
 
 /* //////////////POSTCARD/////////////////// */

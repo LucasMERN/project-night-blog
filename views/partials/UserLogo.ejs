@@ -5,8 +5,8 @@
         </a>
     </div>
 <% }else{ %>
-    <div class="userLogo" onclick="toggleMenu()">
-        <a class="profileLink" href="#">
+    <div class="userLogo">
+        <a class="profileLink" href="/profile/myprofile/<%= user._id %>">
             <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
             <span><%= user.userName %></span>
         </a>
