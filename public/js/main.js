@@ -2,6 +2,8 @@ const togglePassword = document.querySelector('#togglePassword')
 const togglePassword2 = document.querySelector('#togglePassword2')
 const password = document.querySelector('#password')
 const password2 = document.querySelector('#password2')
+const label = document.querySelector('.label')
+const email = document.querySelector('#email')
 
 // Make sure password id is not null. If not, toggle visibility of password with 'password' id, toggle eye icon as well
 if(togglePassword){
@@ -114,5 +116,92 @@ function toggleMenu(){
         menu.style.display = "block"
     }else{
         menu.style.display = "none"
+    }
+}
+
+function hoverLabel(){
+    if(email.value.length > 0){
+        label.classList.add('float')
+    }if(email.value.length == 0){
+        label.classList.remove('float')
+    }
+}
+
+async function updateLike(id){
+    try {
+        const response = await fetch(`/like/${id}`, {
+            method: 'put',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function bookmarkPost(id){
+    try {
+        const response = await fetch(`/bookmark/${id}`, {
+            method: 'post',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function previewImage() {
+    // Get the file input field
+    let input = document.getElementById('imageUpload');
+
+    // Make sure a file was selected
+    if (input.files && input.files[0]) {
+      // Create a new FileReader object
+      let reader = new FileReader();
+
+      // Set the onload event handler for the FileReader
+      reader.onload = function (e) {
+        // Get the image preview div
+        let preview = document.getElementById('imagePreview');
+
+        // Set the src of the image element to the data URL of the selected file
+        preview.innerHTML = "<img src='" + e.target.result + "'>";
+      };
+
+      // Read the selected file as a data URL
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+async function follow(id){
+    try {
+        const response = await fetch(`/profile/${id}/follow`, {
+            method: 'PUT',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function unfollow(id){
+    try {
+        const response = await fetch(`/profile/${id}/unfollow`, {
+            method: 'PUT',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({_id: id})
+        })
+        const data = await response.json()
+        location.reload()
+    } catch (error) {
+        console.log(error)
     }
 }

@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
+
+<div class="profilePhotoContainer">
+    <img class="profilePhoto" src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="default user image">
+</div>
+<section>
+    <h2><%= user.userName %></h2>
+</section>
+<section class="userStats">
+    <div>
+        <h3>Followers</h3>
+        <h4>0</h4>
+    </div>
+    <div>
+        <h3>Posts</h3>
+        <h4>0</h4>
+    </div>
+    <div>
+        <h3>Likes</h3>
+        <h4>0</h4>
+    </div>
+</section>
+
+<% if(!user.bio) { %>
+    <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
+        <h3>Enter a Bio:</h3>
+        <textarea maxlength="275" placeholder="Tell us about yourself." name="bio"></textarea>
+        <input type="submit">
+        <input type="hidden" name="user" value="<%= user._id %>">
+    </form>
+<% }else { %>
+    <section class="bio">
+        <h4>Bio</h4>
+        <h5><%= user.bio %></h5>
+    </section>
+<% } %> 
+<script src="https://cdn.tailwindcss.com"></script>

@@ -1,0 +1,84 @@
+.viewport, input, textarea{
+    background-color: antiquewhite;
+    color: black;
+}
+
+.submitContainer{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+}
+
+input:focus, textarea:focus {
+    outline:none;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+.imageInputBtn{
+    width: 30%;
+    margin: 0 0 1rem 1rem;
+    font-size: .75rem;
+}
+
+.imageInputBtn{
+  border: 1px solid black;
+  border-radius: 5px;
+  background: white;
+  text-align: center;
+  padding: .5rem;
+}
+
+label i{
+  margin-right: 5px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+.blogTitle{
+    height: 6rem;
+    font-size: 2rem;
+    border: none;
+    margin: 0 1rem 0 1rem;
+    border-bottom: 1px solid black;
+}
+
+.blogTitle::placeholder{
+    color: black;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+textarea::placeholder, textarea{
+    color: black;
+    font-size: 1.5rem;
+}
+
+.textareaContainer{
+    margin: 3rem 1rem 1rem 1rem;
+    height: 425px;
+}
+textarea{
+    height: 100%;
+    border: none;
+    width: 100%;
+}
+
+#imagePreview{
+    width: 100%;
+    padding: 2rem;
+    padding-top: 0rem;
+}
+
+#imagePreview img{
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+}

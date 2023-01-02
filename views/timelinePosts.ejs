@@ -1,0 +1,29 @@
+<% blogs.forEach(blog => { %>
+    <div class="pcContainer"> <!-- flex column -->
+        <%# if (blog.author === req.user.username) { %>
+            <div class="dropdown dropdown-end userOptions">
+                <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
+                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
+                  <li><a>Pin to Profile</a></li>
+                  <li><a href="/blog/edit/<%= blog.id %>">Edit Blog</a></li>
+                  <li><a>Delete Blog</a></li>
+                </ul>
+              </div>
+        <%# } %>
+        <section class="pcHeading"> <!-- flex row -->
+            <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+            <div class="pcTitle text-3xl"><%= blog.title %></div>
+            <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
+        </section>
+        <section class="pcPicAndBlurb"> <!-- flex row -->
+            <img src="../images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
+            <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
+        </section>
+        <div class="pcActions">
+            <ul> <!-- flex row -->
+                <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
+                <li><a class="title text-xs" href="/blog/<%= blog.slug %>/read">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a></li>
+            </ul>
+        </div>
+    </div>
+<% }) %>

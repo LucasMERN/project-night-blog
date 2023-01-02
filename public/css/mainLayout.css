@@ -1,0 +1,44 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-flow: column wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.view-wrapper {
+    margin-top: 105px;
+}
+
+.viewport {
+    width: 100%;
+    margin-bottom: 82px;
+}
+
+@media screen and (min-width: 550px) {
+
+    .view-wrapper {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-top: 115px;
+    }
+
+    .viewport {
+        margin-bottom: 0px;
+        width: 100%;
+        margin-left: 15%;
+    }
+
+}
+
+@media screen and (min-width: 950px) {
+
+    .viewport {
+        width: 50%;
+        height: 100vh;
+    }
+
+    
+    
+    }
