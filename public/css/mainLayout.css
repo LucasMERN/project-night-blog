@@ -31,3 +31,14 @@
     }
 
 }
+
+@media screen and (min-width: 950px) {
+
+    .viewport {
+        width: 50%;
+        margin-bottom: -300px;
+    }
+
+    
+    
+    }

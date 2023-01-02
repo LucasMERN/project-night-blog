@@ -297,30 +297,6 @@ span {
 .fa-chevron-down {
     font-size: 10px;
     margin-left: 5px;
-} 
-
-
-#submenuWrap{
-    position: absolute;
-    display: none;
-    top: 100%;
-    right: 0%;
-    width: 125px;
-    max-height: 75px;
-    color: white;
-    background: rgba(0, 75, 133, .9);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-#submenuWrap h2{
-    font-size: .8rem;
-    padding: 10px;
-    font-weight: lighter;
-}
-
-.submenu-fa{
-    margin-right: .5rem;
 }
 
 @media screen and (min-width: 550px) {
@@ -359,8 +335,6 @@ span {
 .upload i {
     font-size: 1.25em;
 }
-
-/* //////////////DISCOVERY TAB////////////// */
 
 /* //////////////HEADER///////////////////// */
 
@@ -406,22 +380,72 @@ header {
     width: 40px;
 }
 
-/* //////////////POSTCARD/////////////////// */
-
-/* //////////////USER LOGO////////////////// */
-
 }
 
-@media screen and (min-width: 850px) {
-
-/* //////////////NAVBAR////////////// */
+@media screen and (min-width: 950px) {
 
 /* //////////////DISCOVERY TAB////////////// */
 
-/* //////////////HEADER///////////////////// */
+.discovery {
+    width: 30%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    position: fixed;
+    top: 115px;
+    right: 0;
+    border-left: 1px solid black;
+    bottom: 0;
+}
+
+.DiscUsersContainer, .DiscTrendingContainer, .DiscTopicsContainer {
+    margin-left: 15%;
+    width: 300px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding: 3rem 0;
+}
+
+.DiscTrendingHeader, .DiscTopicsHeader, .DiscUsersHeader {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.DiscTrendingIcon {
+    margin-right: 10px;
+    height: 13px;
+    width: 13px;
+    border: 1px solid rgb(166, 173, 186);
+    transform: rotate(45deg);
+}
+
+.fa-book-open-reader, .fa-people-line {
+    margin-right: 10px;
+}
+
+.DiscUser {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.DiscTrendingPost {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.DiscTopicsButtons {
+    margin-top: 30px;
+}
 
 /* //////////////POSTCARD/////////////////// */
-
-/* //////////////USER LOGO////////////////// */
 
 }
