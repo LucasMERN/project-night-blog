@@ -68,8 +68,6 @@ Mobile index & Register Profile view
 Mobile index & Edit Profile view
 ![image](https://user-images.githubusercontent.com/72772558/188335465-486891a0-b192-4896-abf3-f0e379137aa0.png)
 
-TODO: Define Post views for Desktop and Mobile
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
