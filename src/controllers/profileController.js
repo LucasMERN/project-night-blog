@@ -37,13 +37,26 @@ module.exports = {
     followUser: async (req, res) => {   
         try {
             const currentUser = await User.findOne({_id: req.user.id})
+            
             await User.updateOne({_id: req.user.id}, {
                 $push: {following: req.params.id}
             })
+
             await User.updateOne({_id: req.params.id},
                 {
                     $push: {followers: req.user.id}
                 })
+                await User.updateOne({_id: req.params.id}, {
+                    $push: {
+                      notifications: {
+                        user: req.user.id,
+                        seen: false,
+                        content: `${req.user.userName} followed you`,
+                        type: 'like'
+                      }
+                    }
+                  });
+
             res.json('Follow updated')
         } catch (error) {
             console.log(error)
@@ -60,6 +73,15 @@ module.exports = {
                     $pull: {followers: req.user.id}
                 })
             res.json('Follow updated')
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    getNotifications: async (req, res) => {
+        try {
+            // Grab all of the notifications on load, and populate the user field of our notifications
+            const notifications = await User.find(req.user).select('notifications').populate('notifications.user');
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', notifications: notifications})
         } catch (error) {
             console.log(error)
         }
