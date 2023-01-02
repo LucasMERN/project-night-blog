@@ -63,5 +63,12 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    getNotifications: async (req, res) => {
+        try {
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications'})
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
