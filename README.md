@@ -188,8 +188,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 * Lucas Winkler - [@MERN_Man_Luke](https://twitter.com/MERN_Man_Luke)
-* Mark Spratt - [@_Hopelezz](https://twitter.com/_Hopelezz)
-* Aubrette Swiontek - [@swionTech](https://twitter.com/swionTech)
 * Matt Misko - [@miskocodes](https://twitter.com/miskocodes)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
