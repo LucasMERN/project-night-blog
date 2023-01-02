@@ -3,19 +3,23 @@
 
 
 <section class="notifications">
-    <% notifications[0].notifications.forEach((notification) =>{ %>
-        <div class="notificationContainer">
-            <% if(notification.type === 'like'){ %>
-                <i class="fa-solid fa-user fa-2x"></i>
+    <% if(notifications && notifications[0]) { %>
+        <% notifications[0].notifications.forEach((notification) =>{ %>
+            <div class="notificationContainer">
+                <% if(notification.type === 'like'){ %>
+                    <i class="fa-solid fa-user fa-2x"></i>
                 <%}else if(notification.type === 'bookmark'){ %>
-                <i class="fa-solid fa-bookmark fa-2x"></i>
+                    <i class="fa-solid fa-bookmark fa-2x"></i>
                 <% } %> 
                 <div class="notificationInfo">
                     <img class="rounded-full h-9" src="<%= notification.user.profilePic %>">
                     <p><%= notification.content %></p>
                 </div>
-        </div>
-      <% }); %>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <h1>No notifications</h1>
+    <% } %>
 </section>
 
 <script src="https://cdn.tailwindcss.com"></script>
