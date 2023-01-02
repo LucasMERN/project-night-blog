@@ -376,7 +376,7 @@ span {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    width: 80%;
+    width: 95%;
 }
 
 
@@ -461,6 +461,10 @@ header {
     width: 40px;
 }
 
+.blogContent {
+    width: 80%;
+}
+
 }
 
 @media screen and (min-width: 950px) {
@@ -534,16 +538,21 @@ header {
 /* //////////////MARKDOWN AUTHOR/////////////////// */
 
 .AuthorContainer {
-    margin-left: 15%;
-    width: 300px;
+    margin: 0 15%;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     align-items: center;
     padding: 3rem 0;
 }
 
-.AuthorContainer *{
+.AuthorContainer * {
     margin-top: 1rem;
+}
+
+.AuthorStats * {
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .AuthorContainer img {
@@ -561,7 +570,8 @@ header {
 }
 
 .AuthorDot {
-    margin: 0 1rem;
+    width: auto;
+    margin: 0 10px;
 }
 
 }
