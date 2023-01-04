@@ -1,6 +1,6 @@
 <% blogs.forEach(blog => { %>
     <div class="pcContainer"> <!-- flex column -->
-        <% if (blog.author === user.userName) { %>
+        <% if (blog.author.userName === user.userName) { %>
             <div class="dropdown dropdown-end userOptions">
                 <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
