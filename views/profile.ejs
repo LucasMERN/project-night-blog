@@ -8,24 +8,24 @@
         <div class="profileImg ml-5">
             <img src="<%= profileUser.profilePic %>" referrerPolicy="no-referrer" alt="user image">
         </div>
+            
         <!-- Check if logged in user is on their own profile -->
         <% if(profileUser._id.toString() == user._id.toString()){ %>
             <div>
-              <!-- The button to open modal -->
-              <a href="#my-modal-2 " class="btn btn-primary editProfileBtn btn-sm mr-5">Edit Profile</a>
-              <!-- The modal -->
-              <div class="modal" id="my-modal-2">
-                <div class="modal-box">
-                <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
-                  <h3 class="font-bold text-lg">Bio</h3>
-                  <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
-                    <textarea class="textarea textarea-bordered" name="bio"></textarea>
-                    <div class="modal-action">
-                      <a href="#" class="btn"><input type="submit" value="Save"></a>
-                    </div>
-                  </form>
+                <a href="#my-modal-2" class="btn btn-primary editProfileBtn mr-5 btn-sm">Edit Profile</a>
+                <!-- Put this part before </body> tag -->
+                <div class="modal" id="my-modal-2">
+                  <div class="modal-box">
+                    <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
+                    <h3 class="font-bold text-lg">Bio</h3>
+                    <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
+                        <textarea class="textarea textarea-bordered" name="bio"></textarea>
+                        <div class="modal-action">
+                          <input class="btn" type="submit" value="Save">
+                        </div>
+                      </form>
+                  </div>
                 </div>
-              </div>
             </div>
         <!-- If user is on another profile, check if they are following them or not. Render btns accordingly -->
         <% }else if(!following){ %>
