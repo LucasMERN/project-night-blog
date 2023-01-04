@@ -1,0 +1,176 @@
+.settingsPage {
+    display: flex;
+    height: 100vh;
+}
+
+.settingsWrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 30%;
+}
+
+.settingsHeaderWrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.settingsLogo {
+    display: none;
+}
+
+.settingsHeader {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-around;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 6rem;
+}
+
+.fa-gear {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.nav {
+    padding-bottom: 35px !important;
+    border-top: 1px solid black;
+    background-color: rgb(42, 48, 60) !important;
+}
+
+.nav-list {
+    align-items: flex-end !important;
+}
+
+.settingsUtils {
+    display: flex;
+    flex-flow: column wrap;
+    border-right: 1px solid black;
+    height: 100vh;
+}
+
+.settingsUtils div {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding-left: 5%;
+    font-size: .9rem;
+}
+
+.settingsUtils div:hover {
+    background-color: rgba(82, 86, 95, 0.5);
+}
+
+.settingsContentWrapper {
+    width: 70%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.settingsContentHeader {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    height: 190px;
+    padding-left: 20px;
+}
+
+.settingsContentHeader p {
+    font-size: .7rem;
+}
+
+
+.settingsContentUtils {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.accountInfo {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 2rem 0;
+}
+
+.accountInfo i {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.accountInfoContent {
+    width: 70%;
+}
+
+.settingsContentUtils > div:hover {
+    background-color: rgba(82, 86, 95, 0.5);
+}
+
+.accountInfoContent div {
+    font-size: .8rem;
+}
+
+.accountInfoContent p {
+    font-size: .6rem;
+}
+
+@media screen and (min-width: 550px) {
+
+.settingsLogo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 116px;
+    position: fixed;
+    top: 0;
+    left: auto;
+    width: 15%;
+}
+
+.settingsLogo a {
+    margin-right: 15%;
+}
+
+.settingsNav {
+    width: 17.5%;
+}
+
+.settingsHeader {
+    height: 115.5px;
+}
+
+.accountInfoContent {
+    width: 250px;
+}
+
+}
+
+
+@media screen and (min-width: 550px) {
+
+.settingsUtils div {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding-left: 15%;
+    font-size: .9rem;
+}
+
+.settingsWrapper {
+    width: 40%;
+}
+
+.settingsContentWrapper {
+    width: 60%;
+}
+
+.accountInfoContent {
+    width: 310px;
+}
+
+}
