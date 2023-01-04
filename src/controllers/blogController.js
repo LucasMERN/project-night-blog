@@ -15,9 +15,14 @@ module.exports = {
               const result = await cloudinary.uploader.upload(req.file.path);
               image = result.secure_url;
             }
+            let markdownArray = req.body.markdown.split(' ')
+            let intro = markdownArray.slice(0, 20).join(' ')
+            if(req.body.intro){
+            intro = req.body.intro   
+            }
             const blog = new Blog({
                 title: req.body.title,
-                intro: req.body.intro,
+                intro: intro,
                 author: req.user.id,
                 markdown: req.body.markdown,
                 email: req.user.email,
@@ -29,6 +34,7 @@ module.exports = {
                     $push: {posts: savedBlog._id}
                 })
                 res.redirect('/')
+            console.log(req.body.intro)
         } catch (error) {
             console.log(error)
         }
