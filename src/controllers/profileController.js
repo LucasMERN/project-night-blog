@@ -80,7 +80,7 @@ module.exports = {
     getNotifications: async (req, res) => {
         try {
             // Grab all of the notifications on load, and populate the user field of our notifications
-            const notifications = await User.find(req.user).select('notifications').populate('notifications.user');
+            const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
             res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', notifications: notifications})
         } catch (error) {
             console.log(error)
