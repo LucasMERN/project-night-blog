@@ -117,6 +117,58 @@
     font-size: .6rem;
 }
 
+.settingsUsernameBox h2 {
+    font-size: 1.4rem;
+}
+
+input[type="text"]{
+  width:80%;
+  height:40px;
+  background-color: white;
+  border:1px solid #676ed1;
+  border-radius:10px;
+  padding-left:8px;
+}
+
+input[type="text"]:focus{
+  border:1px solid #676ed1;
+  outline:none;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+input[type="submit"]{
+  width:80px;
+  height:40px;
+  background-color:#676ed1;
+  border:1px solid #676ed1;
+  border-radius:10px;
+  color: white;
+  margin-top:5px;
+}
+
+.submit{
+  width:100%;
+  display:flex;
+  justify-content:start
+}
+
+.settingsUsernameBox{
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.settingsUsername {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 5%;
+}
+
+.settingsInput, .settingsUsernameBox h2 {
+    margin-bottom: .5rem;
+} 
+
 @media screen and (min-width: 550px) {
 
 .settingsLogo {
@@ -147,11 +199,15 @@
 .accountInfoContent {
     width: 250px;
 }
+    
+.settingsInput {
+    width: 460px;
+}
 
 }
 
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 950px) {
 
 .settingsUtils div {
     display: flex;
