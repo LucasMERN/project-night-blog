@@ -44,8 +44,8 @@
             <div class="mr-2"><%= profileUser.followers.length %> Followers</div>
         </div>
         <div class="profilePostsBookmarks mt-10">
-            <a class="PostsBookmarksAnchor" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
-            <a class="PostsBookmarksAnchor" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + user._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/bookmarks/' + user._id ? 'profileActive' : '' %>" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
         </div>
     </section>
 
@@ -58,7 +58,7 @@
         <%} else { %>
             <% blogs.forEach(blog => { %>
                 <div class="pcContainer"> <!-- flex column -->
-                    <%# if (blog.author === req.user.username) { %>
+                    <!-- <%# if (blog.author === req.user.username) { %>
                         <div class="dropdown dropdown-end userOptions">
                             <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
                             <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
@@ -67,7 +67,7 @@
                               <li><a>Delete Blog</a></li>
                             </ul>
                           </div>
-                    <%# } %>
+                    <%# } %> -->
                     <section class="pcHeading"> <!-- flex row -->
                         <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
                         <div class="pcTitle text-3xl"><%= blog.title %></div>
