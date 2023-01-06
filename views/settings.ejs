@@ -23,8 +23,8 @@
         </div>
         
         <div class="settingsUtils">
-            <a href="/settings/<%= user._id %>"><div class="<%= currentRoute === '/settings' + user._id ? 'settingsActive' : '' %>">Your Account</div></a>
-            <a href="/settings/display/<%= user._id %>"><div class="<%= currentRoute === '/settings/display' + user._id ? 'settingsActive' : '' %>">Display</div></a>
+            <a class="<%= currentRoute === '/settings/' + user._id ? 'settingsActive' : '' %>" href="/settings/<%= user._id %>"><div>Your Account</div></a>
+            <a class="<%= currentRoute === '/settings/display/' + user._id ? 'settingsActive' : '' %>" href="/settings/display/<%= user._id %>"><div>Display</div></a>
             <a href="/login/logout"><div>Logout</div></a>
         </div>
     </div>

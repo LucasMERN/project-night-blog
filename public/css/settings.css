@@ -61,6 +61,7 @@
 
 .settingsUtils div:hover {
     background-color: rgba(82, 86, 95, 0.5);
+    color: white;
 }
 
 .settingsContentWrapper {
@@ -107,6 +108,7 @@
 
 .settingsContentUtils > div:hover {
     background-color: rgba(82, 86, 95, 0.5);
+    color: white;
 }
 
 .accountInfoContent div {
@@ -167,7 +169,13 @@ input[type="submit"]{
 
 .settingsInput, .settingsUsernameBox h2 {
     margin-bottom: .5rem;
-} 
+}
+
+.settingsUtils .settingsActive {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
 
 @media screen and (min-width: 550px) {
 
