@@ -23,9 +23,9 @@
         </div>
         
         <div class="settingsUtils">
-            <div>Your Account</div>
-            <div>Display</div>
-            <div>Logout</div>
+            <div class="<%= currentRoute === '/settings' + user._id ? 'settingsActive' : '' %>">Your Account</div>
+            <div class="<%= currentRoute === '/settings/display' + user._id ? 'settingsActive' : '' %>">Display</div>
+            <a href="/login/logout"><div>Logout</div></a>
         </div>
     </div>
 
@@ -35,40 +35,18 @@
             <div>Your Account</div>
             <p>See information about your account or check your account deactivation options</p>
         </div>
-        <div class="settingsContentUtils">
-            <div class="accountInfo">
-                <i class="fa-solid fa-user"></i>
 
-                <div class="accountInfoContent">
-                    <div>Account Information</div>
-                    <p>See your account information like your username and email address</p>
-                </div>
-
-                <i class="fa-solid fa-angle-right"></i>
-            </div>
-
-            <div class="accountInfo">
-                <i class="fa-solid fa-user"></i>
-
-                <div class="accountInfoContent">
-                    <div>Change Your Password</div>
-                    <p>Change your password at any time</p>
-                </div>
-
-                <i class="fa-solid fa-angle-right"></i>
-            </div>
-
-            <div class="accountInfo">
-                <i class="fa-solid fa-user"></i>
-
-                <div class="accountInfoContent">
-                    <div>Deactivate Your Account</div>
-                    <p>Find out how you can deactivate your account</p>
-                </div>
-
-                <i class="fa-solid fa-angle-right"></i>
-            </div>
-        </div>
+        <% if (routeName == 'settings') { %>
+            <%- include('partials/SettingsMain.ejs') %>
+        <% } else if (routeName == 'accountInfo') { %>
+            <%- include('partials/AccountInfo.ejs') %>
+        <% } else if (routeName == 'display') { %>
+            <%- include('partials/SettingsTheme.ejs') %>
+        <% } else if (routeName == 'deactivate') { %>
+            <%- include('partials/DeactivateAccount.ejs') %>
+        <% } else { %>
+            <%- include('404.ejs') %>
+        <% } %>
 
     </div>
 
