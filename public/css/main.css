@@ -108,7 +108,7 @@ header{
 .searchBar{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     border: 1px solid black;
     border-radius: 20px;
@@ -123,7 +123,7 @@ header{
 
 .fa-magnifying-glass{
     font-size: .8rem;
-    margin-right: 1rem;
+    margin-right: .3rem;
 }
 
 .fa-chevron-down{
@@ -157,7 +157,7 @@ header{
     padding-top: 45px;
 }
 
-.pcHeading, .pcPicAndBlurb, .pcActions ul{
+.pcPicAndBlurb, .pcActions ul{
     display: flex;
     flex-flow: row nowrap;
 }
@@ -190,6 +190,8 @@ header{
 }
 
 .pcHeading{
+    display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -205,6 +207,11 @@ header{
 
 .pcHeading .fa-chevron-down{
     display: none;
+}
+
+.pcTitle {
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
 .pcPicAndBlurb img{
@@ -327,6 +334,8 @@ span {
 
 .markdownAuthor a {
     margin-left: 5px;
+    color: blue;
+    text-decoration: underline;
 }
 
 .markdownAuthor span {
@@ -343,6 +352,10 @@ span {
 
 @media screen and (min-width: 550px) {
 
+.fa-magnifying-glass{
+    font-size: .8rem;
+    margin: 0 1rem;
+}
 
 /* //////////////NAVBAR///////////////////// */
 
@@ -368,6 +381,7 @@ span {
 
 .nav li i {
     width: 40px;
+    padding-top: 1rem;
 }
 
 .nav .upload {
@@ -497,6 +511,9 @@ header {
 
 /* //////////////POSTCARD/////////////////// */
 
+.pcPicAndBlurb img {
+    height: 14rem;
+}
 
 
 /* //////////////MARKDOWN AUTHOR/////////////////// */
@@ -517,6 +534,10 @@ header {
     margin-top: 0;
     display: flex;
     justify-content: center;
+}
+
+.AuthorContainer a {
+    text-decoration: underline;
 }
 
 .AuthorContainer img {

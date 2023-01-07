@@ -1,12 +1,16 @@
 <div class="AuthorContainer">
     <div>About the Author</div>
-    <img src="/images/MockUser.png" referrerpolicy="no-referrer" alt="user profile image">
-    <article>Jane Doe</article>
+    <img src="<%= user.profilePic %>" referrerpolicy="no-referrer" alt="user profile image">
+    <a href="/profile/myprofile/<%= user.id %>"><article><%= blog.author.userName %></article></a>
     <div class="AuthorStats">
-        <div>15 Posts</div>
+        <div><%= user.posts.length %> Posts</div>
         <div class="AuthorDot">&bull;</div>
-        <div>75 Followers</div>
+        <div><%= user.followers.length %> Followers</div>
     </div>
-    <p>Profile Bio associated with Author</p>
-    <div>Follow Button</div>
+    <p><%= user.bio %></p>
+    <% if(!following){ %>
+        <button onclick="follow('<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
+    <% }else{ %>
+        <button onclick="unfollow('<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
+    <% } %>
 </div>
