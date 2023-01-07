@@ -270,6 +270,22 @@ header{
     border: 1px solid black;
 }
 
+.postUser {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postUser img {
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.postUser span {
+    font-size: .8rem;
+}
+
 .profileLink img:hover {
     border: 1px solid white;
 }
@@ -300,7 +316,6 @@ span {
 
 .notificationContainer{
     border-bottom: 1px solid black;
-    border-right: 1px solid black;
     display: flex;
 }
 
@@ -348,6 +363,10 @@ span {
 
 .markdownIcons i {
     padding: 0 2rem;
+}
+
+.markdownIcons i:hover {
+    cursor: pointer;
 }
 
 .markdownAuthor {

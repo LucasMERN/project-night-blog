@@ -30,12 +30,15 @@
             </div>
         <% } %>
         <section class="pcHeading"> <!-- flex row -->
-            <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+            <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + blog.author._id : '/login' %>"">
+              <img src="<%= blog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+              <span><%= blog.author.userName %></span>
+            </a>
             <div class="pcTitle"><%= blog.title %></div>
             <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
         </section>
         <section class="pcPicAndBlurb"> <!-- flex row -->
-            <img src="../images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
+            <img src="<%= blog.thumbnailImage %>" referrerPolicy="no-referrer" alt="image representing the contents of the blog post"> <!-- change to database image -->
             <p class="text-lg"><%= blog.intro %></p> <!-- change to database blurb -->
         </section>
         <div class="pcActions">

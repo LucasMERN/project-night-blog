@@ -40,8 +40,8 @@
         <h3 class="profileUsername m-5"><%= profileUser.userName %></h3>
         <p class="m-5"><%= profileUser.bio %></p>
         <div class="followerContainer m-5">
-            <div class="mr-5"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=user._id %>">Following</a></div>
-            <div class="mr-5"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=user._id %>">Followers</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/following/' + user._id ? 'profileActive' : '' %>"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=user._id %>">Following</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/followers/' + user._id ? 'profileActive' : '' %>"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=user._id %>">Followers</a></div>
         </div>
         <div class="profilePostsBookmarks mt-10">
             <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + user._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
@@ -58,16 +58,20 @@
         <%} else { %>
             <% blogs.forEach(blog => { %>
                 <div class="pcContainer"> <!-- flex column -->
-                    <!-- <%# if (blog.author === req.user.username) { %>
+                    <% if (blog.author.userName === user.userName) { %>
                         <div class="dropdown dropdown-end userOptions">
                             <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
                             <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
                               <li><a>Pin to Profile</a></li>
-                              <li><a href="/blog/edit/<%= blog.id %>">Edit Blog</a></li>
-                              <li><a>Delete Blog</a></li>
+                              <li><a href="/blog/edit/<%= blog._id %>">Edit Blog</a></li>
+                              <li class="deleteli">
+                                <form class="delete" action="/blog/delete/<%= blog._id %>?_method=DELETE" method="POST">
+                                    <button type="submit">Delete</button>
+                                </form>
+                              </li>
                             </ul>
                           </div>
-                    <%# } %> -->
+                    <% } %>
                     <section class="pcHeading"> <!-- flex row -->
                         <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
                         <div class="pcTitle text-3xl"><%= blog.title %></div>
@@ -94,7 +98,7 @@
 
 
     <!-- If the user selects 'bookmarks' on the profile page, the bookmarked pages will load  -->
-    <% } else { %>
+    <% } else if(typeof bookmarks !== 'undefined') { %>
         <!-- Check if the user has any bookmarks, if not, display a message -->
         <% if(bookmarks[0].bookmarks.length === 0){ %>
             <h4 class="profileMsg">Your bookmarks will appear here.</h4>
@@ -128,6 +132,20 @@
                 <% }); %>
             <% }); %>
         <%} %>
-    <% } %>
+        <% }else if(typeof followers !== 'undefined'){ %>
+            <% followers.forEach((obj)=> { %>
+                <% obj.followers.forEach((follower)=>{ %>
+                    <!-- Inside this loop we can build out our followers data -->
+                    <h1><%= follower.userName %></h1>
+                <% }) %>
+            <% }) %>
+       <% }else if(typeof following !== 'undefined'){ %>
+        <% following.forEach((obj)=> { %>
+            <% obj.following.forEach((following)=>{ %>
+                <!-- Inside this loop we can build out our following data -->
+                <h1><%= following.userName %></h1>
+            <% }) %>
+        <% }) %>
+       <% } %>
 </section>
 <script src="https://cdn.tailwindcss.com"></script>

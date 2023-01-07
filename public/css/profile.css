@@ -110,6 +110,13 @@ form textarea{
     justify-content: space-around;
 }
 
+.delete {
+    margin: 0 !important;
+    display: flex !important;
+    flex-flow: row wrap;
+    justify-content: flex-start !important;
+}
+
 .profilePostsBookmarks a{
     width: 25%;
     text-align: center;
