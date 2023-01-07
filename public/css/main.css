@@ -247,6 +247,10 @@ header{
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    transition: all .1s ease-in-out;
+}
+.userLogo a:hover {
+    transform: scale(1.1);
 }
 
 .profileLink img {
@@ -257,8 +261,19 @@ header{
 }
 
 span {
+    display: flex;
     align-items: center;
     font-size: .9rem;
+    font-weight: normal;
+    text-transform: none;
+}
+
+#dropdown-icon {
+    margin: -2px 0 0 5px;
+}
+
+.userLogo .dropdown {
+    margin-top: -2px !important;
 }
 
 /* This is the dropdown arrow for the user menu. add hover/click animation to this */
