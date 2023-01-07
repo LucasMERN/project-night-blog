@@ -7,7 +7,10 @@ module.exports = {
             const blogs = await Blog.find({author: req.params.id}).sort({ createdAt: -1 }).populate('author')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, profileUser: profileUser, following: following})
+            const ObjectId = require('mongoose').Types.ObjectId;
+            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
+            const specificUser = await User.findOne({ _id: userId });
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser, profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
         }
@@ -38,7 +41,10 @@ module.exports = {
             const bookmarks = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).populate('bookmarks')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, profileUser: profileUser, following: following})
+            const ObjectId = require('mongoose').Types.ObjectId;
+            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
+            const specificUser = await User.findOne({ _id: userId });
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser, profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
         }
@@ -108,7 +114,10 @@ module.exports = {
             await User.updateOne({ _id: req.user.id }, { $pull: { notifications: { type: 'unfollow', type: 'unbookmark', user: req.params.id } }});
             // Grab all of the remaining notifications and populate the user field of our notifications
             const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', notifications: notifications});
+            const ObjectId = require('mongoose').Types.ObjectId;
+            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
+            const specificUser = await User.findOne({ _id: userId });
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser, notifications: notifications});
         } catch (error) {
             console.log(error);
         }
