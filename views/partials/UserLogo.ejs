@@ -9,10 +9,10 @@
           <i id="dropdown-icon" class="fa-solid fa-chevron-down"></i>
         </label>
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle headerDropdownStyle">
-          <li><a href="/profile/myprofile/<%= user._id %>">Profile</a></li>
-          <li><a href="/settings/<%= user._id %>">Settings</a></li>
-          <li><a>Theme</a></li>
-          <li><a href="/login/logout">Logout</a></li>
+          <li><a href="/profile/myprofile/<%= user._id %>">Profile <i class="fa-solid fa-user"></i></a></li>
+          <li><a href="/settings/<%= user._id %>">Settings <i class="fa-solid fa-gear"></i></a></li>
+          <li><a>Theme <input type="checkbox" class="toggle" checked /></a></li>
+          <li><a href="/login/logout">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
       </div>
     <% } else { %>

@@ -245,12 +245,22 @@ header{
 
 .userLogo a {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     align-items: center;
+    justify-content: space-between;
     transition: all .1s ease-in-out;
 }
 .userLogo a:hover {
     transform: scale(1.1);
+}
+
+.userLogo .toggle {
+    margin-right: -10px;
+    height: 20px !important;
+}
+
+.userLogo .dropdown-content {
+    margin: 10px -35px 0 0 !important;
 }
 
 .profileLink img {
@@ -258,6 +268,10 @@ header{
     height: 40px;
     margin-right: 5px;
     border: 1px solid black;
+}
+
+.profileLink img:hover {
+    border: 1px solid white;
 }
 
 span {
