@@ -41,7 +41,11 @@
         <div class="pcActions">
             <ul> <!-- flex row -->
                 <% if (typeof user !== "undefined") { %>
-                    <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>
+                  <% if(user.bookmarks.includes(blog._id)){ %>
+                    <li onclick="bookmarkPost('<%= blog._id %>')"><button method="POST" class="text-xs"><i class="fa-solid fa-bookmark text-xs"></i> Remove Bookmark</button></li>   
+                  <%} else { %>
+                    <li onclick="bookmarkPost('<%= blog._id %>')"><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></li>   
+                  <%}%>
                   <% } else { %>
                     <li><a href="/login"><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i> Save for later</button></a></li>
                   <% } %>                  

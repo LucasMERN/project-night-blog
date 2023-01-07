@@ -12,6 +12,25 @@ module.exports = {
             console.log(error)
         }
     },
+
+    getFollowers: async (req, res) => {
+        try {
+            const followers = await User.find({following: req.params.id});
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', followers: followers})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+
+    getFollowing: async (req, res) => {
+        try {
+            const following = await User.find({following: req.params.id});
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', following: following})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+
     getProfileBookmarks: async (req, res) => {
         try {
             const bookmarks = await User.find({_id: req.params.id}).populate('bookmarks')
