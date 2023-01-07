@@ -58,16 +58,20 @@
         <%} else { %>
             <% blogs.forEach(blog => { %>
                 <div class="pcContainer"> <!-- flex column -->
-                    <!-- <%# if (blog.author === req.user.username) { %>
+                    <% if (blog.author.userName === user.userName) { %>
                         <div class="dropdown dropdown-end userOptions">
                             <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
                             <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
                               <li><a>Pin to Profile</a></li>
-                              <li><a href="/blog/edit/<%= blog.id %>">Edit Blog</a></li>
-                              <li><a>Delete Blog</a></li>
+                              <li><a href="/blog/edit/<%= blog._id %>">Edit Blog</a></li>
+                              <li class="deleteli">
+                                <form class="delete" action="/blog/delete/<%= blog._id %>?_method=DELETE" method="POST">
+                                    <button type="submit">Delete</button>
+                                </form>
+                              </li>
                             </ul>
                           </div>
-                    <%# } %> -->
+                    <% } %>
                     <section class="pcHeading"> <!-- flex row -->
                         <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
                         <div class="pcTitle text-3xl"><%= blog.title %></div>
