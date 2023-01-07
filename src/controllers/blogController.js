@@ -34,15 +34,19 @@ module.exports = {
                     $push: {posts: savedBlog._id}
                 })
                 res.redirect('/')
-            console.log(req.body.intro)
         } catch (error) {
             console.log(error)
         }
     },
     // Delete blog
     deleteBlog: async (req, res) => {
-        await Blog.findByIdAndDelete(req.params.id)
-        res.redirect('/')
+        try {
+            await Blog.findByIdAndDelete(req.params.id);
+            await User.updateOne({ _id: req.user.id }, { $pull: { posts: req.params.id, bookmarks: req.params.id, likes: req.params.id }});
+            res.redirect('/');
+        } catch (error) {
+            console.log(error);
+        }
     },
     // Open and read the blog that was clicked
     readBlog: async (req, res)=>{

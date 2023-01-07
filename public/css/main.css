@@ -316,7 +316,6 @@ span {
 
 .notificationContainer{
     border-bottom: 1px solid black;
-    border-right: 1px solid black;
     display: flex;
 }
 
@@ -364,6 +363,10 @@ span {
 
 .markdownIcons i {
     padding: 0 2rem;
+}
+
+.markdownIcons i:hover {
+    cursor: pointer;
 }
 
 .markdownAuthor {

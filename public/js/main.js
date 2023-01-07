@@ -205,16 +205,3 @@ async function unfollow(id){
         console.log(error)
     }
 }
-
-const dropdownButton = document.querySelector('.dropdown-button');
-  const dropdownContent = document.querySelector('.dropdown-content');
-  const dropdownIcon = document.querySelector('#dropdown-icon');
-
-  dropdownButton.addEventListener('click', () => {
-    dropdownContent.classList.toggle('dropdown-open');
-    if (dropdownContent.classList.contains('dropdown-open')) {
-      dropdownIcon.className = 'fa-solid fa-chevron-up';
-    } else {
-      dropdownIcon.className = 'fa-solid fa-chevron-down';
-    }
-  });

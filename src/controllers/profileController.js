@@ -4,7 +4,7 @@ const Blog = require('../models/BlogSchema')
 module.exports = {
     getProfile: async (req, res) => {
         try {
-            const blogs = await Blog.find({author: req.params.id}).populate('author')
+            const blogs = await Blog.find({author: req.params.id}).sort({ createdAt: -1 }).populate('author')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, profileUser: profileUser, following: following})
@@ -15,7 +15,7 @@ module.exports = {
 
     getFollowers: async (req, res) => {
         try {
-            const followers = await User.find({_id: req.params.id}).select('followers').populate('followers');
+            const followers = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).select('followers').populate('followers');
             const profileUser = await User.findOne({_id: req.params.id})
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers})
         } catch (error) {
@@ -25,7 +25,7 @@ module.exports = {
 
     getFollowing: async (req, res) => {
         try {
-            const following = await User.find({_id: req.params.id}).select('following').populate('following');
+            const following = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).select('following').populate('following');
             const profileUser = await User.findOne({_id: req.params.id})
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following})
         } catch (error) {
@@ -35,7 +35,7 @@ module.exports = {
 
     getProfileBookmarks: async (req, res) => {
         try {
-            const bookmarks = await User.find({_id: req.params.id}).populate('bookmarks')
+            const bookmarks = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).populate('bookmarks')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, profileUser: profileUser, following: following})
@@ -43,6 +43,7 @@ module.exports = {
             console.log(error)
         }
     },
+
     updateBio: async (req, res) => {
         try {
             await User.findOneAndUpdate({_id: req.user.id},
@@ -55,6 +56,7 @@ module.exports = {
             console.log(error)
         }
     },
+
     followUser: async (req, res) => {   
         try {
             const currentUser = await User.findOne({_id: req.user.id})
@@ -83,6 +85,7 @@ module.exports = {
             console.log(error)
         }
     },
+
     unfollowUser: async (req, res) => {   
         try {
             const currentUser = await User.findOne({_id: req.user.id})
@@ -98,13 +101,17 @@ module.exports = {
             console.log(error)
         }
     },
+
     getNotifications: async (req, res) => {
         try {
-            // Grab all of the notifications on load, and populate the user field of our notifications
+            // Remove all unfollow notifications and unbookmark from the notifications array
+            await User.updateOne({ _id: req.user.id }, { $pull: { notifications: { type: 'unfollow', type: 'unbookmark', user: req.params.id } }});
+            // Grab all of the remaining notifications and populate the user field of our notifications
             const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', notifications: notifications})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', notifications: notifications});
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
+
 }
