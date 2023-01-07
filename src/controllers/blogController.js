@@ -4,13 +4,21 @@ const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
      // Render view to create a new blog
-     newBlogPage: (req, res)=>{
-        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost'})
+     newBlogPage: async (req, res)=>{
+        const ObjectId = require('mongoose').Types.ObjectId;
+        const userId = new ObjectId('639e48f1e551d5ac769fbe20');
+        const specificUser = await User.findOne({ _id: userId });
+        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser})
     },
     // Create new blog 
     newBlogPost: async(req, res)=>{
         try {
-            let image = null;
+            let image = [];
+            image.push('/images/default.png');
+            image.push('/images/default2.jpg');
+            image.push('/images/default3.jpg');
+            let randomIndex = Math.floor(Math.random() * image.length);
+            image = image[randomIndex];
             if (req.file) {
               const result = await cloudinary.uploader.upload(req.file.path);
               image = result.secure_url;
