@@ -62,9 +62,10 @@ module.exports = {
 
     updatePassword: async (req, res) => {
         try {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
             await User.findOneAndUpdate({_id: req.user.id},
                 {
-                password: req.body.password
+                password: hashedPassword
                 }
             );
             res.redirect('back')

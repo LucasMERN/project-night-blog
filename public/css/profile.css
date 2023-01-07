@@ -89,9 +89,24 @@ form textarea{
     display: flex;
 }
 
+.mr-5 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.mr-5 .counts {
+    margin-left: .5rem;
+}
+
 .profilePostsBookmarks{
     width: 100%;
     display: flex;
+    justify-content: space-around;
+}
+
+.profilePostsBookmarks span {
     justify-content: space-around;
 }
 
