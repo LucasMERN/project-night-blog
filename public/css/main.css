@@ -270,6 +270,22 @@ header{
     border: 1px solid black;
 }
 
+.postUser {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postUser img {
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.postUser span {
+    font-size: .8rem;
+}
+
 .profileLink img:hover {
     border: 1px solid white;
 }

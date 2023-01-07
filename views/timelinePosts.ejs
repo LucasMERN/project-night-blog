@@ -30,7 +30,10 @@
             </div>
         <% } %>
         <section class="pcHeading"> <!-- flex row -->
-            <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+            <a class="profileLink postUser" href="/profile/myprofile/<%= user._id %>">
+              <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+              <span><%= user.userName %></span>
+            </a>
             <div class="pcTitle"><%= blog.title %></div>
             <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
         </section>
