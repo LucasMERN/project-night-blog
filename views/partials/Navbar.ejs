@@ -1,9 +1,19 @@
 <nav class="nav">
     <ul class="nav-list">
-        <li class="<%= currentRoute === '/' ? 'navActive' : '' %>"><a href="/"><i class="fa-solid fa-home fa-lg"></i></a></li>
-        <li class="<%= currentRoute === '/profile/notifications' ? 'navActive' : '' %>"><a href="/profile/notifications"><i class="fa-solid fa-bell fa-lg"></i></a></li>
-        <li class="<%= currentRoute === '/profile/bookmarks/' + user._id ? 'navActive' : '' %>"><a href="/profile/bookmarks/<%= user._id %>"><i class="fa-solid fa-bookmark fa-lg"></i></a></li>
-        <li class="comment"><a href="#"><i class="fa-solid fa-envelope fa-lg"></i></a></li>
-        <li class="upload <%= currentRoute === '/blog/new' ? 'navActive' : '' %>"><a href="/blog/new"><i class="fa-solid fa-circle-plus fa-lg"></i></a></li>
+      <li class="<%= currentRoute === '/' ? 'navActive' : '' %>">
+        <a href="/"><i class="fa-solid fa-home fa-lg"></i></a>
+      </li>
+      <li class="<%= (typeof user !== "undefined" && currentRoute === '/profile/notifications' + user._id) ? 'navActive' : '' %>">
+        <a href="<%= (typeof user !== "undefined") ? '/profile/notifications' + user._id : '/login' %>"><i class="fa-solid fa-bell fa-lg"></i></a>
+      </li>
+      <li class="<%= (typeof user !== "undefined" && currentRoute === '/profile/bookmarks/' + user._id) ? 'navActive' : '' %>">
+        <a href="<%= (typeof user !== "undefined") ? '/profile/bookmarks/' + user._id : '/login' %>"><i class="fa-solid fa-bookmark fa-lg"></i></a>
+      </li>
+      <li class="comment">
+        <a href="/login"><i class="fa-solid fa-envelope fa-lg"></i></a>
+      </li>
+      <li class="upload <%= currentRoute === '/blog/new' ? 'navActive' : '' %>">
+        <a href="<%= (typeof user !== "undefined") ? '/blog/new' : '/login' %>"><i class="fa-solid fa-circle-plus fa-lg"></i></a>
+      </li>
     </ul>
-</nav>
+  </nav>
