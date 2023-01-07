@@ -15,9 +15,14 @@ module.exports = {
               const result = await cloudinary.uploader.upload(req.file.path);
               image = result.secure_url;
             }
+            let markdownArray = req.body.markdown.split(' ')
+            let intro = markdownArray.slice(0, 20).join(' ')
+            if(req.body.intro){
+            intro = req.body.intro   
+            }
             const blog = new Blog({
                 title: req.body.title,
-                intro: req.body.intro,
+                intro: intro,
                 author: req.user.id,
                 markdown: req.body.markdown,
                 email: req.user.email,
@@ -29,6 +34,7 @@ module.exports = {
                     $push: {posts: savedBlog._id}
                 })
                 res.redirect('/')
+            console.log(req.body.intro)
         } catch (error) {
             console.log(error)
         }
@@ -45,8 +51,9 @@ module.exports = {
             const liked = await User.findOne({_id: req.user.id, likes: {$in: [blog._id]}});
             const bookmarked = await User.findOne({_id: req.user.id, bookmarks: {$in: [blog._id]}});
             const totalLikes = blog.likedBy.length
+            const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
             if(blog == null) res.redirect('/')
-            res.render('mainLayout.ejs', {blog: blog, liked: liked != null, bookmarked: bookmarked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug'})  
+            res.render('mainLayout.ejs', {blog: blog, liked: liked != null, bookmarked: bookmarked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug', following: following})  
         } catch (error) {
             console.log(error)   
         }

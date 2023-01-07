@@ -20,52 +20,13 @@ a {
     color: rgb(255, 255, 255);
 }
 
-
-/* //////////////TOGGLE SWITCH FOR DARK/LIGHTMODE///////////////////// */
-
-#toggle {
-    position: relative;
-    display: block;
-    width: 60px;
-    height: 30px;
-    border-radius: 160px;
-    background: #222;
-    transition: 0.5s;
-    cursor: pointer;
-    box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
-                inset 0 8px 8px rgba(0,0,0,0.1),
-                inset 0 -4px 4px rgba(0,0,0,0.1);
+.profileActive {
+    color: white;
+    border-bottom: 1px solid rgb(255, 255, 255) !important;
 }
 
-
-#toggle.active {
-    background: rgb(52,58,64);
-    box-shadow: inset 0 2px 60px rgba(0,0,0,0.1),
-                inset 0 2px 8px rgba(0,0,0,0.1),
-                inset 0 -4px 4px rgba(0,0,0,0.05);   
-}
-
-#toggle .indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(to bottom, #444,#222);
-    border-radius: 50%;
-    transform: scale(0.9);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5),
-                inset 0 4px 4px rgba(255,255,255,0.2),
-                inset 0 -4px 4px rgba(0, 0, 0, 0.2);
-    transition: 0.5s;
-}
-
-#toggle.active .indicator {
-    left: 30px;
-    background: linear-gradient(to bottom, #9b9b9b,#aaaaaa);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1),
-                inset 0 4px 4px rgb(215, 215, 215),
-                inset 0 -4px 4px rgba(80, 79, 79,1);
+.navActive {
+    color: white;
 }
 
 /* //////////////NAVBAR///////////////////// */
@@ -147,7 +108,7 @@ header{
 .searchBar{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     border: 1px solid black;
     border-radius: 20px;
@@ -162,7 +123,7 @@ header{
 
 .fa-magnifying-glass{
     font-size: .8rem;
-    margin-right: 1rem;
+    margin-right: .3rem;
 }
 
 .fa-chevron-down{
@@ -189,14 +150,14 @@ header{
     flex-flow: column wrap;
     border-bottom: 1px solid black;
     padding: 10px 15px;
-    background-color: antiquewhite;
+    background-color: wheat;
 }
 
 .bookmarkContainer{
     padding-top: 45px;
 }
 
-.pcHeading, .pcPicAndBlurb, .pcActions ul{
+.pcPicAndBlurb, .pcActions ul{
     display: flex;
     flex-flow: row nowrap;
 }
@@ -229,6 +190,8 @@ header{
 }
 
 .pcHeading{
+    display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -244,6 +207,11 @@ header{
 
 .pcHeading .fa-chevron-down{
     display: none;
+}
+
+.pcTitle {
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
 .pcPicAndBlurb img{
@@ -366,6 +334,8 @@ span {
 
 .markdownAuthor a {
     margin-left: 5px;
+    color: blue;
+    text-decoration: underline;
 }
 
 .markdownAuthor span {
@@ -382,6 +352,10 @@ span {
 
 @media screen and (min-width: 550px) {
 
+.fa-magnifying-glass{
+    font-size: .8rem;
+    margin: 0 1rem;
+}
 
 /* //////////////NAVBAR///////////////////// */
 
@@ -407,6 +381,7 @@ span {
 
 .nav li i {
     width: 40px;
+    padding-top: 1rem;
 }
 
 .nav .upload {
@@ -536,6 +511,9 @@ header {
 
 /* //////////////POSTCARD/////////////////// */
 
+.pcPicAndBlurb img {
+    height: 14rem;
+}
 
 
 /* //////////////MARKDOWN AUTHOR/////////////////// */
@@ -556,6 +534,10 @@ header {
     margin-top: 0;
     display: flex;
     justify-content: center;
+}
+
+.AuthorContainer a {
+    text-decoration: underline;
 }
 
 .AuthorContainer img {

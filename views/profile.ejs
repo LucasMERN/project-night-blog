@@ -8,31 +8,31 @@
         <div class="profileImg ml-5">
             <img src="<%= profileUser.profilePic %>" referrerPolicy="no-referrer" alt="user image">
         </div>
+            
         <!-- Check if logged in user is on their own profile -->
         <% if(profileUser._id.toString() == user._id.toString()){ %>
             <div>
-              <!-- The button to open modal -->
-              <a href="#my-modal-2 " class="btn btn-primary editProfileBtn btn-sm mr-5">Edit Profile</a>
-              <!-- The modal -->
-              <div class="modal" id="my-modal-2">
-                <div class="modal-box">
-                <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
-                  <h3 class="font-bold text-lg">Bio</h3>
-                  <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
-                    <textarea class="textarea textarea-bordered" name="bio"></textarea>
-                    <div class="modal-action">
-                      <a href="#" class="btn"><input type="submit" value="Save"></a>
-                    </div>
-                  </form>
+                <a href="#my-modal-2" class="btn btn-primary editProfileBtn mr-5 btn-sm">Edit Profile</a>
+                <!-- Put this part before </body> tag -->
+                <div class="modal" id="my-modal-2">
+                  <div class="modal-box">
+                    <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
+                    <h3 class="font-bold text-lg">Bio</h3>
+                    <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
+                        <textarea class="textarea textarea-bordered" name="bio"></textarea>
+                        <div class="modal-action">
+                          <input class="btn" type="submit" value="Save">
+                        </div>
+                      </form>
+                  </div>
                 </div>
-              </div>
             </div>
         <!-- If user is on another profile, check if they are following them or not. Render btns accordingly -->
         <% }else if(!following){ %>
             <button onclick="follow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
-          <% }else{ %>
+        <% }else{ %>
             <button onclick="unfollow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
-          <% } %>
+        <% } %>
     </section>
 
     <!-- Profile statistics: Username, bio, following amt, followers amt, posts/bookmarks -->
@@ -44,8 +44,8 @@
             <div class="mr-2"><%= profileUser.followers.length %> Followers</div>
         </div>
         <div class="profilePostsBookmarks mt-10">
-            <a class="PostsBookmarksAnchor" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
-            <a class="PostsBookmarksAnchor" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + user._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/bookmarks/' + user._id ? 'profileActive' : '' %>" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
         </div>
     </section>
 
@@ -58,7 +58,7 @@
         <%} else { %>
             <% blogs.forEach(blog => { %>
                 <div class="pcContainer"> <!-- flex column -->
-                    <%# if (blog.author === req.user.username) { %>
+                    <!-- <%# if (blog.author === req.user.username) { %>
                         <div class="dropdown dropdown-end userOptions">
                             <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
                             <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
@@ -67,7 +67,7 @@
                               <li><a>Delete Blog</a></li>
                             </ul>
                           </div>
-                    <%# } %>
+                    <%# } %> -->
                     <section class="pcHeading"> <!-- flex row -->
                         <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
                         <div class="pcTitle text-3xl"><%= blog.title %></div>
@@ -75,7 +75,7 @@
                     </section>
                     <section class="pcPicAndBlurb"> <!-- flex row -->
                         <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
-                        <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
+                        <p class="text-lg"><%= blog.intro %></p> <!-- change to database blurb -->
                     </section>
                     <div class="pcActions">
                         <ul> <!-- flex row -->

@@ -1,39 +1,54 @@
-<link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />  
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
 
-<div class="profilePhotoContainer">
-    <img class="profilePhoto" src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="default user image">
-</div>
-<section>
-    <h2><%= user.userName %></h2>
-</section>
-<section class="userStats">
-    <div>
-        <h3>Followers</h3>
-        <h4>0</h4>
-    </div>
-    <div>
-        <h3>Posts</h3>
-        <h4>0</h4>
-    </div>
-    <div>
-        <h3>Likes</h3>
-        <h4>0</h4>
-    </div>
-</section>
 
-<% if(!user.bio) { %>
-    <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
-        <h3>Enter a Bio:</h3>
-        <textarea maxlength="275" placeholder="Tell us about yourself." name="bio"></textarea>
-        <input type="submit">
-        <input type="hidden" name="user" value="<%= user._id %>">
-    </form>
-<% }else { %>
-    <section class="bio">
-        <h4>Bio</h4>
-        <h5><%= user.bio %></h5>
-    </section>
-<% } %> 
+
+<div class="settingsPage">
+    
+    <div class="settingsNav">
+        <div class="settingsLogo"><a href="/"><img class="logo-img" src="/images/assets/logo.svg" alt="Project Night Blog Logo. Click to return to homepage." /></a></div>
+        <%- include('partials/Navbar.ejs') %>
+    </div>
+
+    <div class="settingsWrapper">
+        <div class="settingsHeaderWrapper">
+            <div class="settingsHeader">
+                <div>Settings</div>
+                <i class="fa-solid fa-gear"></i>
+            </div>
+        </div>
+        
+        <div class="settingsUtils">
+            <a class="<%= currentRoute === '/settings/' + user._id ? 'settingsActive' : '' %>" href="/settings/<%= user._id %>"><div>Your Account</div></a>
+            <a class="<%= currentRoute === '/settings/display/' + user._id ? 'settingsActive' : '' %>" href="/settings/display/<%= user._id %>"><div>Display</div></a>
+            <a href="/login/logout"><div>Logout</div></a>
+        </div>
+    </div>
+
+    <div class="settingsContentWrapper">
+
+        <div class="settingsContentHeader">
+            <div>Your Account</div>
+            <p>See information about your account or check your account deactivation options</p>
+        </div>
+
+        <% if (routeName == 'settings') { %>
+            <%- include('partials/SettingsMain.ejs') %>
+        <% } else if (routeName == 'accountInfo') { %>
+            <%- include('partials/AccountInfo.ejs') %>
+        <% } else if (routeName == 'display') { %>
+            <%- include('partials/SettingsTheme.ejs') %>
+        <% } else if (routeName == 'deactivate') { %>
+            <%- include('partials/DeactivateAccount.ejs') %>
+        <% } else { %>
+            <%- include('404.ejs') %>
+        <% } %>
+
+    </div>
+
+</div>
 <script src="https://cdn.tailwindcss.com"></script>

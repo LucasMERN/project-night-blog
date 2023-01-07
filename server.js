@@ -41,6 +41,11 @@ app.use(
     })
 );
 
+app.use((req, res, next) => {
+    res.locals.currentRoute = req.path;
+    next();
+  });
+
 // Set passport middleware
 app.use(passport.initialize())
 app.use(passport.session())

@@ -1,0 +1,35 @@
+<form action="/settings/<%= user._id %>/updateUsername?_method=PUT" class="settingsUsername" name="usernameChange" method="post">
+    <div class="settingsUsernameBox">
+        <h2>Change Username</h2>
+    <div class="settingsInput">
+    <input type="text" name="userName" value="new username">
+    </div>
+        <div class="submit">
+    <input class="btn btn-primary btn-sm mr-5" type="submit" value="Save">
+        </div>
+    </div>
+</form>
+
+<form action="/settings/<%= user._id %>/updateEmail?_method=PUT" class="settingsUsername" name="emailChange" method="post">
+    <div class="settingsUsernameBox">
+        <h2>Change Email Address</h2>
+    <div class="settingsInput">
+    <input type="text" name="email" value="new email address">
+    </div>
+        <div class="submit">
+    <input class="btn btn-primary btn-sm mr-5" type="submit" value="Save">
+        </div>
+    </div>
+</form>
+
+<form action="/settings/<%= user._id %>/updatePassword?_method=PUT" class="settingsUsername" name="passwordChange" method="post">
+    <div class="settingsUsernameBox">
+        <h2>Change Password</h2>
+    <div class="settingsInput">
+    <input type="text" name="password" value="new password">
+    </div>
+        <div class="submit">
+    <input class="btn btn-primary btn-sm mr-5" type="submit" value="Save">
+        </div>
+    </div>
+</form>
