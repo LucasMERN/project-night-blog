@@ -30,9 +30,9 @@
             </div>
         <% } %>
         <section class="pcHeading"> <!-- flex row -->
-            <a class="profileLink postUser" href="/profile/myprofile/<%= user._id %>">
-              <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
-              <span><%= user.userName %></span>
+            <a class="profileLink postUser" href="/profile/myprofile/<%= blog.author._id %>">
+              <img src="<%= blog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+              <span><%= blog.author.userName %></span>
             </a>
             <div class="pcTitle"><%= blog.title %></div>
             <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
