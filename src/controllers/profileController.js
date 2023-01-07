@@ -15,10 +15,9 @@ module.exports = {
 
     getFollowers: async (req, res) => {
         try {
-            const bookmarks = await User.find({_id: req.params.id}).populate('bookmarks')
-            const followers = await User.find({_id: req.params.id}).select('followers').populate('followers.user');
+            const followers = await User.find({_id: req.params.id}).select('followers').populate('followers');
             const profileUser = await User.findOne({_id: req.params.id})
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, profileUser: profileUser, followers: followers})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers})
         } catch (error) {
             console.log(error)
         }
@@ -26,10 +25,9 @@ module.exports = {
 
     getFollowing: async (req, res) => {
         try {
-            const bookmarks = await User.find({_id: req.params.id}).populate('bookmarks')
+            const following = await User.find({_id: req.params.id}).select('following').populate('following');
             const profileUser = await User.findOne({_id: req.params.id})
-            const following = await User.find({_id: req.params.id}).select('following').populate('following.user');
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, profileUser: profileUser, following: following})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
         }
