@@ -31,5 +31,45 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+
+    updateUsername: async (req, res) => {
+        try {
+            await User.findOneAndUpdate({_id: req.user.id},
+                {
+                userName: req.body.userName
+                },
+                console.log(req.body.userName)
+            );
+            res.redirect('back')
+        } catch (error) {
+            console.log(error)
+        }
+    },
+
+    updateEmail: async (req, res) => {
+        try {
+            await User.findOneAndUpdate({_id: req.user.id},
+                {
+                email: req.body.email
+                }
+            );
+            res.redirect('back')
+        } catch (error) {
+            console.log(error)
+        }
+    },
+
+    updatePassword: async (req, res) => {
+        try {
+            await User.findOneAndUpdate({_id: req.user.id},
+                {
+                password: req.body.password
+                }
+            );
+            res.redirect('back')
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
