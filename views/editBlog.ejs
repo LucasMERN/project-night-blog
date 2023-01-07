@@ -13,16 +13,14 @@
                 <textarea name="intro" id="intro" class="form-control"><%= blog.intro %></textarea>
             </div>
             <div>
-                <label for="body">Author</label>
-                <textarea name="author" id="body" class="form-control"><%= blog.author %></textarea>
-            </div>
-            <div>
                 <label for="markdown">Markdown</label>
                 <textarea required name="markdown" id="markdown" class="form-control"><%= blog.markdown %></textarea>
             </div>
-
             <a href="/" class="btn">Cancel</a>
-            <input type="submit" class="btn btn-primary mt-2">
+            <form action="/<%= blog._id %>?_method=PUT" method="POST">
+                <!-- form inputs here -->
+                <input type="submit" class="btn btn-primary mt-2">
+            </form>
         </form>
     </div>
 </div>

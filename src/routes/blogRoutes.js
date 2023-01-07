@@ -22,7 +22,10 @@ router.get('/:slug/read', ensureAuth, blogController.readBlog);
 // Grab the id of the file we would like to edit and then render our edit view
 router.get('/edit/:id', async (req, res)=>{
     const blog = await Blog.findById(req.params.id)
-    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit'})
+    const ObjectId = require('mongoose').Types.ObjectId;
+    const userId = new ObjectId('639e48f1e551d5ac769fbe20');
+    const specificUser = await User.findOne({ _id: userId });
+    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit', specificUser: specificUser, user: req.user})
 })
 
 // Grab our specific blog and update based upon saveBlogAndRedirect function
@@ -37,7 +40,7 @@ function saveBlogAndRedirect(path){
         let blog = req.blog
             blog.title = req.body.title
             blog.intro = req.body.intro,
-            author = req.session.author,
+            blog.author = req.user.id,
             blog.markdown = req.body.markdown,
             blog.totalLikes = req.body.totalLikes
         try {
