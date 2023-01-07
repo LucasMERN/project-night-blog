@@ -1,23 +1,21 @@
-<% if(typeof user == "undefined") { %>
-    <div class="userLogo">
-        <a class="profileLink" href="/login">
-            <span>Login</span>
-        </a>
-    </div>
-<% }else{ %>
-    <div class="userLogo">
-        <a class="profileLink" href="/profile/myprofile/<%= user._id %>">
-            <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
-            <span><%= user.userName %></span>
-        </a>
-        <div class="dropdown dropdown-end userOptions">
-            <label tabindex="0" class="btn m-1"><i class="fa-solid fa-chevron-down"></i></label>
-            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle headerDropdownStyle">
-                <li><a href="/profile/myprofile/<%= user._id %>">Profile</a></li>
-                <li><a href="/settings/<%= user._id %>">Settings</a></li>
-                <li><a>Theme</a></li>
-                <li><a href="/login/logout">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-<% } %>
+<div class="userLogo">
+    <% if(typeof user !== "undefined") { %>
+      <a class="profileLink" href="/profile/myprofile/<%= user._id %>">
+        <img src="<%= user.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+        <span><%= user.userName %></span>
+      </a>
+      <div class="dropdown dropdown-end userOptions">
+        <label tabindex="0" class="btn m-1"><i class="fa-solid fa-chevron-down"></i></label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle headerDropdownStyle">
+          <li><a href="/profile/myprofile/<%= user._id %>">Profile</a></li>
+          <li><a href="/settings/<%= user._id %>">Settings</a></li>
+          <li><a>Theme</a></li>
+          <li><a href="/login/logout">Logout</a></li>
+        </ul>
+      </div>
+    <% } else { %>
+      <a class="profileLink" href="/login">
+        <span>Login</span>
+      </a>
+    <% } %>
+  </div>
