@@ -30,7 +30,7 @@
             </div>
         <% } %>
         <section class="pcHeading"> <!-- flex row -->
-            <a class="profileLink postUser" href="/profile/myprofile/<%= blog.author._id %>">
+            <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + blog.author._id : '/login' %>"">
               <img src="<%= blog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
               <span><%= blog.author.userName %></span>
             </a>
