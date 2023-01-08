@@ -53,7 +53,11 @@
     <% if(typeof blogs !== 'undefined'){ %>
         <!-- Check if the user has created any blogs, if not, display a message -->
         <% if(blogs.length == 0){ %>
-            <h4 class="profileMsg">What? No blogs yet?</h4>
+            <% if(profileUser._id.toString() == user._id.toString()){ %>
+                <h4 class="profileMsg">Profile looking empty? Get to posting!</h4>
+            <%} else { %>
+                <h4 class="profileMsg"><%=profileUser.userName %> hasn't posted anything yet...</h4>
+            <% } %>
             <!-- If user DOES have a history of blogs, display them -->
         <%} else { %>
             <% blogs.forEach(blog => { %>
@@ -73,7 +77,10 @@
                           </div>
                     <% } %>
                     <section class="pcHeading"> <!-- flex row -->
-                        <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+                        <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + blog.author._id : '/login' %>"">
+                            <img src="<%= blog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+                            <span><%= blog.author.userName %></span>
+                          </a>
                         <div class="pcTitle text-3xl"><%= blog.title %></div>
                         <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
                     </section>
@@ -104,7 +111,7 @@
             <% if(profileUser._id.toString() == user._id.toString()){ %>
                 <h4 class="profileMsg">Your bookmarks will appear here.</h4>
             <%} else { %>
-                <h4 class="profileMsg"><%=profileUser.userName %>'s bookmarks will appear here.</h4>
+                <h4 class="profileMsg"><%=profileUser.userName %> hasn't bookmarked any posts yet...</h4>
             <% } %>
         <%} else { %>
             <!-- Render bookmarks -->
