@@ -128,8 +128,6 @@ module.exports = {
             await User.updateOne({ _id: req.user.id }, { $pull: { notifications: { type: 'unfollow', type: 'unbookmark', user: req.params.id } }});
             // Grab all of the remaining notifications and populate the user field of our notifications
             const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
-            const ObjectId = require('mongoose').Types.ObjectId;
-            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
             const specificUser = await User.aggregate([
                 {
                   $match: {
