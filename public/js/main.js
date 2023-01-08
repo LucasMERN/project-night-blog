@@ -5,6 +5,13 @@ const password2 = document.querySelector('#password2')
 const label = document.querySelector('.label')
 const email = document.querySelector('#email')
 
+
+const descriptionTextarea = document.getElementById('descriptionTextarea');
+
+descriptionTextarea.addEventListener('input', () => {
+    document.getElementById('description').innerHTML = descriptionTextarea.value;
+});
+
 // Make sure password id is not null. If not, toggle visibility of password with 'password' id, toggle eye icon as well
 if(togglePassword){
     togglePassword.addEventListener('click', toggleFirstPw)
@@ -86,7 +93,6 @@ if(localStorage.getItem('darkMode')===null){
 }
 
 function checkStatus() {
-    console.log('hello')
     if(localStorage.getItem('darkMode') === 'true'){
         toggle.classList.remove('active');
         body.classList.remove('active');
