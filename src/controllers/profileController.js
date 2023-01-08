@@ -38,7 +38,12 @@ module.exports = {
 
     getProfileBookmarks: async (req, res) => {
         try {
-            const bookmarks = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).populate('bookmarks')
+            const bookmarks = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).populate({
+                path: 'bookmarks',
+                populate: {
+                  path: 'author'
+                }
+              })
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
             const ObjectId = require('mongoose').Types.ObjectId;
@@ -49,6 +54,7 @@ module.exports = {
             console.log(error)
         }
     },
+
 
     updateBio: async (req, res) => {
         try {
