@@ -7,9 +7,7 @@ module.exports = {
             const blogs = await Blog.find({author: req.params.id}).sort({ createdAt: -1 }).populate('author')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            const ObjectId = require('mongoose').Types.ObjectId;
-            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
-            const specificUser = await User.findOne({ _id: userId });
+            const specificUser = await User.aggregate([{$sample: {size: 1}}]);
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser, profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
