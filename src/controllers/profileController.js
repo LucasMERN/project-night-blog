@@ -81,7 +81,7 @@ module.exports = {
                         user: req.user.id,
                         seen: false,
                         content: `${req.user.userName} followed you`,
-                        type: 'like'
+                        type: 'follow'
                       }
                     }
                   });

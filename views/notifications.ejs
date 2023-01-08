@@ -6,10 +6,12 @@
     <% if(notifications && notifications[0]) { %>
         <% notifications[0].notifications.forEach((notification) =>{ %>
             <div class="notificationContainer">
-                <% if(notification.type === 'like'){ %>
+                <% if(notification.type === 'follow'){ %>
                     <i class="fa-solid fa-user fa-2x"></i>
                 <%}else if(notification.type === 'bookmark'){ %>
                     <i class="fa-solid fa-bookmark fa-2x"></i>
+                <% }else if(notification.type === 'like'){%>
+                    <i class="fa-solid fa-heart fa-2x"></i>
                 <% } %> 
                 <div class="notificationInfo">
                     <img class="rounded-full h-9" src="<%= notification.user.profilePic %>">
