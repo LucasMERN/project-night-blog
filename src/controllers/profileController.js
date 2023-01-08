@@ -87,7 +87,8 @@ module.exports = {
                         user: req.user.id,
                         seen: false,
                         content: `${req.user.userName} followed you`,
-                        type: 'follow'
+                        type: 'follow',
+                        timestamps: Date.now()
                       }
                     }
                   });
@@ -107,6 +108,16 @@ module.exports = {
                 {
                     $pull: {followers: req.user.id}
                 })
+                await User.updateOne({_id: req.params.id}, {
+                    $push: {
+                      notifications: {
+                        user: req.user.id,
+                        seen: false,
+                        content: `${req.user.userName} unfollowed you`,
+                        type: 'unfollow'
+                      }
+                    }
+                  });
             res.json('Follow updated')
         } catch (error) {
             console.log(error)
@@ -115,14 +126,29 @@ module.exports = {
 
     getNotifications: async (req, res) => {
         try {
-            // Remove all unfollow notifications and unbookmark from the notifications array
-            await User.updateOne({ _id: req.user.id }, { $pull: { notifications: { type: 'unfollow', type: 'unbookmark', user: req.params.id } }});
+            // Remove all unfollow, unbookmark, and unlike notifications from the notifications array
+            await User.updateOne({ _id: req.user.id }, {
+              $pull: {
+                notifications: { type: 'unfollow' }
+              }
+            });
+            await User.updateOne({ _id: req.user.id }, {
+              $pull: {
+                notifications: { type: 'unbookmark' }
+              }
+            });
+            await User.updateOne({ _id: req.user.id }, {
+              $pull: {
+                notifications: { type: 'unlike' }
+              }
+            });
             // Grab all of the remaining notifications and populate the user field of our notifications
             const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
+            const sortedNotifications = notifications[0].notifications.sort((a, b) => b.timestamp - a.timestamp);
             const ObjectId = require('mongoose').Types.ObjectId;
             const userId = new ObjectId('639e48f1e551d5ac769fbe20');
             const specificUser = await User.findOne({ _id: userId });
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser, notifications: notifications});
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser, sortedNotifications: sortedNotifications});
         } catch (error) {
             console.log(error);
         }

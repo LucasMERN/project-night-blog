@@ -5,7 +5,7 @@
         <span>People to Follow</span>
     </div>
     <div class="DiscUser">
-        <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + user._id : '/login' %>"">
+        <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + specificUser._id : '/login' %>"">
             <img src="<%= specificUser.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
             <span><%= specificUser.userName %></span>
         </a>

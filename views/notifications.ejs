@@ -3,25 +3,40 @@
 
 
 <section class="notifications">
-    <% if(notifications && notifications[0]) { %>
-        <% notifications[0].notifications.forEach((notification) =>{ %>
-            <div class="notificationContainer">
-                <% if(notification.type === 'follow'){ %>
-                    <i class="fa-solid fa-user fa-2x"></i>
-                <%}else if(notification.type === 'bookmark'){ %>
-                    <i class="fa-solid fa-bookmark fa-2x"></i>
-                <% }else if(notification.type === 'like'){%>
-                    <i class="fa-solid fa-heart fa-2x"></i>
-                <% } %> 
-                <div class="notificationInfo">
-                    <img class="rounded-full h-9" src="<%= notification.user.profilePic %>">
-                    <p><%= notification.content %></p>
-                </div>
+    <%
+      let renderedNotifications = {};
+    %>
+    <% if(sortedNotifications && sortedNotifications[0]) { %>
+      <% sortedNotifications.forEach((notification) =>{ %>
+        <%
+          // Check if this notification has already been rendered
+          if (renderedNotifications[notification.user] && renderedNotifications[notification.user][notification.content]) {
+            // Skip rendering this notification
+            return;
+          }
+          // Mark this notification as rendered
+          if (!renderedNotifications[notification.user]) {
+            renderedNotifications[notification.user] = {};
+          }
+          renderedNotifications[notification.user][notification.content] = true;
+        %>
+        <div class="notificationContainer">
+          <% if(notification.type === 'follow'){ %>
+            <i class="fa-solid fa-user fa-2x"></i>
+          <%}else if(notification.type === 'bookmark'){ %>
+            <i class="fa-solid fa-bookmark fa-2x"></i>
+          <% }else if(notification.type === 'like'){%>
+            <i class="fa-solid fa-heart fa-2x"></i>
+            <% } %> 
+            <div class="notificationInfo">
+              <img class="rounded-full h-9" src="<%= notification.user.profilePic %>">
+              <p><%- notification.content %></p>
             </div>
+          </div>
         <% }); %>
-    <% } else { %>
+      <% } else { %>
         <h1>No notifications</h1>
-    <% } %>
-</section>
+      <% } %>
+    </section>
 
 <script src="https://cdn.tailwindcss.com"></script>

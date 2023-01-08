@@ -331,6 +331,18 @@ span {
     margin-bottom: 1rem;
 }
 
+.notificationInfo p {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.notificationInfo a {
+    margin-left: 5px;
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
 /* //////////////Individual Post///////////////////// */
 
 .markdownContainer {
