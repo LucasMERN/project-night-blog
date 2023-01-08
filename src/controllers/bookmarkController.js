@@ -19,12 +19,18 @@ module.exports = {
                     }
                 })
                 // Grab the author ID off the blog, we need this to update the user object, specifically the bookmarks
+                let content
+                if (req.user.userName === blog.author.userName) {
+                    content = 'You bookmarked your blog'
+                } else {
+                    content = `${req.user.userName} bookmarked your blog`
+                }
                 await User.updateOne({_id: blog.author._id}, {
                     $push: {
                       notifications: {
                         user: req.user.id,
                         seen: false,
-                        content: `${req.user.userName} bookmarked your blog`,
+                        content: content,
                         type: 'bookmark'
                       }
                     }

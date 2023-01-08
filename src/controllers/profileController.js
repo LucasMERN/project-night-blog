@@ -85,7 +85,6 @@ module.exports = {
                       }
                     }
                   });
-
             res.json('Follow updated')
         } catch (error) {
             console.log(error)
