@@ -6,17 +6,23 @@ const cloudinary = require("../middleware/cloudinary");
 module.exports = {
      // Render view to create a new blog
      newBlogPage: async (req, res)=>{
-        const ObjectId = require('mongoose').Types.ObjectId;
-        const userId = new ObjectId('639e48f1e551d5ac769fbe20');
-        const specificUser = await User.aggregate([
-            {
-              $match: {
-                following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
-                _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
-              }
-            },
-            { $sample: { size: 1 } }  // Select a random user
-          ]);
+        let following
+        let specificUser
+          if(typeof req.user !== 'undefined'){
+            following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
+            specificUser = await User.aggregate([
+              {
+                $match: {
+                  following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                  _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                }
+              },
+              { $sample: { size: 1 } }  // Select a random user
+            ])
+          }else{
+            following = false
+            specificUser = await User.aggregate([{$sample: {size: 1}}]);
+          }
         res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser[0]})
     },
     // Create new blog 

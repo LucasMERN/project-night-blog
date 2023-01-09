@@ -7,17 +7,23 @@ module.exports = {
         try {
             const blogs = await Blog.find({author: req.params.id}).sort({ createdAt: -1 }).populate('author')
             const profileUser = await User.findOne({_id: req.params.id})
-            const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            //Grab a random user from user collection
-            const specificUser = await User.aggregate([
-                {
-                  $match: {
-                    following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
-                    _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
-                  }
-                },
-                { $sample: { size: 1 } }  // Select a random user
-              ]);
+            let following
+            let specificUser
+              if(typeof req.user !== 'undefined'){
+                following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
+                specificUser = await User.aggregate([
+                  {
+                    $match: {
+                      following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                      _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                    }
+                  },
+                  { $sample: { size: 1 } }  // Select a random user
+                ])
+              }else{
+                following = false
+                specificUser = await User.aggregate([{$sample: {size: 1}}]);
+              }
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser[0], following: following, profileUser: profileUser})
         } catch (error) {
             console.log(error)
@@ -53,17 +59,23 @@ module.exports = {
                 }
               })
             const profileUser = await User.findOne({_id: req.params.id})
-            const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            //Grab a random user from user collection
-            const specificUser = await User.aggregate([
-                {
-                  $match: {
-                    following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
-                    _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
-                  }
-                },
-                { $sample: { size: 1 } }  // Select a random user
-              ]);
+            let following
+            let specificUser
+              if(typeof req.user !== 'undefined'){
+                following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
+                specificUser = await User.aggregate([
+                  {
+                    $match: {
+                      following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                      _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                    }
+                  },
+                  { $sample: { size: 1 } }  // Select a random user
+                ])
+              }else{
+                following = false
+                specificUser = await User.aggregate([{$sample: {size: 1}}]);
+              }
             res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser[0], profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
