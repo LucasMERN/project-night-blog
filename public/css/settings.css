@@ -67,7 +67,7 @@
 .settingsContentWrapper {
     width: 70%;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
 }
 
 .settingsContentHeader {
@@ -123,11 +123,10 @@
     font-size: 1.4rem;
 }
 
-#passwordError, #passwordMatch, #usernameError {
-    margin: 1rem;
+#passwordError, #passwordMatch, #usernameError, #settingsPasswordError, #settingsPasswordMatch {
+    width: 80%;
     color: red;
-    font-size: 1.1rem;
-    text-shadow: 0.5px 0.5px 2px rgb(0 0 0 / 35%);
+    font-size: 1rem;
 }
 
 input[type="text"], input[type="email"], input[type="password"]{

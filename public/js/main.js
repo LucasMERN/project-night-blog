@@ -115,6 +115,55 @@ function loginButton() {
 }
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////PASSWORD VALIDATION///////////////////////////////////
+//////////////////////this function is used in settings.ejs//////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+function settingsPWValidation() {
+    // Get the password input field
+    const passwordField = document.getElementById('settingsPassword');
+    const passwordField2 = document.getElementById('settingsPassword2');
+    // Get the error message element
+    const errorMessage = document.getElementById('settingsPasswordError');
+    const errorMessage2 = document.getElementById('settingsPasswordMatch');
+    // Get the submit button
+    const submitButton = document.getElementById('newPassword-btn');
+    // Regular expression to check for at least one uppercase letter, lowercase letter, special character, and number
+    const pwRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
+
+    // Check if the password is between 8-30 characters long
+    if (passwordField.value.length < 8 || passwordField.value.length > 30 || !pwRegex.test(passwordField.value)) {
+      errorMessage.innerHTML = 'Passwords must be between 8-30 characters long and contain at least one uppercase letter, lowercase letter, special character, and number';
+      submitButton.disabled = true;
+    }
+
+    if (passwordField.value.length > 8 && passwordField.value.length < 30 && pwRegex.test(passwordField.value)) {
+        errorMessage.innerHTML = '';
+      }
+
+    if (passwordField2.value.length > 0 && (passwordField.value !== passwordField2.value)) {
+        errorMessage2.innerHTML = 'Passwords must match';
+        submitButton.disabled = true;
+    }
+
+    if (passwordField2.value.length > 0 && (passwordField.value == passwordField2.value)) {
+        errorMessage2.innerHTML = '';
+    }
+
+    if (passwordField.value.length > 7 && passwordField.value.length < 31 && pwRegex.test(passwordField.value) && passwordField2.value.length > 0 && (passwordField.value == passwordField2.value)) {
+        submitButton.disabled = false;
+      }
+
+  }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////text input lavbel hover/////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
 // changes location of label when focus on the input element
 function hoverLabel(){
     if(email.value.length > 0){
@@ -125,6 +174,25 @@ function hoverLabel(){
 }
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////SETTINGS FORM VALIDATION////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+function validateForm() {
+    // Get the username value
+    let username = document.getElementById('settingsUsernameText').value;
+  
+    // Check if the username is at least 6 characters long
+    if ((username.length < 6 || username.length > 15)) {
+        document.getElementById("usernameError").innerHTML = "Username must be between 6 and 15 characters long";
+        document.getElementById("newUsername-btn").disabled = true;
+    } else if ((username.length > 5 && username.length < 16)) {
+        document.getElementById("usernameError").innerHTML = "";
+        document.getElementById("newUsername-btn").disabled = false;
+    }
+  }
 
 /////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////DARKMODE LOCAL STORAGE////////////////////////////////
