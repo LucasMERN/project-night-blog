@@ -10,8 +10,8 @@
     </div>
     <p><%= user.bio %></p>
     <% if(!following){ %>
-        <button onclick="follow('<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
+        <button onclick="follow('<%= blog.author._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
     <% }else{ %>
-        <button onclick="unfollow('<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
+        <button onclick="unfollow('<%= blog.author._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
     <% } %>
 </div>

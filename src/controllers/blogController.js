@@ -78,7 +78,7 @@ module.exports = {
             const liked = await User.findOne({_id: req.user.id, likes: {$in: [blog._id]}});
             const bookmarked = await User.findOne({_id: req.user.id, bookmarks: {$in: [blog._id]}});
             const totalLikes = blog.likedBy.length
-            const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
+            const following = await User.findOne({_id: req.user.id, following: {$in: [blog.author._id]}})
             if(blog == null) res.redirect('/')
             res.render('mainLayout.ejs', {blog: blog, liked: liked != null, bookmarked: bookmarked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug', following: following})  
         } catch (error) {
