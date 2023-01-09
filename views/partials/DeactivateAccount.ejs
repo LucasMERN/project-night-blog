@@ -1,8 +1,8 @@
-<form class="settingsUsername" name="passwordChange" method="post">
+<form class="settingsUsername" method="post" action="/settings/<%= user._id %>/deactivate?_method=DELETE" method="DELETE">
     <div class="settingsUsernameBox">
         <h2>Deactivate Account</h2>
         <div class="submit">
-    <input class="bg-red-500 text-white btn btn-sm mr-5 font-bold hover:bg-red-600" type="submit" value="Deactivate">
+            <button class="bg-red-500 text-white btn btn-sm mr-5 font-bold hover:bg-red-600" type="submit">Deactivate Account</button>
         </div>
     </div>
 </form>
