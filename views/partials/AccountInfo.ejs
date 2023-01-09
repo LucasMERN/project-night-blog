@@ -2,7 +2,7 @@
     <div class="settingsUsernameBox">
         <h2>Change Username</h2>
     <div class="settingsInput">
-        <input type="text" id="settingsUsernameText" name="userName" class="form-control" oninput="validateForm()" required />
+        <input type="text" id="settingsUsernameText" name="userName" class="form-control" oninput="validateUsername()" required />
     <label class="label">new username</label>
     </div>
     <div id="usernameError"></div>
@@ -14,10 +14,10 @@
     <div class="settingsUsernameBox">
         <h2>Change Email Address</h2>
     <div class="settingsInput">
-    <input type="email" id="email" name="email" onchange="hoverLabel()" required />
+    <input type="email" id="settingsEmailText" name="email" onchange="hoverLabel()" oninput="validateEmail()" required />
     <label class="label">new email address</label>
     </div>
-    <button type="submit" id="newEmail-btn" class="submit btn btn-primary btn-sm">Save</button>
+    <button type="submit" id="newEmail-btn" class="submit btn btn-primary btn-sm" disabled>Save</button>
     </div>
 </form>
 

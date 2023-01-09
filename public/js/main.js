@@ -176,11 +176,11 @@ function hoverLabel(){
 
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////SETTINGS FORM VALIDATION////////////////////////////////
+//////////////////////SETTINGS USERNAME AND EMAIL VALIDATION/////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
 
-function validateForm() {
+function validateUsername() {
     // Get the username value
     let username = document.getElementById('settingsUsernameText').value;
   
@@ -193,6 +193,19 @@ function validateForm() {
         document.getElementById("newUsername-btn").disabled = false;
     }
   }
+
+  function validateEmail() {
+    // Get the username value
+    let email = document.getElementById('settingsEmailText').value;
+  
+    // Check if the username is at least 6 characters long
+    if (email.length < 1) {
+        document.getElementById("newEmail-btn").disabled = true;
+    } else if (email.length > 0) {
+        document.getElementById("newEmail-btn").disabled = false;
+    }
+  }
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////DARKMODE LOCAL STORAGE////////////////////////////////
