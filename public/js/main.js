@@ -7,9 +7,9 @@ const descriptionTextarea = document.getElementById('descriptionTextarea');
 
 document.addEventListener('input', (e) => {
     if (e.target.id === 'descriptionTextarea') {
-      document.getElementById('description').innerHTML = e.target.value;
+        document.getElementById('description').innerHTML = e.target.value;
     }
-  });
+});
 
 /////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////PASSWORD VALIDATION///////////////////////////////////
@@ -48,18 +48,18 @@ function toggleSecondPw (){
 const textInput = document.getElementById('text');
 
 if (textInput) {
-  textInput.addEventListener('input', usernameValidation);
+    textInput.addEventListener('input', usernameValidation);
 }
 
 function usernameValidation() {
-  const username = textInput.value;
-  const usernameError = document.getElementById('usernameError');
+    const username = textInput.value;
+    const usernameError = document.getElementById('usernameError');
 
-  if (username.length > 0 && username.length < 15) {
-    usernameError.innerText = '';
-  } else if (username.length > 15) {
-    usernameError.innerText = 'Username must be less than 15 characters long.';
-  }
+    if (username.length > 0 && username.length < 15) {
+        usernameError.innerText = '';
+    } else if (username.length > 15) {
+        usernameError.innerText = 'Username must be less than 15 characters long.';
+    }
 }
 
 // Make sure password contains special characters
@@ -79,28 +79,28 @@ function pwValidation() {
 
 // Make sure passwords match
  function pwMatch() {
-     removeDisable()
-   if(document.getElementById('password').value !== document.getElementById('password2').value){
+    removeDisable()
+    if(document.getElementById('password').value !== document.getElementById('password2').value){
        document.getElementById('passwordMatch').innerText = 'Passwords must match.';
-   } else {
+    } else {
        document.getElementById('passwordMatch').innerText = '';
        document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
        document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"
-   }
- }
+    }
+}
 
 // Make sure passwords match, contain special characters, and that the username is filled out, if tests pass we will remove the disable from the submit button
 function removeDisable () {
-        if((document.getElementById('password').value == document.getElementById('password2').value) && (document.querySelector('#password').value.length > 5) && (document.getElementById('text').value.length > 0) && (document.getElementById('text').value.length < 15) && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
+    if((document.getElementById('password').value == document.getElementById('password2').value) && (document.querySelector('#password').value.length > 5) && (document.getElementById('text').value.length > 0) && (document.getElementById('text').value.length < 15) && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
 
-        document.getElementById('signUp-btn').removeAttribute('disabled')   
-        document.getElementById('signUp-btn').style.cursor = 'pointer'
-        document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
-        document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"    
+    document.getElementById('signUp-btn').removeAttribute('disabled')   
+    document.getElementById('signUp-btn').style.cursor = 'pointer'
+    document.getElementById('signUp-btn').style.color = "rgb(255, 255, 255)"
+    document.getElementById('signUp-btn').style.backgroundColor = "rgb(14, 16, 27)"    
 
-        }else{
-            document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"  
-        }
+    }else{
+        document.getElementById('signUp-btn').style.backgroundColor = "rgba(14, 16, 27, 0.38)"  
+    }
 }
 
 
@@ -141,7 +141,7 @@ function settingsPWValidation() {
 
     if (passwordField.value.length > 8 && passwordField.value.length < 30 && pwRegex.test(passwordField.value)) {
         errorMessage.innerHTML = '';
-      }
+    }
 
     if (passwordField2.value.length > 0 && (passwordField.value !== passwordField2.value)) {
         errorMessage2.innerHTML = 'Passwords must match';
@@ -154,9 +154,9 @@ function settingsPWValidation() {
 
     if (passwordField.value.length > 7 && passwordField.value.length < 31 && pwRegex.test(passwordField.value) && passwordField2.value.length > 0 && (passwordField.value == passwordField2.value)) {
         submitButton.disabled = false;
-      }
+    }
 
-  }
+}
 
 
 
@@ -192,9 +192,9 @@ function validateUsername() {
         document.getElementById("usernameError").innerHTML = "";
         document.getElementById("newUsername-btn").disabled = false;
     }
-  }
+}
 
-  function validateEmail() {
+function validateEmail() {
     // Get the username value
     let email = document.getElementById('settingsEmailText').value;
   
@@ -204,7 +204,7 @@ function validateUsername() {
     } else if (email.length > 0) {
         document.getElementById("newEmail-btn").disabled = false;
     }
-  }
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////
