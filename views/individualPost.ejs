@@ -8,7 +8,7 @@
         <i class="fa-regular fa-share-from-square"></i>
     </div>
     <div class="markdownAuthor">
-        <h2>Written by <a href="/profile/myprofile/<%= user._id %>"><%= blog.author.userName %></a><span>&bull;</span><%= moment(blog.createdAt).format('MMMM Do') %></h2>
+        <h2>Written by <a href="/profile/myprofile/<%= blog.author._id %>"><%= blog.author.userName %></a><span>&bull;</span><%= moment(blog.createdAt).format('MMMM Do') %></h2>
     </div>
     <section class="blogContent">
         <%- blog.sanitizedHtml %>

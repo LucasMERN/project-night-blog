@@ -46,7 +46,12 @@ module.exports = {
 
     getProfileBookmarks: async (req, res) => {
         try {
-            const bookmarks = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).populate('bookmarks')
+            const bookmarks = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).populate({
+                path: 'bookmarks',
+                populate: {
+                  path: 'author'
+                }
+              })
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
             //Grab a random user from user collection
@@ -64,6 +69,7 @@ module.exports = {
             console.log(error)
         }
     },
+
 
     updateBio: async (req, res) => {
         try {
@@ -96,7 +102,8 @@ module.exports = {
                         user: req.user.id,
                         seen: false,
                         content: `${req.user.userName} followed you`,
-                        type: 'follow'
+                        type: 'follow',
+                        timestamps: Date.now()
                       }
                     }
                   });
@@ -116,6 +123,16 @@ module.exports = {
                 {
                     $pull: {followers: req.user.id}
                 })
+                await User.updateOne({_id: req.params.id}, {
+                    $push: {
+                      notifications: {
+                        user: req.user.id,
+                        seen: false,
+                        content: `${req.user.userName} unfollowed you`,
+                        type: 'unfollow'
+                      }
+                    }
+                  });
             res.json('Follow updated')
         } catch (error) {
             console.log(error)
@@ -124,10 +141,25 @@ module.exports = {
 
     getNotifications: async (req, res) => {
         try {
-            // Remove all unfollow notifications and unbookmark from the notifications array
-            await User.updateOne({ _id: req.user.id }, { $pull: { notifications: { type: 'unfollow', type: 'unbookmark', user: req.params.id } }});
+            // Remove all unfollow, unbookmark, and unlike notifications from the notifications array
+            await User.updateOne({ _id: req.user.id }, {
+              $pull: {
+                notifications: { type: 'unfollow' }
+              }
+            });
+            await User.updateOne({ _id: req.user.id }, {
+              $pull: {
+                notifications: { type: 'unbookmark' }
+              }
+            });
+            await User.updateOne({ _id: req.user.id }, {
+              $pull: {
+                notifications: { type: 'unlike' }
+              }
+            });
             // Grab all of the remaining notifications and populate the user field of our notifications
             const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
+            const sortedNotifications = notifications[0].notifications.sort((a, b) => b.timestamp - a.timestamp);
             const specificUser = await User.aggregate([
                 {
                   $match: {
@@ -137,7 +169,7 @@ module.exports = {
                 },
                 { $sample: { size: 1 } }  // Select a random user
               ]);
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser[0], notifications: notifications});
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser, sortedNotifications: sortedNotifications});
         } catch (error) {
             console.log(error);
         }

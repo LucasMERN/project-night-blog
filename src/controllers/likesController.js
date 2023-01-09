@@ -22,19 +22,20 @@ module.exports = {
                     $push: {likedBy: req.user.id}
                 })
 
-                let content
-                if (req.user.userName === blog.author.userName) {
-                    content = 'You liked your blog'
-                } else {
-                    content = `${req.user.userName} liked your blog`
-                }
+                let content;
+                    if (req.user.userName === blog.author.userName) {
+                        content = 'You liked your <a href="/blog/' + blog.slug + '/read">blog</a>';
+                    } else {
+                        content = `${req.user.userName} liked your <a href="/blog/${blog.slug}/read">blog</a>`;
+                    }
                 await User.updateOne({_id: blog.author._id}, {
                     $push: {
                       notifications: {
                         user: req.user.id,
                         seen: false,
                         content: content,
-                        type: 'like'
+                        type: 'like',
+                        timestamps: Date.now()
                       }
                     }
                   });
