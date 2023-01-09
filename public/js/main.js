@@ -1,16 +1,27 @@
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////MARKDOWN DESCRIPTION//////////////////////////////////
+//////////////////////this function is used in markdown.ejs//////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+const descriptionTextarea = document.getElementById('descriptionTextarea');
+
+document.addEventListener('input', (e) => {
+    if (e.target.id === 'descriptionTextarea') {
+      document.getElementById('description').innerHTML = e.target.value;
+    }
+  });
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////PASSWORD VALIDATION///////////////////////////////////
+/////////////////this function is used in login and sign-up.ejs//////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
 const togglePassword = document.querySelector('#togglePassword')
 const togglePassword2 = document.querySelector('#togglePassword2')
 const password = document.querySelector('#password')
 const password2 = document.querySelector('#password2')
 const label = document.querySelector('.label')
 const email = document.querySelector('#email')
-
-
-const descriptionTextarea = document.getElementById('descriptionTextarea');
-
-descriptionTextarea.addEventListener('input', () => {
-    document.getElementById('description').innerHTML = descriptionTextarea.value;
-});
 
 // Make sure password id is not null. If not, toggle visibility of password with 'password' id, toggle eye icon as well
 if(togglePassword){
@@ -85,46 +96,8 @@ function loginButton() {
     }
 }
 
-const body = document.querySelector('body');
-const toggle = document.getElementById('toggle');
 
-if(localStorage.getItem('darkMode')===null){
-    localStorage.setItem('darkMode', "false")
-}
-
-function checkStatus() {
-    if(localStorage.getItem('darkMode') === 'true'){
-        toggle.classList.remove('active');
-        body.classList.remove('active');
-    } else {
-        toggle.setAttribute('class', 'active');
-        body.setAttribute('class', 'active');
-    }
-}
-
-checkStatus();
-
-function changeStatus() {
-    if(localStorage.getItem('darkMode')==='true'){
-        localStorage.setItem('darkMode', 'false');
-        toggle.setAttribute('class', 'active');
-        body.setAttribute('class', 'active');
-    } else {
-        localStorage.setItem('darkMode', 'true');
-        toggle.classList.remove('active');
-        body.classList.remove('active');
-    }
-}
-
-function toggleMenu(){
-    let menu = document.getElementById('submenuWrap')
-    if(menu.style.display === "none") {
-        menu.style.display = "block"
-    }else{
-        menu.style.display = "none"
-    }
-}
-
+// changes location of label when focus on the input element
 function hoverLabel(){
     if(email.value.length > 0){
         label.classList.add('float')
@@ -132,6 +105,63 @@ function hoverLabel(){
         label.classList.remove('float')
     }
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////DARKMODE LOCAL STORAGE////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+// const body = document.querySelector('body');
+// const toggle = document.getElementById('toggle');
+
+// if(localStorage.getItem('darkMode')===null){
+//     localStorage.setItem('darkMode', "false")
+// }
+
+// function checkStatus() {
+//     if(localStorage.getItem('darkMode') === 'true'){
+//         toggle.classList.remove('active');
+//         body.classList.remove('active');
+//     } else {
+//         toggle.setAttribute('class', 'active');
+//         body.setAttribute('class', 'active');
+//     }
+// }
+
+// checkStatus();
+
+// function changeStatus() {
+//     if(localStorage.getItem('darkMode')==='true'){
+//         localStorage.setItem('darkMode', 'false');
+//         toggle.setAttribute('class', 'active');
+//         body.setAttribute('class', 'active');
+//     } else {
+//         localStorage.setItem('darkMode', 'true');
+//         toggle.classList.remove('active');
+//         body.classList.remove('active');
+//     }
+// }
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////idk what this is//////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+// function toggleMenu(){
+//     let menu = document.getElementById('submenuWrap')
+//     if(menu.style.display === "none") {
+//         menu.style.display = "block"
+//     }else{
+//         menu.style.display = "none"
+//     }
+// }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////LIKE POST/////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
 async function updateLike(id){
     try {
@@ -147,6 +177,12 @@ async function updateLike(id){
     }
 }
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////BOOKMARK POST/////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
 async function bookmarkPost(id){
     try {
         const response = await fetch(`/bookmark/${id}`, {
@@ -160,6 +196,12 @@ async function bookmarkPost(id){
         console.log(error)
     }
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////MARKDOWN CLOUDINARY IMAGE/////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
 function previewImage() {
     // Get the file input field
@@ -184,6 +226,11 @@ function previewImage() {
     }
   }
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////FOLLOW USERS//////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
 async function follow(id){
     try {
         const response = await fetch(`/profile/${id}/follow`, {
@@ -197,6 +244,12 @@ async function follow(id){
         console.log(error)
     }
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////UNFOLLOW USERS//////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
 async function unfollow(id){
     try {

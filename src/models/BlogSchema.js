@@ -15,7 +15,7 @@ const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
     title: { type: String, required: true, trim: true },
-    intro: { type: String, trim: true },
+    intro: { type: String, trim: true, maxLength: 60},
     markdown: { type: String, required: true, trim: true },
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     pinned: Boolean,

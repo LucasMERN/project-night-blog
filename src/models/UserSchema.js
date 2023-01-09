@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({    // create a new schema for the user model
-  userName: { type: String, required: true, unique: true, trim: true },
+  userName: { type: String, required: true, unique: true, trim: true, maxLength: 30 },
   email: { type: String, required: true, trim: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true, maxLength: 30 },
   profilePic: { type: String, default: "/images/defaultUser.png" },
   profileHeaderPic: { type: String, default: "/images/defaultUser.png" },
-  bio: { type: String },
+  bio: { type: String, maxLength: 60 },
   posts: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   bookmarks: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   drafts: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
