@@ -19,11 +19,11 @@
                     <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
                     <h3 class="font-bold text-lg">Bio</h3>
                     <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
-                        <textarea class="textarea textarea-bordered" name="bio"></textarea>
+                        <textarea class="textarea textarea-bordered" maxlength="200" name="bio"></textarea>
                         <div class="modal-action">
-                          <input class="btn" type="submit" value="Save">
+                            <input class="btn" type="submit" value="Save">
                         </div>
-                      </form>
+                    </form>
                   </div>
                 </div>
             </div>

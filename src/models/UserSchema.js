@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({    // create a new schema for the user 
   password: { type: String, required: true, maxLength: 30 },
   profilePic: { type: String, default: "/images/defaultUser.png" },
   profileHeaderPic: { type: String, default: "/images/defaultUser.png" },
-  bio: { type: String, maxLength: 60 },
+  bio: { type: String, maxLength: 200 },
   posts: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   bookmarks: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   drafts: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
