@@ -1,9 +1,10 @@
 <div class="AuthorContainer">
     <div>About the Author</div>
-    <img src="<%= user.profilePic %>" referrerpolicy="no-referrer" alt="user profile image">
+
+    <img src="<%= blog.author.profilePic %>" referrerpolicy="no-referrer" alt="user profile image">
     <a href="/profile/myprofile/<%= user.id %>"><article><%= blog.author.userName %></article></a>
     <div class="AuthorStats">
-        <div><%= user.posts.length %> Posts</div>
+        <div><%= blog.author.posts.length %> Posts</div>
         <div class="AuthorDot">&bull;</div>
         <div><%= user.followers.length %> Followers</div>
     </div>

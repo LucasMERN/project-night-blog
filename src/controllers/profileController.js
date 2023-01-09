@@ -34,7 +34,24 @@ module.exports = {
         try {
             const followers = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).select('followers').populate('followers');
             const profileUser = await User.findOne({_id: req.params.id})
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers})
+            let following
+            let specificUser
+              if(typeof req.user !== 'undefined'){
+                following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
+                specificUser = await User.aggregate([
+                  {
+                    $match: {
+                      following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                      _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                    }
+                  },
+                  { $sample: { size: 1 } }  // Select a random user
+                ])
+              }else{
+                following = false
+                specificUser = await User.aggregate([{$sample: {size: 1}}]);
+              }
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers, specificUser: specificUser})
         } catch (error) {
             console.log(error)
         }
@@ -44,7 +61,16 @@ module.exports = {
         try {
             const following = await User.find({_id: req.params.id}).sort({ createdAt: -1 }).select('following').populate('following');
             const profileUser = await User.findOne({_id: req.params.id})
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following})
+            const specificUser = await User.aggregate([
+              {
+                $match: {
+                  following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                  _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                }
+              },
+              { $sample: { size: 1 } }  // Select a random user
+            ])
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following, specificUser: specificUser})
         } catch (error) {
             console.log(error)
         }
