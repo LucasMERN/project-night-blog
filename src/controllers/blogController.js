@@ -1,5 +1,6 @@
 const User = require('../models/UserSchema');
 const Blog = require('../models/BlogSchema');
+const mongoose = require('mongoose')
 const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
@@ -7,8 +8,16 @@ module.exports = {
      newBlogPage: async (req, res)=>{
         const ObjectId = require('mongoose').Types.ObjectId;
         const userId = new ObjectId('639e48f1e551d5ac769fbe20');
-        const specificUser = await User.findOne({ _id: userId });
-        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser})
+        const specificUser = await User.aggregate([
+            {
+              $match: {
+                following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+              }
+            },
+            { $sample: { size: 1 } }  // Select a random user
+          ]);
+        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser[0]})
     },
     // Create new blog 
     newBlogPost: async(req, res)=>{

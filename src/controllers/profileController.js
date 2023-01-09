@@ -1,5 +1,6 @@
 const User = require('../models/UserSchema')
 const Blog = require('../models/BlogSchema')
+const mongoose = require('mongoose')
 
 module.exports = {
     getProfile: async (req, res) => {
@@ -7,10 +8,17 @@ module.exports = {
             const blogs = await Blog.find({author: req.params.id}).sort({ createdAt: -1 }).populate('author')
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            const ObjectId = require('mongoose').Types.ObjectId;
-            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
-            const specificUser = await User.findOne({ _id: userId });
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser, profileUser: profileUser, following: following})
+            //Grab a random user from user collection
+            const specificUser = await User.aggregate([
+                {
+                  $match: {
+                    following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                    _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                  }
+                },
+                { $sample: { size: 1 } }  // Select a random user
+              ]);
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser[0], following: following, profileUser: profileUser})
         } catch (error) {
             console.log(error)
         }
@@ -46,10 +54,17 @@ module.exports = {
               })
             const profileUser = await User.findOne({_id: req.params.id})
             const following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
-            const ObjectId = require('mongoose').Types.ObjectId;
-            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
-            const specificUser = await User.findOne({ _id: userId });
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser, profileUser: profileUser, following: following})
+            //Grab a random user from user collection
+            const specificUser = await User.aggregate([
+                {
+                  $match: {
+                    following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                    _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                  }
+                },
+                { $sample: { size: 1 } }  // Select a random user
+              ]);
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser[0], profileUser: profileUser, following: following})
         } catch (error) {
             console.log(error)
         }
@@ -145,9 +160,15 @@ module.exports = {
             // Grab all of the remaining notifications and populate the user field of our notifications
             const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
             const sortedNotifications = notifications[0].notifications.sort((a, b) => b.timestamp - a.timestamp);
-            const ObjectId = require('mongoose').Types.ObjectId;
-            const userId = new ObjectId('639e48f1e551d5ac769fbe20');
-            const specificUser = await User.findOne({ _id: userId });
+            const specificUser = await User.aggregate([
+                {
+                  $match: {
+                    following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+                    _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+                  }
+                },
+                { $sample: { size: 1 } }  // Select a random user
+              ]);
             res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser, sortedNotifications: sortedNotifications});
         } catch (error) {
             console.log(error);

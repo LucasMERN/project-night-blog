@@ -9,7 +9,9 @@
             <img src="<%= specificUser.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
             <span><%= specificUser.userName %></span>
         </a>
-        <div>Follow Button</div>
+        <div>
+            <button onclick="follow('<%= specificUser._id %>')" class="btn btn-primary btn-xs mr-5">Follow</button>
+        </div>
     </div>
 </div>
 
