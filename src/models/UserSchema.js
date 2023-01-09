@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({    // create a new schema for the user model
-  userName: { type: String, required: true, unique: true, trim: true, maxLength: 30 },
+  userName: { type: String, required: true, unique: true, trim: true, maxLength: 15 },
   email: { type: String, required: true, trim: true, unique: true },
   password: { type: String, required: true, maxLength: 30 },
   profilePic: { type: String, default: "/images/defaultUser.png" },

@@ -44,6 +44,24 @@ function toggleSecondPw (){
     this.classList.toggle('fa-eye')
 }
 
+// Make sure username is the correct length
+const textInput = document.getElementById('text');
+
+if (textInput) {
+  textInput.addEventListener('input', usernameValidation);
+}
+
+function usernameValidation() {
+  const username = textInput.value;
+  const usernameError = document.getElementById('usernameError');
+
+  if (username.length > 0 && username.length < 15) {
+    usernameError.innerText = '';
+  } else if (username.length > 15) {
+    usernameError.innerText = 'Username must be less than 15 characters long.';
+  }
+}
+
 // Make sure password contains special characters
 function pwValidation() {
     removeDisable();
@@ -73,7 +91,7 @@ function pwValidation() {
 
 // Make sure passwords match, contain special characters, and that the username is filled out, if tests pass we will remove the disable from the submit button
 function removeDisable () {
-        if((document.getElementById('password').value == document.getElementById('password2').value) && (document.querySelector('#password').value.length > 5) && (document.getElementById('text').value.length > 0) && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
+        if((document.getElementById('password').value == document.getElementById('password2').value) && (document.querySelector('#password').value.length > 5) && (document.getElementById('text').value.length > 0) && (document.getElementById('text').value.length < 15) && document.getElementById('password').value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)) {
 
         document.getElementById('signUp-btn').removeAttribute('disabled')   
         document.getElementById('signUp-btn').style.cursor = 'pointer'
