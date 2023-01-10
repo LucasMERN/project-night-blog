@@ -25,8 +25,13 @@
         <span>Trending Today</span>
     </div>
     <div class="DiscTrendingPost">
-        <a href="#">Post title</a>
-        <div>user logo Partial</div>
+        <a href="#"><%= populatedRandomBlog.title %></a>
+        <div>
+            <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + populatedRandomBlog.author._id : '/login' %>"">
+                <img src="<%= populatedRandomBlog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+                <span><%= populatedRandomBlog.author.userName %></span>
+            </a>
+        </div>
     </div>
 </div>
 
