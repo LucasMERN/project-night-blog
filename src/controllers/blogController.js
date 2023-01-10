@@ -23,7 +23,9 @@ module.exports = {
             following = false
             specificUser = await User.aggregate([{$sample: {size: 1}}]);
           }
-        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser[0]})
+          const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+          const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog})
     },
     // Create new blog 
     newBlogPost: async(req, res)=>{
@@ -39,7 +41,7 @@ module.exports = {
               image = result.secure_url;
             }
             let markdownArray = req.body.markdown.split(' ')
-            let intro = markdownArray.slice(0, 20).join(' ')
+            let intro = markdownArray.slice(0, 10).join(' ') + '...'
             if(req.body.intro){
             intro = req.body.intro   
             }

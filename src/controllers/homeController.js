@@ -23,9 +23,11 @@ module.exports = {
                 ])
               }else{
                 following = false
-                specificUser = await User.aggregate([{$sample: {size: 1}}]);
+                specificUser = await User.aggregate([{$sample: {size: 1}}])
               }
-            res.render('mainLayout.ejs', {blogs: blogs, user: req.user, specificUser: specificUser[0], routeName: 'home'})
+              const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+              const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+            res.render('mainLayout.ejs', {blogs: blogs, user: req.user, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog, routeName: 'home'})
         } catch (error) {
             console.log(error)
         }

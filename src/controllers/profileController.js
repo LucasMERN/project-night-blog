@@ -1,6 +1,7 @@
 const User = require('../models/UserSchema')
 const Blog = require('../models/BlogSchema')
 const mongoose = require('mongoose')
+const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
     getProfile: async (req, res) => {
@@ -24,7 +25,9 @@ module.exports = {
                 following = false
                 specificUser = await User.aggregate([{$sample: {size: 1}}]);
               }
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser[0], following: following, profileUser: profileUser})
+              const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+              const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser[0], following: following, profileUser: profileUser, populatedRandomBlog: populatedRandomBlog})
         } catch (error) {
             console.log(error)
         }
@@ -51,7 +54,9 @@ module.exports = {
                 following = false
                 specificUser = await User.aggregate([{$sample: {size: 1}}]);
               }
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers, specificUser: specificUser})
+              const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+              const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog})
         } catch (error) {
             console.log(error)
         }
@@ -70,7 +75,9 @@ module.exports = {
               },
               { $sample: { size: 1 } }  // Select a random user
             ])
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following, specificUser: specificUser})
+            const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+            const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog})
         } catch (error) {
             console.log(error)
         }
@@ -102,7 +109,9 @@ module.exports = {
                 following = false
                 specificUser = await User.aggregate([{$sample: {size: 1}}]);
               }
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser[0], profileUser: profileUser, following: following})
+              const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+              const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser[0], profileUser: profileUser, following: following, populatedRandomBlog: populatedRandomBlog})
         } catch (error) {
             console.log(error)
         }
@@ -207,10 +216,24 @@ module.exports = {
                 },
                 { $sample: { size: 1 } }  // Select a random user
               ]);
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser, sortedNotifications: sortedNotifications});
+              const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+              const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser[0], sortedNotifications: sortedNotifications, populatedRandomBlog: populatedRandomBlog});
         } catch (error) {
             console.log(error);
         }
+    },
+    updateProfilePic: async (req, res)=> {
+      try {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        const image = result.secure_url
+        console.log(image)
+        await User.findOneAndUpdate({_id: req.params.id},{
+          profilePic: image
+        })
+        res.redirect(`/profile/myprofile/${req.params.id}`)
+      } catch (error) {
+        console.log(error)
+      }
     }
-
 }

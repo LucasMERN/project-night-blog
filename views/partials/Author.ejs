@@ -9,9 +9,11 @@
         <div><%= user.followers.length %> Followers</div>
     </div>
     <p><%= user.bio %></p>
-    <% if(!following){ %>
+    <% if(!following && blog.author.userName !== user.userName){ %>
         <button onclick="follow('<%= blog.author._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
-    <% }else{ %>
+    <% }else if(following){ %>
         <button onclick="unfollow('<%= blog.author._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
+    <% }else{ %>
+        <button onclick="window.location.assign('/profile/myprofile/<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">My Profile</button>
     <% } %>
 </div>
