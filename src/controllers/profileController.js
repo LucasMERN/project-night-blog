@@ -51,7 +51,7 @@ module.exports = {
                 following = false
                 specificUser = await User.aggregate([{$sample: {size: 1}}]);
               }
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers, specificUser: specificUser})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers, specificUser: specificUser[0]})
         } catch (error) {
             console.log(error)
         }
@@ -70,7 +70,7 @@ module.exports = {
               },
               { $sample: { size: 1 } }  // Select a random user
             ])
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following, specificUser: specificUser})
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following, specificUser: specificUser[0]})
         } catch (error) {
             console.log(error)
         }
