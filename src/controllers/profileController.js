@@ -1,6 +1,7 @@
 const User = require('../models/UserSchema')
 const Blog = require('../models/BlogSchema')
 const mongoose = require('mongoose')
+const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
     getProfile: async (req, res) => {
@@ -221,6 +222,18 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
+    },
+    updateProfilePic: async (req, res)=> {
+      try {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        const image = result.secure_url
+        console.log(image)
+        await User.findOneAndUpdate({_id: req.params.id},{
+          profilePic: image
+        })
+        res.redirect(`/profile/myprofile/${req.params.id}`)
+      } catch (error) {
+        console.log(error)
+      }
     }
-
 }

@@ -53,13 +53,20 @@ form textarea{
     position: absolute; 
     top: 100px;
     background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
 }
 
 .profileImg img {
-    border-radius: 100%;
+    width: 100%;
+    border-radius: 50%;
     border: solid 1px black;
-}
+    object-fit: cover;
+  }
 
 .editProfileBtn{
     position: absolute;
@@ -139,4 +146,24 @@ form textarea{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.changeProfilePic{
+    position: absolute; 
+    background-color: black;
+    cursor: pointer;
+    top: 225px;
+    left: 130px;
+    border: 1px solid white;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profilePic{
+    width: 400px;
+    margin-right: 5rem;
 }
