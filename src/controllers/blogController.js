@@ -39,7 +39,7 @@ module.exports = {
               image = result.secure_url;
             }
             let markdownArray = req.body.markdown.split(' ')
-            let intro = markdownArray.slice(0, 20).join(' ')
+            let intro = markdownArray.slice(0, 10).join(' ') + '...'
             if(req.body.intro){
             intro = req.body.intro   
             }
