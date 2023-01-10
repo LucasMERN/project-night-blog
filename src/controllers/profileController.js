@@ -207,7 +207,7 @@ module.exports = {
                 },
                 { $sample: { size: 1 } }  // Select a random user
               ]);
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser, sortedNotifications: sortedNotifications});
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser[0], sortedNotifications: sortedNotifications});
         } catch (error) {
             console.log(error);
         }
