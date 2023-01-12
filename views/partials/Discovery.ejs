@@ -11,10 +11,14 @@
         </a>
         <div>
             <%if(typeof user !== 'undefined'){%>
-                <button onclick="follow('<%= specificUser._id %>')" class="btn btn-primary btn-xs mr-5">Follow</button>
-            <%}else{%>
-                <button onclick="window.location.assign('/login');" class="btn btn-primary btn-xs mr-5">Follow</button>
-            <%}%>
+                <% if (user.following.indexOf(specificUser._id) === -1) { %>
+                    <button onclick="follow('<%= specificUser._id %>')" class="btn btn-primary btn-xs mr-5">Follow</button>
+                <% } else { %>
+                    <button onclick="unfollow('<%= specificUser._id %>')" class="btn btn-danger btn-xs mr-5">Unfollow</button>
+                <% } %>
+                <%}else{%>
+                    <button onclick="window.location.assign('/login');" class="btn btn-primary btn-xs mr-5">Follow</button>
+                <%}%>
         </div>
     </div>
 </div>

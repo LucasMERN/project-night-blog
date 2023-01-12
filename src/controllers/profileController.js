@@ -135,14 +135,19 @@ module.exports = {
         try {
             const currentUser = await User.findOne({_id: req.user.id})
             
-            await User.updateOne({_id: req.user.id}, {
-                $push: {following: req.params.id}
-            })
-
-            await User.updateOne({_id: req.params.id},
-                {
-                    $push: {followers: req.user.id}
-                })
+            if (currentUser.following.indexOf(req.params.id) === -1) {
+                await User.updateOne({_id: req.user.id}, {
+                    $push: {following: req.params.id}
+                });
+            }
+    
+            const followedUser = await User.findOne({_id: req.params.id});
+            // check if the current user is already in the followers list of the user being followed
+            if (followedUser.followers.indexOf(req.user.id) === -1) {
+                await User.updateOne({_id: req.params.id},
+                    {
+                        $push: {followers: req.user.id}
+                    });
                 await User.updateOne({_id: req.params.id}, {
                     $push: {
                       notifications: {
@@ -154,6 +159,7 @@ module.exports = {
                       }
                     }
                   });
+            }
             res.json('Follow updated')
         } catch (error) {
             console.log(error)
@@ -165,11 +171,11 @@ module.exports = {
             const currentUser = await User.findOne({_id: req.user.id})
             await User.updateOne({_id: req.user.id}, {
                 $pull: {following: req.params.id}
-            })
+            });
             await User.updateOne({_id: req.params.id},
                 {
                     $pull: {followers: req.user.id}
-                })
+                });
                 await User.updateOne({_id: req.params.id}, {
                     $push: {
                       notifications: {
