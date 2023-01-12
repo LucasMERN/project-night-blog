@@ -38,6 +38,9 @@ module.exports = {
         try {
             // Find the user to be deleted
             const user = await User.findById(req.params.id);
+
+            // Delete all of the user's posts
+            await Blog.deleteMany({ author: user._id });
         
             // Remove the user from other users' following lists
             await User.updateMany({ following: { $in: [user._id] } }, { $pull: { following: user._id } });
