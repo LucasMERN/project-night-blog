@@ -170,16 +170,20 @@
             <% followers.forEach((obj)=> { %>
                 <% obj.followers.forEach((follower)=>{ %>
                     <div class="followCard">
+                        <div class="followInfo">
                         <img src="<%= follower.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
                         <div class="followColumn">
                             <h1><%= follower.userName %></h1>
                             <p><%= follower.bio %></p>
                         </div>
+                        </div>
+                        <div class="followbtn">
                         <% if(!follower && profileUser.userName !== follower.userName){ %>
-                            <button onclick="follow('<%= follower._id %>')" class="btn btn-primary editProfileBtn btn-sm">Follow</button>
+                            <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
                         <% }else if(follower){ %>
-                            <button onclick="unfollow('<%= follower._id %>')" class="btn btn-danger hover:bg-red-600 hover:text-white editProfileBtn btn-sm">Unfollow</button>
+                            <button onclick="unfollow('<%= follower._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
                         <% } %>
+                        </div>
                     </div>
                 <% }) %>
             <% }) %>
