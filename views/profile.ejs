@@ -57,12 +57,12 @@
         <h3 class="profileUsername m-5"><%= profileUser.userName %></h3>
         <p class="m-5"><%= profileUser.bio %></p>
         <div class="followerContainer m-5">
-            <div class="mr-5 <%= currentRoute === '/profile/following/' + user._id ? 'profileActive' : '' %>"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=profileUser._id %>">Following</a></div>
-            <div class="mr-5 <%= currentRoute === '/profile/followers/' + user._id ? 'profileActive' : '' %>"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=profileUser._id %>">Followers</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/following/' + profileUser._id ? 'profileActive' : '' %>"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=profileUser._id %>">Following</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/followers/' + profileUser._id ? 'profileActive' : '' %>"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=profileUser._id %>">Followers</a></div>
         </div>
         <div class="profilePostsBookmarks mt-10">
-            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + user._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
-            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/bookmarks/' + user._id ? 'profileActive' : '' %>" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + profileUser._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/bookmarks/' + profileUser._id ? 'profileActive' : '' %>" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
         </div>
     </section>
 
@@ -178,9 +178,9 @@
                         </div>
                         </div>
                         <div class="followbtn">
-                        <% if(!follower && profileUser.userName !== follower.userName){ %>
+                        <% if(!following && user.userName !== follower.userName){ %>
                             <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
-                        <% }else if(follower){ %>
+                        <% }else if(following){ %>
                             <button onclick="unfollow('<%= follower._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
                         <% } %>
                         </div>
@@ -202,7 +202,7 @@
                         </div>
                         </div>
                         <div class="followbtn">
-                        <% if(!following && profileUser.userName !== following.userName){ %>
+                        <% if(!following && user.userName !== following.userName){ %>
                             <button onclick="follow('<%= following._id %>')" class="btn btn-primary btn-sm">Follow</button>
                         <% }else if(following){ %>
                             <button onclick="unfollow('<%= following._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
