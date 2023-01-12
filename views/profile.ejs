@@ -57,8 +57,8 @@
         <h3 class="profileUsername m-5"><%= profileUser.userName %></h3>
         <p class="m-5"><%= profileUser.bio %></p>
         <div class="followerContainer m-5">
-            <div class="mr-5 <%= currentRoute === '/profile/following/' + user._id ? 'profileActive' : '' %>"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=user._id %>">Following</a></div>
-            <div class="mr-5 <%= currentRoute === '/profile/followers/' + user._id ? 'profileActive' : '' %>"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=user._id %>">Followers</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/following/' + user._id ? 'profileActive' : '' %>"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=profileUser._id %>">Following</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/followers/' + user._id ? 'profileActive' : '' %>"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=profileUser._id %>">Followers</a></div>
         </div>
         <div class="profilePostsBookmarks mt-10">
             <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + user._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
