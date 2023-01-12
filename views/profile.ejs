@@ -163,20 +163,50 @@
                 <% }); %>
             <% }); %>
         <%} %>
-        <% }else if(typeof followers !== 'undefined'){ %>
+        <% } else if(typeof followers !== 'undefined') { %>
+            <% if(profileUser.followers.length === 0) { %>
+                <span class="profileMsg">You have no followers...</span>
+            <% } %>
             <% followers.forEach((obj)=> { %>
                 <% obj.followers.forEach((follower)=>{ %>
-                    <!-- Inside this loop we can build out our followers data -->
-                    <h1><%= follower.userName %></h1>
+                    <div class="followCard">
+                        <img src="<%= follower.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
+                        <div class="followColumn">
+                            <h1><%= follower.userName %></h1>
+                            <p><%= follower.bio %></p>
+                        </div>
+                        <% if(!follower && profileUser.userName !== follower.userName){ %>
+                            <button onclick="follow('<%= follower._id %>')" class="btn btn-primary editProfileBtn btn-sm">Follow</button>
+                        <% }else if(follower){ %>
+                            <button onclick="unfollow('<%= follower._id %>')" class="btn btn-danger hover:bg-red-600 hover:text-white editProfileBtn btn-sm">Unfollow</button>
+                        <% } %>
+                    </div>
                 <% }) %>
             <% }) %>
-       <% }else if(typeof following !== 'undefined'){ %>
-        <% following.forEach((obj)=> { %>
-            <% obj.following.forEach((following)=>{ %>
-                <!-- Inside this loop we can build out our following data -->
-                <h1><%= following.userName %></h1>
+        <% } else if(typeof following !== 'undefined') { %>
+            <% if(profileUser.following.length === 0) { %>
+            <span class="profileMsg">You are not following anyone...</span>
+        <% } %>
+            <% following.forEach((obj)=> { %>
+                <% obj.following.forEach((following)=>{ %>
+                    <div class="followCard">
+                        <div class="followInfo">
+                        <img src="<%= following.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
+                        <div class="followColumn">
+                            <h1><%= following.userName %></h1>
+                            <p><%= following.bio %></p>
+                        </div>
+                        </div>
+                        <div class="followbtn">
+                        <% if(!following && profileUser.userName !== following.userName){ %>
+                            <button onclick="follow('<%= following._id %>')" class="btn btn-primary btn-sm">Follow</button>
+                        <% }else if(following){ %>
+                            <button onclick="unfollow('<%= following._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
+                        <% } %>
+                        </div>
+                    </div>
+                <% }) %>
             <% }) %>
-        <% }) %>
        <% } %>
 </section>
 <script src="https://cdn.tailwindcss.com"></script>

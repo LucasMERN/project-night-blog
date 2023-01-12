@@ -167,3 +167,52 @@ form textarea{
     width: 400px;
     margin-right: 5rem;
 }
+
+.followCard {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 2rem 0;
+    border-bottom: 1px solid black;
+    width: 100%;
+    justify-content: center;
+}
+
+.followInfo {
+    width: 60%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.followbtn {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    width: 35%;
+}
+
+.followCard button {
+    padding-left: 20px;
+}
+
+.followColumn {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 5px;
+}
+
+.followColumn h1 {
+    font-weight: bold;
+}
+
+.followColumn p {
+    font-size: .8rem;
+}
+
+.followCard img {
+    height: 60px;
+    width: 60px;
+    margin-right: 1rem;
+}
