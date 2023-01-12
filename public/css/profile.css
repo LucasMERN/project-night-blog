@@ -215,4 +215,6 @@ form textarea{
     height: 60px;
     width: 60px;
     margin-right: 1rem;
+    border-radius: 100%;
+    border: solid 1px black;
 }
