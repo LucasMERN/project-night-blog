@@ -14,7 +14,7 @@
                 <% if (user.following.indexOf(specificUser._id) === -1) { %>
                     <button onclick="follow('<%= specificUser._id %>')" class="btn btn-primary btn-xs mr-5">Follow</button>
                 <% } else { %>
-                    <button onclick="unfollow('<%= specificUser._id %>')" class="btn btn-danger btn-xs mr-5">Unfollow</button>
+                    <button onclick="unfollow('<%= specificUser._id %>')" class="btn btn-danger hover:text-white hover:bg-red-600 btn-xs mr-5">Unfollow</button>
                 <% } %>
                 <%}else{%>
                     <button onclick="window.location.assign('/login');" class="btn btn-primary btn-xs mr-5">Follow</button>
@@ -29,9 +29,9 @@
         <span>Trending Today</span>
     </div>
     <div class="DiscTrendingPost">
-        <a href="#"><%= populatedRandomBlog.title %></a>
+        <a href="/blog/<%= populatedRandomBlog.slug %>/read"><%= populatedRandomBlog.title %></a>
         <div>
-            <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + populatedRandomBlog.author._id : '/login' %>"">
+            <a class="profileLink discoveryUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + populatedRandomBlog.author._id : '/login' %>"">
                 <img src="<%= populatedRandomBlog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
                 <span><%= populatedRandomBlog.author.userName %></span>
             </a>

@@ -1,4 +1,5 @@
 const User = require('../models/UserSchema')
+const Blog = require('../models/BlogSchema')
 
 module.exports = {
     getSettings: async (req, res) => {
@@ -35,31 +36,28 @@ module.exports = {
 
     getGone: async (req, res) => {
         try {
-          // Find the user to be deleted
-          const user = await User.findById(req.params.id);
-      
-        //   // Remove the user from other users' following lists
-        //   await User.updateMany({ following: { $in: [user._id] } }, { $pull: { following: user._id } });
-      
-        //   // Remove the user from other users' follower lists
-        //   await User.updateMany({ followers: { $in: [user._id] } }, { $pull: { followers: user._id } });
-      
-        //   // Remove the user's posts from other users' bookmarks
-        //   await User.updateMany({ bookmarks: { $in: user.posts } }, { $pull: { bookmarks: { $in: user.posts } } });
-      
-        //   // Remove the user's likes from other users' likes
-        //   await User.updateMany({ likes: { $in: user.posts } }, { $pull: { likes: { $in: user.posts } } });
-      
-        //   // Remove any notifications from the user
-        //   await Notification.deleteMany({ from: user._id });
-      
-          // Delete the user
-          await user.deleteOne();
-      
-          // Redirect to the deactivate page
-          res.redirect('/register');
+            // Find the user to be deleted
+            const user = await User.findById(req.params.id);
+        
+            // Remove the user from other users' following lists
+            await User.updateMany({ following: { $in: [user._id] } }, { $pull: { following: user._id } });
+        
+            // Remove the user from other users' follower lists
+            await User.updateMany({ followers: { $in: [user._id] } }, { $pull: { followers: user._id } });
+        
+            // Remove the user's posts from other users' bookmarks
+            await User.updateMany({ bookmarks: { $in: user.posts } }, { $pull: { bookmarks: { $in: user.posts } } });
+        
+            // Remove the user's likes from the blogs' likedBy array
+            await Blog.updateMany({ likedBy: { $in: [user._id] } }, { $pull: { likedBy: user._id } });
+        
+            // Set the user's active status to false
+            await User.updateOne({ _id: user._id }, { $set: { active: false } });
+        
+            // Redirect to the deactivate page
+            res.redirect('/register');
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
       },
 

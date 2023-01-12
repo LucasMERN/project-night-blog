@@ -48,7 +48,7 @@
         <% }else if(!following){ %>
             <button onclick="follow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
         <% }else{ %>
-            <button onclick="unfollow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
+            <button onclick="unfollow('<%= profileUser._id %>')" class="btn btn-danger editProfileBtn hover:text-white hover:bg-red-600 btn-sm mr-5">Unfollow</button>
         <% } %>
     </section>
 
