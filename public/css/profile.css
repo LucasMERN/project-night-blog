@@ -53,13 +53,20 @@ form textarea{
     position: absolute; 
     top: 100px;
     background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
 }
 
 .profileImg img {
-    border-radius: 100%;
+    width: 100%;
+    border-radius: 50%;
     border: solid 1px black;
-}
+    object-fit: cover;
+  }
 
 .editProfileBtn{
     position: absolute;
@@ -139,4 +146,75 @@ form textarea{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.changeProfilePic{
+    position: absolute; 
+    background-color: black;
+    cursor: pointer;
+    top: 225px;
+    left: 130px;
+    border: 1px solid white;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profilePic{
+    width: 400px;
+    margin-right: 5rem;
+}
+
+.followCard {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 2rem 0;
+    border-bottom: 1px solid black;
+    width: 100%;
+    justify-content: center;
+}
+
+.followInfo {
+    width: 60%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.followbtn {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    width: 35%;
+}
+
+.followCard button {
+    padding-left: 20px;
+}
+
+.followColumn {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 5px;
+}
+
+.followColumn h1 {
+    font-weight: bold;
+}
+
+.followColumn p {
+    font-size: .8rem;
+}
+
+.followCard img {
+    height: 60px;
+    width: 60px;
+    margin-right: 1rem;
+    border-radius: 100%;
+    border: solid 1px black;
 }

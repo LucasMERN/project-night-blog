@@ -175,7 +175,7 @@ input {
     color: rgb(14, 16, 27);
 }
 
-#passwordError, #passwordMatch {
+#passwordError, #passwordMatch, #usernameError {
     margin: 1rem;
     color: red;
     font-size: 1.1rem;

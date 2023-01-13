@@ -73,13 +73,18 @@ textarea{
 
 .imageAndDescription {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
+    margin: 0 5%;
 }
 
 #imagePreview{
-    width: 40%;
+    width: 50%;
+}
+
+#description {
+    width: 45%;
 }
 
 #imagePreview img{

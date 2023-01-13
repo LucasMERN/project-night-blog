@@ -2,11 +2,11 @@
     <div class="settingsUsernameBox">
         <h2>Change Username</h2>
     <div class="settingsInput">
-    <input type="text" name="userName" value="new username">
+        <input type="text" id="settingsUsernameText" name="userName" class="form-control" oninput="validateUsername()" required />
+    <label class="label">new username</label>
     </div>
-        <div class="submit">
-    <input class="btn btn-primary btn-sm mr-5" type="submit" value="Save">
-        </div>
+    <div id="usernameError"></div>
+    <button type="submit" id="newUsername-btn" class="submit btn btn-primary btn-sm" disabled>Save</button>
     </div>
 </form>
 
@@ -14,22 +14,29 @@
     <div class="settingsUsernameBox">
         <h2>Change Email Address</h2>
     <div class="settingsInput">
-    <input type="text" name="email" value="new email address">
+    <input type="email" id="settingsEmailText" name="email" onchange="hoverLabel()" oninput="validateEmail()" required />
+    <label class="label">new email address</label>
     </div>
-        <div class="submit">
-    <input class="btn btn-primary btn-sm mr-5" type="submit" value="Save">
-        </div>
+    <button type="submit" id="newEmail-btn" class="submit btn btn-primary btn-sm" disabled>Save</button>
     </div>
 </form>
 
-<form action="/settings/<%= user._id %>/updatePassword?_method=PUT" class="settingsUsername" name="passwordChange" method="post">
+<form action="/settings/<%= user._id %>/updatePassword?_method=PUT" class="settingsUsername settingsPasswordField" oninput="settingsPWValidation()" name="passwordChange" method="post">
     <div class="settingsUsernameBox">
         <h2>Change Password</h2>
     <div class="settingsInput">
-    <input type="text" name="password" value="new password">
+    <input type="text" id="settingsPassword" class="form-control" required />
+    <label class="label">new password</label>
     </div>
-        <div class="submit">
-    <input class="btn btn-primary btn-sm mr-5" type="submit" value="Save">
-        </div>
+    <div id="settingsPasswordError"></div>
+    </div>
+    <div class="settingsUsernameBox">
+        <h2>Confirm Password</h2>
+    <div class="settingsInput">
+    <input type="password" id="settingsPassword2" name="password" class="form-control" required />
+    <label class="label">confirm password</label>
+    </div>
+    <div id="settingsPasswordMatch"></div>
+        <button type="submit" id="newPassword-btn" class="submit btn btn-primary btn-sm" disabled>Save</button>
     </div>
 </form>

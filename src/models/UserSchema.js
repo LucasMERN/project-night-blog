@@ -3,20 +3,20 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({    // create a new schema for the user model
-  userName: { type: String, required: true, unique: true, trim: true },
+  userName: { type: String, required: true, unique: true, trim: true, maxLength: 15 },
   email: { type: String, required: true, trim: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true, maxLength: 30 },
   profilePic: { type: String, default: "/images/defaultUser.png" },
   profileHeaderPic: { type: String, default: "/images/defaultUser.png" },
-  bio: { type: String },
+  bio: { type: String, maxLength: 200 },
   posts: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   bookmarks: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
-  drafts: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   likes: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  blocked: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   pinned: {type: Schema.Types.ObjectId, ref: 'Blog'},
+  active: { type: Boolean, default: true },
+  banned: { type: Boolean, default: false },
   notifications: [
     {
       user: {

@@ -5,11 +5,21 @@
         <span>People to Follow</span>
     </div>
     <div class="DiscUser">
-        <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + user._id : '/login' %>"">
+        <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + specificUser._id : '/login' %>"">
             <img src="<%= specificUser.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
             <span><%= specificUser.userName %></span>
         </a>
-        <div>Follow Button</div>
+        <div>
+            <%if(typeof user !== 'undefined'){%>
+                <% if (user.following.indexOf(specificUser._id) === -1) { %>
+                    <button onclick="follow('<%= specificUser._id %>')" class="btn btn-primary btn-xs mr-5">Follow</button>
+                <% } else { %>
+                    <button onclick="unfollow('<%= specificUser._id %>')" class="btn btn-danger hover:text-white hover:bg-red-600 btn-xs mr-5">Unfollow</button>
+                <% } %>
+                <%}else{%>
+                    <button onclick="window.location.assign('/login');" class="btn btn-primary btn-xs mr-5">Follow</button>
+                <%}%>
+        </div>
     </div>
 </div>
 
@@ -19,8 +29,13 @@
         <span>Trending Today</span>
     </div>
     <div class="DiscTrendingPost">
-        <a href="#">Post title</a>
-        <div>user logo Partial</div>
+        <a href="/blog/<%= populatedRandomBlog.slug %>/read"><%= populatedRandomBlog.title %></a>
+        <div>
+            <a class="profileLink discoveryUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + populatedRandomBlog.author._id : '/login' %>"">
+                <img src="<%= populatedRandomBlog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+                <span><%= populatedRandomBlog.author.userName %></span>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -30,7 +45,7 @@
         <span>Topics for You</span>
     </div>
     <div class="DiscTopicsButtons">
-        <btn>Python</btn>
+        <btn>Coming Soon</btn>
     </div>
 </div>
 </div>

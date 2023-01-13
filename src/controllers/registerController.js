@@ -37,7 +37,7 @@ module.exports = {
                 password: req.body.password
             });
             newUser.save()
-            res.redirect('/login')
+            res.redirect('/')
         }
     }
 }

@@ -10,16 +10,13 @@
         </label>
         <div>
             <!-- The button to open modal -->
-            <a href="#my-modal-2 " class="btn btn-sm btn-primary addDescBtn mt-2">Add Description</a>
+            <a href="#my-modal-5" class="btn btn-sm btn-primary addDescBtn mt-2">Add Description</a>
             <!-- The modal -->
-            <div class="modal" id="my-modal-2">
+            <div class="modal" id="my-modal-5">
               <div class="modal-box">
               <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
                 <h3 class="font-bold text-lg">Description</h3>
-                  <textarea class="textarea textarea-bordered" name="intro"></textarea>
-                  <div class="modal-action">
-                    <a href="#" class="btn"><input type="submit" value="Save"></a>
-                  </div>
+                  <textarea id="descriptionTextarea" maxlength="80" class="textarea textarea-bordered" id="markdownTextarea" name="intro"></textarea>
               </div>
             </div>
           </div>
@@ -27,7 +24,7 @@
     </div>
     <div class="imageAndDescription">
       <div id="imagePreview"></div>
-      <div class="description">This is a sample description</div>
+      <div id="description"></div>
     </div>
     <input required type="text" name="title" id="title" class="blogTitle" placeholder="Blog Title...">
     <div class="textareaContainer">

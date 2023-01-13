@@ -67,7 +67,7 @@
 .settingsContentWrapper {
     width: 70%;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
 }
 
 .settingsContentHeader {
@@ -123,7 +123,13 @@
     font-size: 1.4rem;
 }
 
-input[type="text"]{
+#passwordError, #passwordMatch, #usernameError, #settingsPasswordError, #settingsPasswordMatch {
+    width: 80%;
+    color: red;
+    font-size: 1rem;
+}
+
+input[type="text"], input[type="email"], input[type="password"]{
   width:80%;
   height:40px;
   background-color: white;
@@ -132,15 +138,21 @@ input[type="text"]{
   padding-left:8px;
 }
 
-input[type="text"]:focus{
-  border:1px solid #676ed1;
-  outline:none;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+button {
+    width: 60px !important;
 }
 
-input[type="submit"]{
+button[type="submit"]{
   color: white;
   margin-top:5px;
+  width: fit-content !important;
+}
+
+form input:focus + label,
+form input:valid + label,
+.float{
+    top: -30px;
+    left: 0;
 }
 
 .submit{
@@ -154,6 +166,11 @@ input[type="submit"]{
   margin-bottom: 2rem;
 }
 
+.settingsPasswordField {
+    padding-top: 1rem;
+    border-top: 1px solid black;
+}
+
 .settingsUsername {
     display: flex;
     flex-flow: row wrap;
@@ -163,13 +180,26 @@ input[type="submit"]{
 }
 
 .settingsInput, .settingsUsernameBox h2 {
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
 }
 
 .settingsUtils .settingsActive {
     color: white;
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+.settingsInput {
+    position: relative;
+}
+
+.label {
+    position: absolute;
+    top: 0.1px;
+    left: 0;
+    font-size: .9rem;
+    transition: 0.5s;
+    pointer-events: none;
 }
 
 @media screen and (min-width: 550px) {
@@ -201,10 +231,6 @@ input[type="submit"]{
 
 .accountInfoContent {
     width: 250px;
-}
-    
-.settingsInput {
-    width: 460px;
 }
 
 }

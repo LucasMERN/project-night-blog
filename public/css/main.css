@@ -52,6 +52,27 @@ nav li{
     transition: all .1s ease-in-out;
 }
 
+.comment {
+    transition: none;
+    position: relative;
+}
+
+.coming-soon {
+    position: absolute;
+    top: -5%;
+    left: 29%;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    width: 5%;
+}
+
+.comment:hover {
+    transition: none;
+    color: inherit;
+    transform: none;
+}
+
 nav li:hover {
     color: white;
     transform: scale(1.1);
@@ -223,7 +244,7 @@ header{
 }
 
 .pcPicAndBlurb p{
-    padding: 10px;
+    width: 60%;
 }
 
 .pcActions ul{
@@ -331,6 +352,18 @@ span {
     margin-bottom: 1rem;
 }
 
+.notificationInfo p {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.notificationInfo a {
+    margin-left: 5px;
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
 /* //////////////Individual Post///////////////////// */
 
 .markdownContainer {
@@ -425,6 +458,11 @@ span {
 .nav li {
     padding: 32px 0;
     order: initial;
+}
+
+.coming-soon {
+    top: 30%;
+    left: 1%;
 }
 
 .nav li i {
@@ -535,6 +573,19 @@ header {
 
 .fa-book-open-reader, .fa-people-line {
     margin-right: 10px;
+}
+
+.discoveryUser {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.discoveryUser img {
+    height: 30px !important;
+    width: 30px !important;
 }
 
 .DiscUser {

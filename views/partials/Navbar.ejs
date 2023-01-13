@@ -10,7 +10,7 @@
         <a href="<%= (typeof user !== "undefined") ? '/profile/bookmarks/' + user._id : '/login' %>"><i class="fa-solid fa-bookmark fa-lg"></i></a>
       </li>
       <li class="comment">
-        <a href="/login"><i class="fa-solid fa-envelope fa-lg"></i></a>
+        <a href="<%= (typeof user !== "undefined") ? '#' : '/login' %>" class="unavailable"><i class="fa-solid fa-envelope fa-lg"></i><span class="coming-soon">coming soon</span></a>
       </li>
       <li class="upload <%= currentRoute === '/blog/new' ? 'navActive' : '' %>">
         <a href="<%= (typeof user !== "undefined") ? '/blog/new' : '/login' %>"><i class="fa-solid fa-circle-plus fa-lg"></i></a>

@@ -8,9 +8,26 @@
         <div class="profileImg ml-5">
             <img src="<%= profileUser.profilePic %>" referrerPolicy="no-referrer" alt="user image">
         </div>
-            
         <!-- Check if logged in user is on their own profile -->
         <% if(profileUser._id.toString() == user._id.toString()){ %>
+            <!-- The button to open profile pic modal -->
+            <label class="changeProfilePic" for="my-modal-5" class="btn"><i class="fa-solid fa-camera"></i></label>
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="my-modal-5" class="modal-toggle" />
+            <div class="modal">
+              <div class="modal-box" id="profilePic">
+                <h3 class="font-bold text-lg">Change Profile Picture</h3>
+                <form action="/profile/updateprofileimage/<%= profileUser._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+                    <input type="file" accept="image/jpeg, image/png, image/jpg" name="image" id='imageUpload' class="image">
+                    <div class="modal-action">
+                        <input class="btn" type="submit" value="Update Image">
+                    </div>
+                    <div class="modal-action">
+                        <label for="my-modal-5" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    </div>
+                </form>
+              </div>
+            </div>
             <div>
                 <a href="#my-modal-2" class="btn btn-primary editProfileBtn mr-5 btn-sm">Edit Profile</a>
                 <!-- Put this part before </body> tag -->
@@ -19,11 +36,11 @@
                     <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
                     <h3 class="font-bold text-lg">Bio</h3>
                     <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
-                        <textarea class="textarea textarea-bordered" name="bio"></textarea>
+                        <textarea class="textarea textarea-bordered" maxlength="200" name="bio"></textarea>
                         <div class="modal-action">
-                          <input class="btn" type="submit" value="Save">
+                            <input class="btn" type="submit" value="Save">
                         </div>
-                      </form>
+                    </form>
                   </div>
                 </div>
             </div>
@@ -31,7 +48,7 @@
         <% }else if(!following){ %>
             <button onclick="follow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
         <% }else{ %>
-            <button onclick="unfollow('<%= profileUser._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
+            <button onclick="unfollow('<%= profileUser._id %>')" class="btn btn-danger editProfileBtn hover:text-white hover:bg-red-600 btn-sm mr-5">Unfollow</button>
         <% } %>
     </section>
 
@@ -40,12 +57,12 @@
         <h3 class="profileUsername m-5"><%= profileUser.userName %></h3>
         <p class="m-5"><%= profileUser.bio %></p>
         <div class="followerContainer m-5">
-            <div class="mr-5 <%= currentRoute === '/profile/following/' + user._id ? 'profileActive' : '' %>"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=user._id %>">Following</a></div>
-            <div class="mr-5 <%= currentRoute === '/profile/followers/' + user._id ? 'profileActive' : '' %>"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=user._id %>">Followers</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/following/' + profileUser._id ? 'profileActive' : '' %>"><%= profileUser.following.length %> <a class="counts" href="/profile/following/<%=profileUser._id %>">Following</a></div>
+            <div class="mr-5 <%= currentRoute === '/profile/followers/' + profileUser._id ? 'profileActive' : '' %>"><%= profileUser.followers.length %> <a class="counts" href="/profile/followers/<%=profileUser._id %>">Followers</a></div>
         </div>
         <div class="profilePostsBookmarks mt-10">
-            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + user._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
-            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/bookmarks/' + user._id ? 'profileActive' : '' %>" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/myprofile/' + profileUser._id ? 'profileActive' : '' %>" href="/profile/myprofile/<%=profileUser._id%>"><span class="profileTab">Posts</span></a>
+            <a class="PostsBookmarksAnchor <%= currentRoute === '/profile/bookmarks/' + profileUser._id ? 'profileActive' : '' %>" href="/profile/bookmarks/<%=profileUser._id%>"><span class="profileTab">Bookmarks</span></a>
         </div>
     </section>
 
@@ -53,7 +70,11 @@
     <% if(typeof blogs !== 'undefined'){ %>
         <!-- Check if the user has created any blogs, if not, display a message -->
         <% if(blogs.length == 0){ %>
-            <h4 class="profileMsg">What? No blogs yet?</h4>
+            <% if(profileUser._id.toString() == user._id.toString()){ %>
+                <h4 class="profileMsg">Profile looking empty? Get to posting!</h4>
+            <%} else { %>
+                <h4 class="profileMsg"><%=profileUser.userName %> hasn't posted anything yet...</h4>
+            <% } %>
             <!-- If user DOES have a history of blogs, display them -->
         <%} else { %>
             <% blogs.forEach(blog => { %>
@@ -73,7 +94,10 @@
                           </div>
                     <% } %>
                     <section class="pcHeading"> <!-- flex row -->
-                        <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+                        <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + blog.author._id : '/login' %>"">
+                            <img src="<%= blog.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+                            <span><%= blog.author.userName %></span>
+                          </a>
                         <div class="pcTitle text-3xl"><%= blog.title %></div>
                         <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
                     </section>
@@ -101,20 +125,27 @@
     <% } else if(typeof bookmarks !== 'undefined') { %>
         <!-- Check if the user has any bookmarks, if not, display a message -->
         <% if(bookmarks[0].bookmarks.length === 0){ %>
-            <h4 class="profileMsg">Your bookmarks will appear here.</h4>
+            <% if(profileUser._id.toString() == user._id.toString()){ %>
+                <h4 class="profileMsg">Your bookmarks will appear here.</h4>
+            <%} else { %>
+                <h4 class="profileMsg"><%=profileUser.userName %> hasn't bookmarked any posts yet...</h4>
+            <% } %>
         <%} else { %>
             <!-- Render bookmarks -->
             <% bookmarks.forEach(object => { %>
                 <% object.bookmarks.forEach(bookmark => { %>    
                     <div class="bookmarkContainer"> <!-- flex column -->
                         <section class="pcHeading"> <!-- flex row -->
-                            <article class="text-xs"><%- include('partials/UserLogo.ejs') %></article>
+                            <a class="profileLink postUser" href="<%= (typeof user !== "undefined") ? '/profile/myprofile/' + bookmark.author._id : '/login' %>"">
+                                <img src="<%= bookmark.author.profilePic %>" referrerPolicy="no-referrer" alt="user profile image">
+                                <span><%= bookmark.author.userName %></span>
+                              </a>
                             <div class="pcTitle text-3xl"><%= bookmark.title %></div>
                             <span class="text-xs"><%= bookmark.createdAt.toLocaleDateString() %></span>
                         </section>
                         <section class="pcPicAndBlurb"> <!-- flex row -->
-                            <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
-                            <p class="text-lg">this is a blog about blogging yo. i like blogs.</p> <!-- change to database blurb -->
+                            <img src="<%= bookmark.thumbnailImage %>" alt="image representing the contents of the blog post"> <!-- change to database image -->
+                            <p class="text-lg"><%= bookmark.intro %></p> <!-- change to database blurb -->
                         </section>
                         <div class="pcActions">
                             <ul> <!-- flex row -->
@@ -132,20 +163,54 @@
                 <% }); %>
             <% }); %>
         <%} %>
-        <% }else if(typeof followers !== 'undefined'){ %>
+        <% } else if(typeof followers !== 'undefined') { %>
+            <% if(profileUser.followers.length === 0) { %>
+                <span class="profileMsg">You have no followers...</span>
+            <% } %>
             <% followers.forEach((obj)=> { %>
                 <% obj.followers.forEach((follower)=>{ %>
-                    <!-- Inside this loop we can build out our followers data -->
-                    <h1><%= follower.userName %></h1>
+                    <div class="followCard">
+                        <div class="followInfo">
+                        <img src="<%= follower.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
+                        <div class="followColumn">
+                            <h1><%= follower.userName %></h1>
+                            <p><%= follower.bio %></p>
+                        </div>
+                        </div>
+                        <div class="followbtn">
+                            <% if(!user.following.includes(follower.id)){ %>
+                                <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
+                            <% }else if(user.following.includes(follower.id)){ %>
+                                <button onclick="unfollow('<%= follower._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
+                            <% } %>
+                        </div>
+                    </div>
                 <% }) %>
             <% }) %>
-       <% }else if(typeof following !== 'undefined'){ %>
-        <% following.forEach((obj)=> { %>
-            <% obj.following.forEach((following)=>{ %>
-                <!-- Inside this loop we can build out our following data -->
-                <h1><%= following.userName %></h1>
+        <% } else if(typeof following !== 'undefined') { %>
+            <% if(profileUser.following.length === 0) { %>
+            <span class="profileMsg">You are not following anyone...</span>
+        <% } %>
+            <% following.forEach((obj)=> { %>
+                <% obj.following.forEach((following)=>{ %>
+                    <div class="followCard">
+                        <div class="followInfo">
+                        <img src="<%= following.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
+                        <div class="followColumn">
+                            <h1><%= following.userName %></h1>
+                            <p><%= following.bio %></p>
+                        </div>
+                        </div>
+                        <div class="followbtn">
+                        <% if(!following && user.userName !== following.userName){ %>
+                            <button onclick="follow('<%= following._id %>')" class="btn btn-primary btn-sm">Follow</button>
+                        <% }else { %>
+                            <button onclick="unfollow('<%= following._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
+                        <% } %>
+                        </div>
+                    </div>
+                <% }) %>
             <% }) %>
-        <% }) %>
        <% } %>
 </section>
 <script src="https://cdn.tailwindcss.com"></script>

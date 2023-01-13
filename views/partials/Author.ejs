@@ -1,16 +1,19 @@
 <div class="AuthorContainer">
     <div>About the Author</div>
-    <img src="<%= user.profilePic %>" referrerpolicy="no-referrer" alt="user profile image">
+
+    <img src="<%= blog.author.profilePic %>" referrerpolicy="no-referrer" alt="user profile image">
     <a href="/profile/myprofile/<%= user.id %>"><article><%= blog.author.userName %></article></a>
     <div class="AuthorStats">
-        <div><%= user.posts.length %> Posts</div>
+        <div><%= blog.author.posts.length %> Posts</div>
         <div class="AuthorDot">&bull;</div>
         <div><%= user.followers.length %> Followers</div>
     </div>
     <p><%= user.bio %></p>
-    <% if(!following){ %>
-        <button onclick="follow('<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Follow</button>
+    <% if(!following && blog.author.userName !== user.userName){ %>
+        <button onclick="follow('<%= blog.author._id %>')" class="btn btn-primary editProfileBtn btn-sm">Follow</button>
+    <% }else if(following){ %>
+        <button onclick="unfollow('<%= blog.author._id %>')" class="btn btn-danger hover:bg-red-600 hover:text-white editProfileBtn btn-sm">Unfollow</button>
     <% }else{ %>
-        <button onclick="unfollow('<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">Unfollow</button>
+        <button onclick="window.location.assign('/profile/myprofile/<%= user._id %>')" class="btn btn-primary editProfileBtn btn-sm mr-5">My Profile</button>
     <% } %>
 </div>
