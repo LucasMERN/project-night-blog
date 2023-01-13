@@ -172,6 +172,7 @@ header{
     border-bottom: 1px solid black;
     padding: 10px 15px;
     background-color: wheat;
+    color: black !important;
 }
 
 .bookmarkContainer{

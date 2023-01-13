@@ -14,13 +14,13 @@
   <div class="form-side">
     <div class="logo-header">
       <img src='/images/Assets/logo.svg' alt='PNB logo' />
-      <h2>Project. Night. Blog.</h2>
+      <h1>Project. Night. Blog.</h1>
     </div>
     <div class="content-container">
       <section class="content">
         <header>
-          <h1>Hello, thanks for joining us!</h1>
-          <h5>please register below</h5>
+          <h2>Hello, thanks for joining us!</h2>
+          <h3>please register below</h3>
         </header>
         <% if(typeof errors !== 'undefined'){ %>
           <% errors.forEach((error)=> { %>
@@ -36,6 +36,7 @@
                 name="username"
                 class="form-control"
                 oninput="removeDisable()"
+                aria-label="username"
                 required
                 />
                 <label>
@@ -51,6 +52,7 @@
                 class="form-control"
                 oninput="removeDisable()"
                 onchange="hoverLabel()"
+                aria-label="email"
                 required
               />
               <label class="label">
@@ -65,6 +67,7 @@
               name="password"
               class="form-control"
               oninput="pwValidation()"
+              aria-label="password"
               required
              />
              <label>
@@ -80,6 +83,7 @@
               name="password2"
               class="form-control"
               oninput="pwMatch()"
+              aria-label="confirm password"
               required
               />
               <label>

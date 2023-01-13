@@ -14,13 +14,13 @@
   <div class="form-side">
     <div class="logo-header">
       <img src='/images/Assets/logo.svg' alt='PNB logo' />
-      <h2>Project. Night. Blog.</h2>
+      <h1>Project. Night. Blog.</h1>
     </div>
     <div class="content-container">
       <section class="content">
         <header>
-          <h1>Welcome back,</h1>
-          <h5>please enter your details below</h5>
+          <h2>Welcome back,</h2>
+          <h3>please enter your details below</h3>
         </header>
         <form id="form" oninput="loginButton()" action="/login/loginLocal" method="POST">
           <fieldset>
@@ -31,6 +31,7 @@
                 name="email"
                 class="form-control"
                 onchange="hoverLabel()"
+                aria-label="email"
                 required
             />
             <label class="label">
@@ -44,6 +45,7 @@
               id="password"
               name="password"
               class="form-control"
+              aria-label="email"
               required
             />
             <label>
