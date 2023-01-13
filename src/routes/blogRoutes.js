@@ -5,6 +5,7 @@ const Blog = require('../models/BlogSchema');
 const User = require('../models/UserSchema');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const blogController = require('../controllers/blogController')
+const mongoose = require('mongoose')
 
 
 // Open view to create new blog
@@ -22,10 +23,23 @@ router.get('/:slug/read', ensureAuth, blogController.readBlog);
 // Grab the id of the file we would like to edit and then render our edit view
 router.get('/edit/:id', async (req, res)=>{
     const blog = await Blog.findById(req.params.id)
-    const ObjectId = require('mongoose').Types.ObjectId;
-    const userId = new ObjectId('639e48f1e551d5ac769fbe20');
-    const specificUser = await User.findOne({ _id: userId });
-    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit', specificUser: specificUser, user: req.user})
+    if(typeof req.user !== 'undefined'){
+    specificUser = await User.aggregate([
+        {
+          $match: {
+            following: { $ne: mongoose.Types.ObjectId(req.user.id) },  // Exclude users that the specific user is already following
+            _id: { $ne: mongoose.Types.ObjectId(req.user.id) }  // Exclude the current logged in user
+          }
+        },
+        { $sample: { size: 1 } }  // Select a random user
+      ])
+    }else{
+      following = false
+      specificUser = await User.aggregate([{$sample: {size: 1}}]);
+    }
+    const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
+    const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit', specificUser: specificUser, user: req.user, populatedRandomBlog: populatedRandomBlog})
 })
 
 // Grab our specific blog and update based upon saveBlogAndRedirect function

@@ -54,8 +54,8 @@ module.exports = {
             // Remove the user's likes from the blogs' likedBy array
             await Blog.updateMany({ likedBy: { $in: [user._id] } }, { $pull: { likedBy: user._id } });
         
-            // Set the user's active status to false
-            await User.updateOne({ _id: user._id }, { $set: { active: false } });
+            // Set the user's active status to false and delete all of the contents in the user fields
+            await User.updateOne({ _id: user._id }, { $set: { followers: [], following: [], active: false, posts: [], likes: [], bookmarks: [], notifications: [] } });
         
             // Redirect to the deactivate page
             res.redirect('/register');

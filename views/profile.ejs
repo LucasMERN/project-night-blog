@@ -204,7 +204,7 @@
                         <div class="followbtn">
                         <% if(!following && user.userName !== following.userName){ %>
                             <button onclick="follow('<%= following._id %>')" class="btn btn-primary btn-sm">Follow</button>
-                        <% }else if(following){ %>
+                        <% }else { %>
                             <button onclick="unfollow('<%= following._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
                         <% } %>
                         </div>
