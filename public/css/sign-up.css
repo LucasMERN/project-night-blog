@@ -208,10 +208,34 @@ h4 {
 li {
     list-style: none;
     font-size: 1.5rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.38);
+    border: 1px solid rgb(14, 16, 27);
+    border-radius: 10px;
+    padding: .5rem;
+    transition: all .1s ease-in-out;
 }
 
-a {
-    color: var(--text1);
+li:hover {
+    transform: scale(1.1);
+}
+
+li i {
+    padding-right: 10px;
+}
+
+li a {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(14, 16, 27);
+}
+
+h4 a {
     color: rgb(14, 16, 27);
     margin-left: 5px;
 }
@@ -219,7 +243,7 @@ a {
 ul {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 
 }
 
