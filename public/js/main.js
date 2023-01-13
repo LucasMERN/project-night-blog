@@ -243,20 +243,6 @@ function validateEmail() {
 // }
 
 
-/////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////idk what this is//////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-
-// function toggleMenu(){
-//     let menu = document.getElementById('submenuWrap')
-//     if(menu.style.display === "none") {
-//         menu.style.display = "block"
-//     }else{
-//         menu.style.display = "none"
-//     }
-// }
-
-
 
 /////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////LIKE POST/////////////////////////////////////////////
@@ -361,5 +347,49 @@ async function unfollow(id){
         location.reload()
     } catch (error) {
         console.log(error)
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////COPY URL TO CLIPBOARD/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+function copyUrl() {
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Check if the clipboard API is supported by the browser
+    if (navigator.clipboard) {
+        // Use the clipboard API to write the current URL to the clipboard
+        navigator.clipboard.writeText(currentUrl).then(() => {
+            // Show a message indicating that the URL has been copied
+            alert("URL copied to clipboard!");
+        }, (err) => {
+            console.error('Failed to copy text: ', err);
+        });
+    } else {
+        // Fallback for older browsers that do not support the clipboard API
+        // Create a temporary input element
+        const tempInput = document.createElement("input");
+
+        // Add the current URL as the value of the input element
+        tempInput.value = currentUrl;
+
+        // Append the input element to the body
+        document.body.appendChild(tempInput);
+
+        // Select the input element's contents
+        tempInput.select();
+
+        // Execute the copy command
+        document.execCommand("copy");
+
+        // Remove the input element from the body
+        document.body.removeChild(tempInput);
+
+        // Show a message indicating that the URL has been copied
+        alert("URL copied to clipboard!");
     }
 }

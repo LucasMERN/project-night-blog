@@ -178,11 +178,11 @@
                         </div>
                         </div>
                         <div class="followbtn">
-                        <% if(!following && user.userName !== follower.userName){ %>
-                            <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
-                        <% }else if(following){ %>
-                            <button onclick="unfollow('<%= follower._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
-                        <% } %>
+                            <% if(!user.following.includes(follower.id)){ %>
+                                <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
+                            <% }else if(user.following.includes(follower.id)){ %>
+                                <button onclick="unfollow('<%= follower._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
+                            <% } %>
                         </div>
                     </div>
                 <% }) %>
