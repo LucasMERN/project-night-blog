@@ -371,6 +371,11 @@ span {
     display: flex;
 }
 
+.notificationContainer:hover {
+    background-color: rgba(82, 86, 95, 0.5);
+    color: white;
+}
+
 .notificationContainer i{
     margin: 2rem 3rem;
 }
