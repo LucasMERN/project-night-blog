@@ -171,18 +171,22 @@ form textarea{
 .followCard {
     display: flex;
     flex-flow: row nowrap;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     border-bottom: 1px solid black;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.followCard:hover {
+    background-color: rgba(82, 86, 95, 0.5);
+    color: white;
 }
 
 .followInfo {
-    width: 60%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
     align-items: center;
+    width: 95%;
 }
 
 .followbtn {
