@@ -224,8 +224,8 @@ module.exports = {
               { $set: { 'notifications.$[].seen': true } }
           );
             // Grab all of the remaining notifications and populate the user field of our notifications
-            const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
-            const sortedNotifications = notifications[0].notifications.sort((a, b) => b.timestamp - a.timestamp);
+            const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user')
+            const sortedNotifications = notifications[0].notifications.sort((a, b) => b.createdAt - a.createdAt);
             const specificUser = await User.aggregate([
                 {
                   $match: {
@@ -239,7 +239,6 @@ module.exports = {
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
               const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
               const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
-              console.log(sortedNotifications)
             res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser[0], sortedNotifications: sortedNotifications, populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt});
         } catch (error) {
             console.log(error);
