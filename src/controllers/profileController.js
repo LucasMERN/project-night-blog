@@ -246,9 +246,8 @@ module.exports = {
     },
     updateProfilePic: async (req, res)=> {
       try {
-        const result = await cloudinary.uploader.upload(req.file.path);
+        const result = await cloudinary.uploader.upload(req.file.path, { aspect_ratio: "1.0", crop: "lfill" });
         const image = result.secure_url
-        console.log(image)
         await User.findOneAndUpdate({_id: req.params.id},{
           profilePic: image
         })
