@@ -6,6 +6,7 @@ const User = require('../models/UserSchema');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const blogController = require('../controllers/blogController')
 const mongoose = require('mongoose')
+const cloudinary = require("../middleware/cloudinary");
 
 
 // Open view to create new blog
@@ -39,24 +40,39 @@ router.get('/edit/:id', async (req, res)=>{
     }
     const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
     const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit', specificUser: specificUser, user: req.user, populatedRandomBlog: populatedRandomBlog})
+    const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+    const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit', specificUser: specificUser[0], user: req.user, notificationsAmt: notificationsAmt, populatedRandomBlog: populatedRandomBlog})
 })
 
 // Grab our specific blog and update based upon saveBlogAndRedirect function
-router.put('/:id', async (req, res, next)=>{
+router.put('/:id', upload.single("image"), async (req, res, next)=>{
     req.blog = await Blog.findById(req.params.id)
     next()
-}, saveBlogAndRedirect('edit'))
+}, saveBlogAndRedirect('/'))
 
 // Change our blog and save it to the db
 function saveBlogAndRedirect(path){
     return async (req, res) => {
+      let image = [];
+            image.push('/images/default.png');
+            image.push('/images/default2.jpg');
+            image.push('/images/default3.jpg');
+            let randomIndex = Math.floor(Math.random() * image.length);
+            image = image[randomIndex];
+            if (req.file) {
+              const result = await cloudinary.uploader.upload(req.file.path);
+              image = result.secure_url;
+            }
+
         let blog = req.blog
             blog.title = req.body.title
             blog.intro = req.body.intro,
             blog.author = req.user.id,
             blog.markdown = req.body.markdown,
-            blog.totalLikes = req.body.totalLikes
+            blog.email = req.user.email,
+            blog.thumbnailImage = image
+
         try {
             blog = await blog.save()
             res.redirect(`/blog/${blog.slug}/read`)
