@@ -39,7 +39,9 @@ router.get('/edit/:id', async (req, res)=>{
     }
     const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
     const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit', specificUser: specificUser, user: req.user, populatedRandomBlog: populatedRandomBlog})
+    const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+    const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+    res.render('mainLayout.ejs', {blog: blog, routeName: 'edit', specificUser: specificUser, user: req.user, notificationsAmt: notificationsAmt, populatedRandomBlog: populatedRandomBlog})
 })
 
 // Grab our specific blog and update based upon saveBlogAndRedirect function
