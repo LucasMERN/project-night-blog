@@ -163,7 +163,7 @@ module.exports = {
                         seen: false,
                         content: `${req.user.userName} followed you`,
                         type: 'follow',
-                        timestamps: Date.now()
+                        timestamps: new Date()
                       }
                     }
                   });
@@ -184,16 +184,6 @@ module.exports = {
                 {
                     $pull: {followers: req.user.id}
                 });
-                await User.updateOne({_id: req.params.id}, {
-                    $push: {
-                      notifications: {
-                        user: req.user.id,
-                        seen: false,
-                        content: `${req.user.userName} unfollowed you`,
-                        type: 'unfollow'
-                      }
-                    }
-                  });
             res.json('Follow updated')
         } catch (error) {
             console.log(error)
@@ -202,22 +192,6 @@ module.exports = {
 
     getNotifications: async (req, res) => {
         try {
-            // Remove all unfollow, unbookmark, and unlike notifications from the notifications array
-            await User.updateOne({ _id: req.user.id }, {
-              $pull: {
-                notifications: { type: 'unfollow' }
-              }
-            });
-            await User.updateOne({ _id: req.user.id }, {
-              $pull: {
-                notifications: { type: 'unbookmark' }
-              }
-            });
-            await User.updateOne({ _id: req.user.id }, {
-              $pull: {
-                notifications: { type: 'unlike' }
-              }
-            });
             // Set notifications from seen: false to seen: true
             await User.updateMany(
               { _id: req.user.id },
@@ -225,7 +199,7 @@ module.exports = {
           );
             // Grab all of the remaining notifications and populate the user field of our notifications
             const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user')
-            const sortedNotifications = notifications[0].notifications.sort((a, b) => b.createdAt - a.createdAt);
+            let sortedNotifications = notifications[0].notifications.reverse();
             const specificUser = await User.aggregate([
                 {
                   $match: {

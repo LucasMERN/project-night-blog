@@ -21,9 +21,9 @@ module.exports = {
                 // Grab the author ID off the blog, we need this to update the user object, specifically the bookmarks
                 let content;
                     if (req.user.userName === blog.author.userName) {
-                        content = 'You bookmarked your <a href="/blog/' + blog.slug + '/read">blog</a>';
+                        content = `You bookmarked your blog - "${blog.title}"`;
                     } else {
-                        content = `${req.user.userName} bookmarked your <a href="/blog/${blog.slug}/read">blog</a>`;
+                        content = `${req.user.userName} bookmarked your blog - "${blog.title}"`;
                     }
                 await User.updateOne({_id: blog.author._id}, {
                     $push: {
@@ -32,7 +32,6 @@ module.exports = {
                         seen: false,
                         content: content,
                         type: 'bookmark',
-                        timestamps: Date.now()
                       }
                     }
                   });

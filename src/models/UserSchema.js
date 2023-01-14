@@ -32,10 +32,6 @@ const UserSchema = new mongoose.Schema({    // create a new schema for the user 
       },
       type: {
         type: String
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now
       }
     }
   ]
