@@ -5,7 +5,7 @@
       </li>
       <li class="notification-container <%= (typeof user !== "undefined" && currentRoute === '/profile/notifications/' + user._id) ? 'navActive' : '' %>">
         <a href="<%= (typeof user !== "undefined") ? '/profile/notifications/' + user._id : '/login' %>" aria-label="Click to access Notifications page"><i class="fa-solid fa-bell fa-lg"></i></a>
-        <h4 class="notificationAmt">3</h4>
+        <h4 class="notificationAmt"><%= notificationsAmt %></h4>
       </li>
       <li class="<%= (typeof user !== "undefined" && currentRoute === '/profile/bookmarks/' + user._id) ? 'navActive' : '' %>">
         <a href="<%= (typeof user !== "undefined") ? '/profile/bookmarks/' + user._id : '/login' %>" aria-label="Click to access Bookmarks page"><i class="fa-solid fa-bookmark fa-lg"></i></a>

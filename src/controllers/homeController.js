@@ -27,9 +27,9 @@ module.exports = {
               }
               const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-              const count = await User.count({_id: req.user.id, notifications: {$elemMatch: { seen: false }}});
-              console.log(count)
-            res.render('mainLayout.ejs', {blogs: blogs, user: req.user, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog, routeName: 'home'})
+              const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+              const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('mainLayout.ejs', {blogs: blogs, user: req.user, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt, routeName: 'home'})
         } catch (error) {
             console.log(error)
         }
