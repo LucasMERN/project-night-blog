@@ -14,6 +14,9 @@
     <title>Project Night Blog</title>
 </head>
 <body>
+    <% if (user && user.banned === true) { %>
+        <%- include('banned.ejs') %>
+    <% } else { %> 
     <div class="wrapper">
         <%- include('partials/Header.ejs') %>
         <div class="view-wrapper">
@@ -44,6 +47,7 @@
         </div>
         </div>
     </div>
+    <% } %>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="/js/main.js"></script>
 </body>

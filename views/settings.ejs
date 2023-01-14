@@ -13,6 +13,9 @@
     <link rel="icon" type="image/png" href="/images/assets/bloglogo-favicon.png">
     <title>Settings</title>
 </head>
+<% if (user && user.banned === true) { %>
+    <%- include('banned.ejs') %>
+<% } else { %> 
 
 <div class="settingsPage">
     
@@ -58,5 +61,6 @@
     </div>
 
 </div>
+<% } %>
 <script src="/js/main.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>

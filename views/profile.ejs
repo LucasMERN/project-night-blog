@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="/css/profile.css">
 <link rel="stylesheet" href="/css/mainLayout.css">
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
+<% if (profileUser.active === false || profileUser.banned == true) { %>
+    <%- include('disabled.ejs') %>
+<% } else { %> 
 
 <section>
     <section class="profileHeader">
@@ -217,4 +220,5 @@
             <% }) %>
        <% } %>
 </section>
+<% } %>
 <script src="https://cdn.tailwindcss.com"></script>

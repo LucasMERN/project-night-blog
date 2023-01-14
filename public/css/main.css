@@ -29,6 +29,17 @@ a {
     color: white;
 }
 
+/* //////////////DISABLED///////////////////// */
+.disabled {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50%;
+    font-size: xx-large;
+}
+
+
 /* //////////////NAVBAR///////////////////// */
 
 .nav {
