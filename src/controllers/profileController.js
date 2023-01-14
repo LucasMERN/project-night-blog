@@ -27,7 +27,9 @@ module.exports = {
               }
               const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser[0], following: following, profileUser: profileUser, populatedRandomBlog: populatedRandomBlog})
+              const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+              const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', blogs: blogs, specificUser: specificUser[0], following: following, profileUser: profileUser, populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt})
         } catch (error) {
             console.log(error)
         }
@@ -56,7 +58,9 @@ module.exports = {
               }
               const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers, following: following, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog})
+              const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+              const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, followers: followers, following: following, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt})
         } catch (error) {
             console.log(error)
         }
@@ -77,7 +81,9 @@ module.exports = {
             ])
             const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
             const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog})
+            const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+            const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', profileUser: profileUser, following: following, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt})
         } catch (error) {
             console.log(error)
         }
@@ -111,7 +117,9 @@ module.exports = {
               }
               const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser[0], profileUser: profileUser, following: following, populatedRandomBlog: populatedRandomBlog})
+              const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+              const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'profile', bookmarks: bookmarks, specificUser: specificUser[0], profileUser: profileUser, following: following, populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt})
         } catch (error) {
             console.log(error)
         }
@@ -155,7 +163,7 @@ module.exports = {
                         seen: false,
                         content: `${req.user.userName} followed you`,
                         type: 'follow',
-                        timestamps: Date.now()
+                        timestamps: new Date()
                       }
                     }
                   });
@@ -176,16 +184,6 @@ module.exports = {
                 {
                     $pull: {followers: req.user.id}
                 });
-                await User.updateOne({_id: req.params.id}, {
-                    $push: {
-                      notifications: {
-                        user: req.user.id,
-                        seen: false,
-                        content: `${req.user.userName} unfollowed you`,
-                        type: 'unfollow'
-                      }
-                    }
-                  });
             res.json('Follow updated')
         } catch (error) {
             console.log(error)
@@ -194,25 +192,14 @@ module.exports = {
 
     getNotifications: async (req, res) => {
         try {
-            // Remove all unfollow, unbookmark, and unlike notifications from the notifications array
-            await User.updateOne({ _id: req.user.id }, {
-              $pull: {
-                notifications: { type: 'unfollow' }
-              }
-            });
-            await User.updateOne({ _id: req.user.id }, {
-              $pull: {
-                notifications: { type: 'unbookmark' }
-              }
-            });
-            await User.updateOne({ _id: req.user.id }, {
-              $pull: {
-                notifications: { type: 'unlike' }
-              }
-            });
+            // Set notifications from seen: false to seen: true
+            await User.updateMany(
+              { _id: req.user.id },
+              { $set: { 'notifications.$[].seen': true } }
+          );
             // Grab all of the remaining notifications and populate the user field of our notifications
-            const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user');
-            const sortedNotifications = notifications[0].notifications.sort((a, b) => b.timestamp - a.timestamp);
+            const notifications = await User.find({_id: req.user.id}).select('notifications').populate('notifications.user')
+            let sortedNotifications = notifications[0].notifications.reverse();
             const specificUser = await User.aggregate([
                 {
                   $match: {
@@ -224,16 +211,17 @@ module.exports = {
               ]);
               const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser[0], sortedNotifications: sortedNotifications, populatedRandomBlog: populatedRandomBlog});
+              const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+              const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('mainLayout.ejs', {user: req.user, routeName: 'notifications', specificUser: specificUser[0], sortedNotifications: sortedNotifications, populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt});
         } catch (error) {
             console.log(error);
         }
     },
     updateProfilePic: async (req, res)=> {
       try {
-        const result = await cloudinary.uploader.upload(req.file.path);
+        const result = await cloudinary.uploader.upload(req.file.path, { aspect_ratio: "1.0", crop: "lfill" });
         const image = result.secure_url
-        console.log(image)
         await User.findOneAndUpdate({_id: req.params.id},{
           profilePic: image
         })

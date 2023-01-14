@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/sign-up.css">
-    <script src="https://kit.fontawesome.com/e2fcf864fc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> 
     <title>Register</title>
 </head>
 <body>
   <div class="form-side">
     <div class="logo-header">
       <img src='/images/Assets/logo.svg' alt='PNB logo' />
-      <h2>Project. Night. Blog.</h2>
+      <h1>Project. Night. Blog.</h1>
     </div>
     <div class="content-container">
       <section class="content">
         <header>
-          <h1>Hello, thanks for joining us!</h1>
-          <h5>please register below</h5>
+          <h2>Hello, thanks for joining us!</h2>
+          <h3>please register below</h3>
         </header>
         <% if(typeof errors !== 'undefined'){ %>
           <% errors.forEach((error)=> { %>
@@ -34,6 +36,7 @@
                 name="username"
                 class="form-control"
                 oninput="removeDisable()"
+                aria-label="username"
                 required
                 />
                 <label>
@@ -49,6 +52,7 @@
                 class="form-control"
                 oninput="removeDisable()"
                 onchange="hoverLabel()"
+                aria-label="email"
                 required
               />
               <label class="label">
@@ -63,6 +67,7 @@
               name="password"
               class="form-control"
               oninput="pwValidation()"
+              aria-label="password"
               required
              />
              <label>
@@ -78,6 +83,7 @@
               name="password2"
               class="form-control"
               oninput="pwMatch()"
+              aria-label="confirm password"
               required
               />
               <label>
@@ -93,10 +99,8 @@
           <h4>Already have an account? <a href="/login"> Login here!</a></h4>
           <h5>or sign up with</h5>
           <ul>
-            <li><a href="/login/google"><img class="socialIcon" src="/images/google.png"></a></li>
-            <li><a href="/login/facebook"><img class="socialIcon" src="/images/facebook.png"></a></li>
-            <li><a href="/login/github"><img class="socialIcon" src="/images/github.png"></a></li>
-            <li><a href="/login/twitter"><img class="socialIcon" src="/images/twitter.png"></a></li>
+            <li><a href="/login/google"><i class="fa-brands fa-google"></i>Google</a></li>
+            <li><a href="/login/github"><i class="fa-brands fa-github"></i>GitHub</a></li>
           </ul>
         </footer>
       </section>

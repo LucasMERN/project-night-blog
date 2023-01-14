@@ -50,7 +50,7 @@ img {
     height: 3.5rem;
 }
 
-h2 {
+h1 {
     flex-basis: 88%;
     font-size: .9rem;
     color: rgb(14, 16, 27)
@@ -72,11 +72,42 @@ header {
     width: 100%;
 }
 
-h1 {
+h2 {
     margin-bottom: 2rem;
     font-size: 2rem;
     color: rgb(14, 16, 27);
 }
+
+h3 {
+    font-size: .8rem;
+    margin-bottom: 2rem;
+    color: rgb(14, 16, 27);
+    width: 100%; 
+    text-align: center;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+h3:before,
+h3:after {
+    background-color: rgb(34, 38, 60);
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  
+h3:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+  
+h3:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
 
 h5 {
     font-size: .8rem;
@@ -208,10 +239,34 @@ h4 {
 li {
     list-style: none;
     font-size: 1.5rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.38);
+    border: 1px solid rgb(14, 16, 27);
+    border-radius: 10px;
+    padding: .5rem;
+    transition: all .1s ease-in-out;
 }
 
-a {
-    color: var(--text1);
+li:hover {
+    transform: scale(1.1);
+}
+
+li i {
+    padding-right: 10px;
+}
+
+li a {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(14, 16, 27);
+}
+
+h4 a {
     color: rgb(14, 16, 27);
     margin-left: 5px;
 }
@@ -219,7 +274,7 @@ a {
 ul {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 
 }
 
@@ -240,7 +295,7 @@ form i {
 
 @media screen and (min-width: 380px) {
 
-    h1 {
+    h2 {
         font-size: 2.5rem;
     }
 

@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="/css/profile.css">
 <link rel="stylesheet" href="/css/mainLayout.css">
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
+<% if (profileUser.active === false || profileUser.banned == true) { %>
+    <%- include('disabled.ejs') %>
+<% } else { %> 
 
 <section>
     <section class="profileHeader">
@@ -170,6 +173,7 @@
             <% followers.forEach((obj)=> { %>
                 <% obj.followers.forEach((follower)=>{ %>
                     <div class="followCard">
+                        <a href="/profile/myprofile/<%= follower._id %>">
                         <div class="followInfo">
                         <img src="<%= follower.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
                         <div class="followColumn">
@@ -177,6 +181,7 @@
                             <p><%= follower.bio %></p>
                         </div>
                         </div>
+                        </a>
                         <div class="followbtn">
                             <% if(!user.following.includes(follower.id)){ %>
                                 <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
@@ -194,6 +199,7 @@
             <% following.forEach((obj)=> { %>
                 <% obj.following.forEach((following)=>{ %>
                     <div class="followCard">
+                        <a href="/profile/myprofile/<%= following._id %>">
                         <div class="followInfo">
                         <img src="<%= following.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
                         <div class="followColumn">
@@ -201,6 +207,7 @@
                             <p><%= following.bio %></p>
                         </div>
                         </div>
+                        </a>
                         <div class="followbtn">
                         <% if(!following && user.userName !== following.userName){ %>
                             <button onclick="follow('<%= following._id %>')" class="btn btn-primary btn-sm">Follow</button>
@@ -213,4 +220,5 @@
             <% }) %>
        <% } %>
 </section>
+<% } %>
 <script src="https://cdn.tailwindcss.com"></script>

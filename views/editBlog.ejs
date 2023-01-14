@@ -1,25 +1,36 @@
-<div class="viewContainer">
-    <div class="headerContainer">
-        <h1>Edit Blog</h1>
-    </div>
-    <div class="bodyContainer">
-        <form action="/blog/<%= blog.id %>?_method=PUT" method="POST">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input required value="<%= blog.title %>" type="text" name="title" id="title" class="form-control">
-            </div>
-            <div>
-                <label for="intro">Intro</label>
-                <textarea name="intro" id="intro" class="form-control"><%= blog.intro %></textarea>
-            </div>
-            <div>
-                <label for="markdown">Markdown</label>
-                <textarea required name="markdown" id="markdown" class="form-control"><%= blog.markdown %></textarea>
-            </div>
-            <a href="/" class="btn">Cancel</a>
+<link rel="stylesheet" href="/css/markdown.css"/>
+<link rel="stylesheet" href="/css/mainLayout.css">
+<link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
 
-                <input type="submit" class="btn btn-primary mt-2">
-
-        </form>
+<form action="/blog/<%= blog.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+    <div class="submitContainer">
+        <label class="btn btn-sm btn-primary mt-2" for="imageUpload">
+            <i class="fa-solid fa-image fa-lg"></i>
+            Add Cover Image
+            <input onchange='previewImage()' type="file" accept="image/jpeg, image/png, image/jpg" name="image" id='imageUpload' class="image">
+        </label>
+        <div>
+            <!-- The button to open modal -->
+            <a href="#my-modal-5" class="btn btn-sm btn-primary addDescBtn mt-2">Add Description</a>
+            <!-- The modal -->
+            <div class="modal" id="my-modal-5">
+              <div class="modal-box">
+              <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
+                <h3 class="font-bold text-lg">Description</h3>
+                  <textarea id="descriptionTextarea" maxlength="80" class="textarea textarea-bordered" id="markdownTextarea" name="intro"><%= blog.intro %></textarea>
+              </div>
+            </div>
+          </div>
+        <input type="submit" value="Publish" class="btn btn-sm btn-primary mt-2">
     </div>
-</div>
+    <div class="imageAndDescription">
+      <div id="imagePreview"><img src='<%= blog.thumbnailImage %>'></div>
+      <div id="description"></div>
+    </div>
+    <input required value="<%= blog.title %>" type="text" name="title" id="title" class="blogTitle" placeholder="Blog Title...">
+    <div class="textareaContainer">
+        <textarea required name="markdown" id="markdown" class="form-control" placeholder="Tell your story..."><%= blog.markdown %></textarea>
+    </div>
+</form>
+
+

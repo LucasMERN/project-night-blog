@@ -4,7 +4,9 @@ const Blog = require('../models/BlogSchema')
 module.exports = {
     getSettings: async (req, res) => {
         try {
-            res.render('settings.ejs', {user: req.user, routeName: 'settings'})
+            const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+            const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('settings.ejs', {user: req.user, notificationsAmt: notificationsAmt, routeName: 'settings'})
         } catch (error) {
             console.log(error)
         }
@@ -12,7 +14,9 @@ module.exports = {
 
     getAccountInfo: async (req, res) => {
         try {
-            res.render('settings.ejs', {routeName: 'accountInfo', user: req.user})
+            const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+            const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('settings.ejs', {routeName: 'accountInfo', notificationsAmt: notificationsAmt, user: req.user})
         } catch (error) {
             console.log(error)
         }
@@ -20,7 +24,9 @@ module.exports = {
 
     getDisplay: async (req, res) => {
         try {
-            res.render('settings.ejs', {routeName: 'display', user: req.user})
+            const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+            const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('settings.ejs', {routeName: 'display', notificationsAmt: notificationsAmt, user: req.user})
         } catch (error) {
             console.log(error)
         }
@@ -28,7 +34,9 @@ module.exports = {
 
     getDeactivate: async (req, res) => {
         try {
-            res.render('settings.ejs', {routeName: 'deactivate', user: req.user})
+            const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+            const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+            res.render('settings.ejs', {routeName: 'deactivate', notificationsAmt: notificationsAmt, user: req.user})
         } catch (error) {
             console.log(error)
         }
