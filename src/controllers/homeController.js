@@ -27,6 +27,8 @@ module.exports = {
               }
               const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
+              const count = await User.count({_id: req.user.id, notifications: {$elemMatch: { seen: false }}});
+              console.log(count)
             res.render('mainLayout.ejs', {blogs: blogs, user: req.user, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog, routeName: 'home'})
         } catch (error) {
             console.log(error)
