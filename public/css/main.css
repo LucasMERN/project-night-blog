@@ -466,6 +466,16 @@ span {
     left: 1%;
 }
 
+.notification-container {
+    position: relative;
+ }
+ 
+ .notificationAmt {
+    position: absolute;
+    top: 20px;
+    right: 0;
+ }
+
 .nav li i {
     width: 40px;
     padding-top: 1rem;

@@ -240,8 +240,8 @@ form textarea{
  
  .notificationAmt {
     position: absolute;
-    top: 25px;
-    right: 0;
+    top: 0;
+    left: 25px;
     display: flex;
     align-content: center;
     justify-content: center;
