@@ -25,7 +25,9 @@ module.exports = {
           }
           const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
           const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog})
+          const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+          const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
+        res.render('mainLayout.ejs', {user: req.user, routeName: 'newPost', specificUser: specificUser[0], notificationsAmt: notificationsAmt, populatedRandomBlog: populatedRandomBlog})
     },
     // Create new blog 
     newBlogPost: async(req, res)=>{
@@ -81,8 +83,10 @@ module.exports = {
             const bookmarked = await User.findOne({_id: req.user.id, bookmarks: {$in: [blog._id]}});
             const totalLikes = blog.likedBy.length
             const following = await User.findOne({_id: req.user.id, following: {$in: [blog.author._id]}})
+            const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+            const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
             if(blog == null) res.redirect('/')
-            res.render('mainLayout.ejs', {blog: blog, liked: liked != null, bookmarked: bookmarked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug', following: following})  
+            res.render('mainLayout.ejs', {blog: blog, liked: liked != null, bookmarked: bookmarked != null, totalLikes: totalLikes, user: req.user, routeName: 'slug', following: following, notificationsAmt: notificationsAmt})  
         } catch (error) {
             console.log(error)   
         }

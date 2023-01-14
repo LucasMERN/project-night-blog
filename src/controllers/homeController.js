@@ -10,7 +10,11 @@ module.exports = {
             // initialize variables that will be needed to render discovery tab
             let following
             let specificUser
+            let newNotifications
+            let notificationsAmt
               if(typeof req.user !== 'undefined'){
+                newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
+                notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
                 following = await User.findOne({_id: req.user.id, following: {$in: [req.params.id]}})
                 specificUser = await User.aggregate([
                   {
@@ -27,8 +31,6 @@ module.exports = {
               }
               const randomBlog = (await Blog.aggregate([{$sample: {size: 1}}]).exec())[0]
               const populatedRandomBlog = await Blog.findById(randomBlog._id).populate('author')
-              const newNotifications = await User.findOne({ _id: req.user.id }).select('notifications')
-              const notificationsAmt = newNotifications.notifications.filter((item)=> item.seen == false).length
             res.render('mainLayout.ejs', {blogs: blogs, user: req.user, specificUser: specificUser[0], populatedRandomBlog: populatedRandomBlog, notificationsAmt: notificationsAmt, routeName: 'home'})
         } catch (error) {
             console.log(error)

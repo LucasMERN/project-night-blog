@@ -67,7 +67,8 @@ nav li{
     border-radius: 50%;
     height: 20px;
     width: 20px;
-    background-color: black;
+    background-color: red;
+    color: white;
  }
 
 .comment {
