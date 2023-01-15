@@ -34,7 +34,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   scope: ['profile', 'email'],
-  callbackURL: "http://localhost:2002/login/google/callback"
+  callbackURL: "https://www.projectnightblog.com/login/google/callback"
 },
 async (accessToken, refreshToken, profile, done) => {
   console.log(profile)
@@ -69,7 +69,7 @@ passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
   accessToken: process.env.GITHUB_ACCESS_TOKEN,
-  callbackURL: "http://localhost:2002/login/github/callback",
+  callbackURL: "https://www.projectnightblog.com/login/github/callback",
   scope: ['user:email'],
 },
 async (accessToken, refreshToken, profile, done) => {
