@@ -17,14 +17,12 @@ router.post('/loginLocal', (req, res, next ) => {
     if (!user) {
       return res.redirect("/login");
     }
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
+    if (user) {
       res.redirect("/");
-    });
+    } else (err) => {
+        return next(err);
+      }})
   })(req, res, next);
-});
 
 //Get login page
 router.get('/google', passport.authenticate('google'));
