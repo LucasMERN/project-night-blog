@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false) //deprecation warning supressed
 
 const connectDB = async () => {
     try {
