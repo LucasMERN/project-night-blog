@@ -21,8 +21,8 @@ router.post('/loginLocal', (req, res, next ) => {
       res.redirect("/");
     } else (err) => {
         return next(err);
-      }})
-  })(req, res, next);
+      }})(req, res, next)
+  });
 
 //Get login page
 router.get('/google', passport.authenticate('google'));
