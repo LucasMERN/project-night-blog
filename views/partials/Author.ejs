@@ -2,7 +2,7 @@
     <div>About the Author</div>
 
     <img src="<%= blog.author.profilePic %>" referrerpolicy="no-referrer" alt="user profile image">
-    <a href="/profile/myprofile/<%= user.id %>"><article><%= blog.author.userName %></article></a>
+    <a href="/profile/myprofile/<%= blog.author._id %>"><article><%= blog.author.userName %></article></a>
     <div class="AuthorStats">
         <div><%= blog.author.posts.length %> Posts</div>
         <div class="AuthorDot">&bull;</div>
