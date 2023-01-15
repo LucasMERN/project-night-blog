@@ -15,14 +15,13 @@ router.post('/loginLocal', (req, res, next ) => {
       return next(err);
     }
     if (!user) {
-      req.flash("errors");
       return res.redirect("/login");
     }
     req.logIn(user, (err) => {
       if (err) {
         return next(err);
       }
-      res.redirect(req.session.returnTo || "/");
+      res.redirect("/");
     });
   })(req, res, next);
 });
