@@ -161,15 +161,20 @@ header{
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 20px;
     padding: 8px;
     width: 40%;
 }
 
+.fa-magnifying-glass {
+    display: none !important;
+}
+
 .searchBar input{
     background-color: transparent;
     width: 65%;
+    display: none;
 }
 
 .fa-magnifying-glass{

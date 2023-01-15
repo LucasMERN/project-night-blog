@@ -90,17 +90,23 @@ form textarea{
 
 .profileUsername{
     font-size: 1.5rem;
+    color: #c8c8c8;
 }
 
 .followerContainer{
     display: flex;
 }
 
-.mr-5 {
+.profileStatCounts {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    margin-right: 1.25rem;
+}
+
+.profileStatCounts:hover {
+    color: white;
 }
 
 .mr-5 .counts {
