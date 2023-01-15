@@ -4,11 +4,11 @@
             <div class="dropdown dropdown-end userOptions">
                 <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
-                  <li><a>Pin to Profile</a></li>
-                  <li><a href="/blog/edit/<%= blog._id %>">Edit Blog</a></li>
+                  <li><a class="dropdownColor">Pin to Profile</a></li>
+                  <li><a class="dropdownColor" href="/blog/edit/<%= blog._id %>">Edit Blog</a></li>
                   <li>
                     <form action="/blog/delete/<%= blog._id %>?_method=DELETE" method="POST">
-                        <button type="submit">Delete</button>
+                        <button class="dropdownColor" type="submit">Delete</button>
                     </form>
                   </li>
                 </ul>
@@ -17,13 +17,13 @@
             <div class="dropdown dropdown-end userOptions">
                 <label tabindex="0" class="btn m-1"><i class="fa-solid fa-ellipsis"></i></label>
                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 pcDropdownStyle">
-                  <li><a href="/blog/<%= blog.slug %>/read">Read Full Post</a></li>
+                  <li><a class="dropdownColor" href="/blog/<%= blog.slug %>/read">Read Full Post</a></li>
                   <% if (typeof user !== "undefined") { %>
-                    <li><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i>Bookmark Post</button></li>
-                    <li><a>Pin to Profile</a></li>
+                    <li><button method="POST" class="text-xs dropdownColor"><i class="fa-regular fa-bookmark text-xs"></i>Bookmark Post</button></li>
+                    <li><a class="dropdownColor">Pin to Profile</a></li>
                   <% } else { %>
-                    <li><a href="/login"><button method="POST" class="text-xs"><i class="fa-regular fa-bookmark text-xs"></i>Bookmark Post</button></a></li>
-                    <li><a href="/login">Pin to Profile</a></li>
+                    <li><a href="/login"><button method="POST" class="text-xs dropdownColor"><i class="fa-regular fa-bookmark text-xs"></i>Bookmark Post</button></a></li>
+                    <li><a href="/login" class="dropdownColor">Pin to Profile</a></li>
                   <% } %>
                   
                 </ul>
