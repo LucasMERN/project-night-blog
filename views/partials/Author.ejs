@@ -6,9 +6,9 @@
     <div class="AuthorStats">
         <div><%= blog.author.posts.length %> Posts</div>
         <div class="AuthorDot">&bull;</div>
-        <div><%= user.followers.length %> Followers</div>
+        <div><%= blog.author.followers.length %> Followers</div>
     </div>
-    <p><%= user.bio %></p>
+    <p><%= blog.author.bio %></p>
     <% if(!following && blog.author.userName !== user.userName){ %>
         <button onclick="follow('<%= blog.author._id %>')" class="btn btn-primary editProfileBtn btn-sm">Follow</button>
     <% }else if(following){ %>
