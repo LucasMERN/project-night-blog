@@ -33,6 +33,10 @@ a {
     color: rgb(166, 173, 186) !important;
 }
 
+.fa-ellipsis {
+    color: black;
+}
+
 button .fa-bookmark {
     margin-right: 5px;
 }
