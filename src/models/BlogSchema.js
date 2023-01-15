@@ -19,13 +19,11 @@ const BlogSchema = new Schema({
     markdown: { type: String, required: true, trim: true },
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     pinned: Boolean,
-    draft: Boolean,
     likedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     bookmarked: Boolean,
     slug: { type: String, required: true, unique: true },
     sanitizedHtml: { type: String, required: true },
     thumbnailImage: { type: String },
-    topicTags: [{ type: String }],
 }, { timestamps: true });
 
 //Set validations and before attributes (pre validate)
