@@ -29,6 +29,14 @@ a {
     color: white;
 }
 
+.dropdown-content a {
+    color: rgb(166, 173, 186) !important;
+}
+
+button .fa-bookmark {
+    margin-right: 5px;
+}
+
 /* //////////////DISABLED///////////////////// */
 .disabled {
     display: flex;
