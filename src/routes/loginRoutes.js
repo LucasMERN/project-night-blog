@@ -15,7 +15,7 @@ router.post('/loginLocal', (req, res, next ) => {
       return next(err);
     }
     if (!user) {
-      req.flash("errors", info);
+      req.flash("errors");
       return res.redirect("/login");
     }
     req.logIn(user, (err) => {
