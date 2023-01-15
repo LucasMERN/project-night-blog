@@ -24,6 +24,7 @@ require('./src/config/passport')(passport)
 connectDB();    // Connect to database
 
 app.set('view engine', 'ejs');  // set the view engine to ejs
+mongoose.set('strictQuery', false) //deprecation warning supressed
 app.use(express.static('public'));  // set the public folder to serve static files
 app.use(express.urlencoded({ extended: true }));    // use express to parse the form data
 app.use(express.json());    // use express to parse json data
