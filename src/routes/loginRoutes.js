@@ -3,18 +3,29 @@ const router = express.Router()
 const passport = require('passport')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 const loginController = require('../controllers/loginController')
+const User = require("../models/UserSchema");
 
 //Get login page
 router.get('/', ensureGuest, loginController.loadLoginPage)
 
 //Login our user, if successful redirect them back to the main index
-router.post('/loginLocal', (req, res, next)=>{
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash: true
-    })(req, res, next)
-})
+router.post('/loginLocal', (req, res, next ) => {
+  passport.authenticate('local', (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash("errors", info);
+      return res.redirect("/login");
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(req.session.returnTo || "/");
+    });
+  })(req, res, next);
+});
 
 //Get login page
 router.get('/google', passport.authenticate('google'));
