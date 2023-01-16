@@ -172,24 +172,29 @@
             <% } %>
             <% followers.forEach((obj)=> { %>
                 <% obj.followers.forEach((follower)=>{ %>
-                    <div class="followCard">
-                        <a href="/profile/myprofile/<%= follower._id %>">
-                        <div class="followInfo">
-                        <img src="<%= follower.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
-                        <div class="followColumn">
-                            <h1><%= follower.userName %></h1>
+                    <div class="followCardContainer">
+                        <div class="followCard">
+                            <a href="/profile/myprofile/<%= follower._id %>">
+                            <div class="followInfo">
+                            <img src="<%= follower.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
+                                <div class="followColumn">
+                                    <h1><%= follower.userName %></h1>
+                                </div>
+                            </div>
+                            </a>
+                            <div class="followbtn">
+                                <% if(!user.following.includes(follower.id)){ %>
+                                    <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
+                                <% }else if(user.following.includes(follower.id)){ %>
+                                    <button onclick="unfollow('<%= follower._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="followBio">
                             <p><%= follower.bio %></p>
                         </div>
-                        </div>
-                        </a>
-                        <div class="followbtn">
-                            <% if(!user.following.includes(follower.id)){ %>
-                                <button onclick="follow('<%= follower._id %>')" class="btn btn-primary btn-sm">Follow</button>
-                            <% }else if(user.following.includes(follower.id)){ %>
-                                <button onclick="unfollow('<%= follower._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
-                            <% } %>
-                        </div>
                     </div>
+
                 <% }) %>
             <% }) %>
         <% } else if(typeof following !== 'undefined') { %>
@@ -198,22 +203,26 @@
         <% } %>
             <% following.forEach((obj)=> { %>
                 <% obj.following.forEach((following)=>{ %>
-                    <div class="followCard">
-                        <a href="/profile/myprofile/<%= following._id %>">
-                        <div class="followInfo">
-                        <img src="<%= following.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
-                        <div class="followColumn">
-                            <h1><%= following.userName %></h1>
+                    <div class="followCardContainer">
+                        <div class="followCard">
+                            <a href="/profile/myprofile/<%= following._id %>">
+                            <div class="followInfo">
+                            <img src="<%= following.profilePic %>" referrerPolicy="no-referrer" alt="user profile image"> 
+                                <div class="followColumn">
+                                    <h1><%= following.userName %></h1>
+                                </div>
+                            </div>
+                            </a>
+                            <div class="followbtn">
+                            <% if(!user.following.includes(following.id)){ %>
+                                <button onclick="follow('<%= following._id %>')" class="btn btn-primary btn-sm">Follow</button>
+                            <% }else if(user.following.includes(following.id)) { %>
+                                <button onclick="unfollow('<%= following._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
+                            <% } %>
+                            </div>
+                        </div>
+                        <div class="followBio">
                             <p><%= following.bio %></p>
-                        </div>
-                        </div>
-                        </a>
-                        <div class="followbtn">
-                        <% if(!following && user.userName !== following.userName){ %>
-                            <button onclick="follow('<%= following._id %>')" class="btn btn-primary btn-sm">Follow</button>
-                        <% }else { %>
-                            <button onclick="unfollow('<%= following._id %>')" class="btn hover:bg-red-600 hover:text-white btn-sm">Unfollow</button>
-                        <% } %>
                         </div>
                     </div>
                 <% }) %>
