@@ -1,5 +1,6 @@
 const User = require('../models/UserSchema')
 const Blog = require('../models/BlogSchema')
+const bcrypt = require('bcrypt')
 
 module.exports = {
     getSettings: async (req, res) => {
@@ -106,8 +107,9 @@ module.exports = {
 
     updatePassword: async (req, res) => {
         try {
+            const {password, password2} = req.body
             // Check if the password contains at least one uppercase letter, lowercase letter, special character, and number
-            if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)){
+            if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/) && password !== password2){
                 res.render('settings.ejs', { user: req.user, routeName: 'settings' });
                 return;
             }

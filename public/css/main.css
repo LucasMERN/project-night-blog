@@ -40,7 +40,6 @@ a {
 button .fa-bookmark {
     margin-right: 5px;
 }
-
 /* //////////////DISABLED///////////////////// */
 .disabled {
     display: flex;
@@ -424,7 +423,8 @@ span {
     flex-flow: column wrap;
     align-items: center;
     background-color: wheat;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
 }
 
@@ -481,8 +481,9 @@ span {
     flex-flow: row wrap;
     justify-content: flex-start;
     width: 95%;
+    margin-bottom: 2rem;
+    padding: 1rem;
 }
-
 
 @media screen and (min-width: 550px) {
 
@@ -669,6 +670,11 @@ header {
 
 .DiscTopicsButtons {
     margin-top: 30px;
+}
+
+#profilePic, #bioBox{
+    width: 500px;
+    margin-right: 14rem;
 }
 
 /* //////////////POSTCARD/////////////////// */

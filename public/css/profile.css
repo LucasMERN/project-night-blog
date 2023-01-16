@@ -169,16 +169,14 @@ form textarea{
     align-items: center;
 }
 
-#profilePic{
-    width: 400px;
-    margin-right: 5rem;
+.followCardContainer{
+    border-bottom: 1px solid black;;
 }
 
 .followCard {
     display: flex;
     flex-flow: row nowrap;
-    padding: 2rem 1rem;
-    border-bottom: 1px solid black;
+    padding: 2rem 1rem 0 1rem;
     width: 100%;
     justify-content: space-between;
 }
@@ -187,6 +185,11 @@ form textarea{
     background-color: rgba(82, 86, 95, 0.5);
     color: white;
 }
+
+.followCardContainer p {
+    padding: 1rem 2rem 2rem 2rem;
+}
+
 
 .followInfo {
     display: flex;
@@ -203,6 +206,11 @@ form textarea{
     width: 35%;
 }
 
+.followBio{
+    margin-top: 10px;
+    display: block;
+}
+
 .followCard button {
     padding-left: 20px;
 }
@@ -211,6 +219,7 @@ form textarea{
     display: flex;
     flex-flow: column nowrap;
     margin-top: 5px;
+    width: 65%;
 }
 
 .followColumn h1 {

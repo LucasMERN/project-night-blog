@@ -68,7 +68,7 @@ h1 {
 
 header {
     text-align: center;
-    margin-top: 7rem;
+    margin-top: 2rem;
     width: 100%;
 }
 
@@ -287,6 +287,10 @@ form i {
     .form-side {
         width: 550px;
         margin: 0 auto
+    }
+
+    header{
+        margin-top: 7rem;
     }
 
 }

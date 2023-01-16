@@ -337,6 +337,7 @@ async function follow(id){
 /////////////////////////////////////////////////////////////////////////////////////
 
 async function unfollow(id){
+    console.log(id)
     try {
         const response = await fetch(`/profile/${id}/unfollow`, {
             method: 'PUT',
