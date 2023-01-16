@@ -35,7 +35,7 @@
                 <a href="#my-modal-2" class="btn btn-primary editProfileBtn mr-5 btn-sm">Edit Profile</a>
                 <!-- Put this part before </body> tag -->
                 <div class="modal" id="my-modal-2">
-                  <div class="modal-box">
+                  <div class="modal-box" id="bioBox">
                     <a href="#"><label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label></a>
                     <h3 class="font-bold text-lg">Bio</h3>
                     <form action="/profile/<%= user._id %>/updateBio?_method=PUT" method="POST">
