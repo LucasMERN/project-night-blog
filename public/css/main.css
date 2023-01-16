@@ -146,10 +146,6 @@ nav li:nth-child(3), nav li:nth-child(4){
 /* //////////////HEADER///////////////////// */
 
 header{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -424,7 +420,8 @@ span {
     flex-flow: column wrap;
     align-items: center;
     background-color: wheat;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
 }
 
@@ -481,8 +478,9 @@ span {
     flex-flow: row wrap;
     justify-content: flex-start;
     width: 95%;
+    margin-bottom: 2rem;
+    padding: 1rem;
 }
-
 
 @media screen and (min-width: 550px) {
 
@@ -544,6 +542,7 @@ span {
 /* //////////////HEADER///////////////////// */
 
 header {
+    display: flex;
     justify-content: unset;
     align-items: unset;
     padding: 0;
