@@ -670,6 +670,11 @@ header {
     margin-top: 30px;
 }
 
+#profilePic, #bioBox{
+    width: 500px;
+    margin-right: 14rem;
+}
+
 /* //////////////POSTCARD/////////////////// */
 
 .pcPicAndBlurb img {

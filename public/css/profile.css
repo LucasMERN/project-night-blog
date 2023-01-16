@@ -169,10 +169,6 @@ form textarea{
     align-items: center;
 }
 
-#profilePic, #bioBox{
-    width: 365px;
-}
-
 .followCardContainer{
     border-bottom: 1px solid black;;
 }
