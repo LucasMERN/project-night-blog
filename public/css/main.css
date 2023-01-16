@@ -40,7 +40,6 @@ a {
 button .fa-bookmark {
     margin-right: 5px;
 }
-
 /* //////////////DISABLED///////////////////// */
 .disabled {
     display: flex;
@@ -146,6 +145,10 @@ nav li:nth-child(3), nav li:nth-child(4){
 /* //////////////HEADER///////////////////// */
 
 header{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -542,7 +545,6 @@ span {
 /* //////////////HEADER///////////////////// */
 
 header {
-    display: flex;
     justify-content: unset;
     align-items: unset;
     padding: 0;
