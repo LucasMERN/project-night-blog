@@ -399,11 +399,15 @@ span {
 }
 
 .notificationContainer i{
-    margin: 2rem 3rem;
+    padding: 2rem 2rem;
+    aspect-ratio: 3/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .notificationInfo{
-    margin: 2rem 0;
+    margin: 2rem 2rem 2rem 0;
 }
 
 .notificationInfo img{
