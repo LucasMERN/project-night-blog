@@ -40,7 +40,6 @@ a {
 button .fa-bookmark {
     margin-right: 5px;
 }
-
 /* //////////////DISABLED///////////////////// */
 .disabled {
     display: flex;
@@ -58,7 +57,8 @@ button .fa-bookmark {
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 15px 0;
+    padding: 20px 0;
+    z-index: 1;
     background-image: linear-gradient(to bottom, rgba(42, 48, 60, .9), rgba(42, 48, 60, 1));
 }
 
@@ -101,8 +101,8 @@ nav li{
 
 .coming-soon {
     position: absolute;
-    top: -5%;
-    left: 29%;
+    top: -1%;
+    left: 17%;
     text-align: center;
     color: #fff;
     font-size: 12px;
@@ -132,9 +132,13 @@ nav li:nth-child(3), nav li:nth-child(4){
     order: 2;
 }
 
+.nav-list i {
+    font-size: 1.4rem;
+}
+
 .upload i {
     padding-top: 1rem;
-    font-size: 2.4em;
+    font-size: 1.7em;
 }
 
 /* //////////////DISCOVERY TAB////////////// */
@@ -164,7 +168,8 @@ header{
 .header-utils {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    width: 90%;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -403,6 +408,7 @@ span {
 
 .notificationInfo img{
     margin-bottom: 1rem;
+    border: solid 1px black;
 }
 
 .notificationInfo p {
@@ -424,7 +430,8 @@ span {
     flex-flow: column wrap;
     align-items: center;
     background-color: wheat;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
 }
 
@@ -481,8 +488,9 @@ span {
     flex-flow: row wrap;
     justify-content: flex-start;
     width: 95%;
+    margin-bottom: 2rem;
+    padding: 1rem;
 }
-
 
 @media screen and (min-width: 550px) {
 
@@ -538,7 +546,7 @@ span {
 }
 
 .upload i {
-    font-size: 1.25em;
+    font-size: 2.5rem;
 }
 
 /* //////////////HEADER///////////////////// */
@@ -669,6 +677,11 @@ header {
 
 .DiscTopicsButtons {
     margin-top: 30px;
+}
+
+#profilePic, #bioBox{
+    width: 500px;
+    margin-right: 14rem;
 }
 
 /* //////////////POSTCARD/////////////////// */

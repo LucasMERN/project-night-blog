@@ -27,7 +27,7 @@
       <div id="imagePreview"><img src='<%= blog.thumbnailImage %>'></div>
       <div id="description"></div>
     </div>
-    <input required value="<%= blog.title %>" type="text" name="title" id="title" class="blogTitle" placeholder="Blog Title...">
+    <div><input required value="<%= blog.title %>" type="text" name="title" id="title" class="blogTitle" placeholder="Blog Title..."></div>
     <div class="textareaContainer">
         <textarea required name="markdown" id="markdown" class="form-control" placeholder="Tell your story..."><%= blog.markdown %></textarea>
     </div>

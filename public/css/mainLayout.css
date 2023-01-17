@@ -8,12 +8,12 @@
 }
 
 .view-wrapper {
-    margin-top: 105px;
+    margin-top: 112px;
 }
 
 .viewport {
     width: 100%;
-    margin-bottom: 82px;
+    margin-bottom: 86px;
 }
 
 @media screen and (min-width: 550px) {

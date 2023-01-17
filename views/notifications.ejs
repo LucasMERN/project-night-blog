@@ -16,6 +16,7 @@
           }
           renderedNotifications[notification.user][notification.content] = true;
         %>
+        <a href="/profile/myprofile/<%= notification.user._id %>">
         <div class="notificationContainer">
           <% if(notification.type === 'follow'){ %>
             <i class="fa-solid fa-user fa-2x"></i>
@@ -29,6 +30,7 @@
               <p><%- notification.content %></p>
             </div>
           </div>
+        </a>
         <% }); %>
       <% } else { %>
         <h1>No notifications</h1>
