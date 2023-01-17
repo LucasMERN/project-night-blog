@@ -1,6 +1,18 @@
 .viewport, input, textarea, form{
-    background-color: antiquewhite;
+    background-color: wheat;
     color: black;
+}
+
+.modal-box {
+    color: rgb(166, 173, 186);
+}
+
+.modal-box h3 {
+    font-size: 1.6rem;
+}
+
+.modal-box textarea{
+    font-size: 1.2rem;
 }
 
 .submitContainer{

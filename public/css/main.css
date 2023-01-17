@@ -101,8 +101,8 @@ nav li{
 
 .coming-soon {
     position: absolute;
-    top: -5%;
-    left: 29%;
+    top: -1%;
+    left: 17%;
     text-align: center;
     color: #fff;
     font-size: 12px;
@@ -168,7 +168,8 @@ header{
 .header-utils {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    width: 90%;
+    justify-content: flex-end;
     align-items: center;
 }
 
