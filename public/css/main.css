@@ -408,6 +408,7 @@ span {
 
 .notificationInfo img{
     margin-bottom: 1rem;
+    border: solid 1px black;
 }
 
 .notificationInfo p {
