@@ -105,7 +105,7 @@
                         <span class="text-xs"><%= blog.createdAt.toLocaleDateString() %></span>
                     </section>
                     <section class="pcPicAndBlurb"> <!-- flex row -->
-                        <img src="/images/default.png" alt="image representing the contents of the blog post"> <!-- change to database image -->
+                        <img src="<%= blog.thumbnailImage%>" alt="image representing the contents of the blog post"> <!-- change to database image -->
                         <p class="text-lg"><%= blog.intro %></p> <!-- change to database blurb -->
                     </section>
                     <div class="pcActions">
