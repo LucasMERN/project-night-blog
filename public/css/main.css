@@ -399,7 +399,7 @@ span {
 }
 
 .notificationContainer i{
-    padding: 2rem 2rem;
+    width: 7rem;
     aspect-ratio: 3/2;
     display: flex;
     justify-content: center;
@@ -630,6 +630,18 @@ header {
     align-items: center;
     border-bottom: 1px solid black;
     padding: 3rem 0;
+}
+
+.DiscTrendingPost, .DiscUser, .DiscTopicsButtons {
+    background-color: #272836;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.356);
+}
+
+.DiscTrendingPost:hover, .DiscUser:hover, .DiscTopicsButtons:hover {
+    background-color: #3a3b4b;
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .DiscTrendingHeader, .DiscTopicsHeader, .DiscUsersHeader {
