@@ -21,8 +21,6 @@ require('dotenv').config({path: './src/config/.env'});  // dotenv is used to sto
 // Require passport in our config
 require('./src/config/passport')(passport)
 
-connectDB();    // Connect to database
-
 app.set('view engine', 'ejs');  // set the view engine to ejs
 app.use(express.static('public'));  // set the public folder to serve static files
 app.use(express.urlencoded({ extended: true }));    // use express to parse the form data
@@ -36,6 +34,7 @@ app.use(
         resave: false,  // don't save session if unmodified
         saveUninitialized: false,   // don't create session until something stored
         store: MongoStore.create({
+            mongoUrl: process.env.DB_STRING,
             client: mongoose.connection.getClient() // get the client from the mongoose connection
         }),
     })
@@ -60,6 +59,8 @@ app.use('/profile', profileRoutes)
 app.use('/settings', settingsRoutes)
 app.use('/bookmark', bookmarkRoutes)
 
-app.listen(process.env.PORT, ()=>{
-    console.log(`Server running. http://localhost:${process.env.PORT}`);
-});
+connectDB().then(() => {
+    app.listen(process.env.PORT, ()=>{
+        console.log(`Server running. http://localhost:${process.env.PORT}`);
+    })
+})
