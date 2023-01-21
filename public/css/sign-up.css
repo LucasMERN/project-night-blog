@@ -5,10 +5,15 @@
 }
 
 html {
-    height: 100vh;
+    height: 100%;
     width: 100%;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
     background: linear-gradient(-45deg, #aaee52, #23a6d5, #3ce792, #23c3d5);
-	background-size: 800% 800%;
+    background-size: 800% 800%;
 	animation: gradient 30s ease infinite;
 }
 
@@ -22,15 +27,6 @@ html {
 	100% {
 		background-position: 0% 50%;
 	}
-}
-
-body {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-.graphic-side {
-    display: none;
 }
 
 .form-side {
@@ -144,7 +140,6 @@ h5:after {
     font-size: 1.1rem;
     text-align: center;
     color: red;
-    text-shadow: .5px .5px 2px rgba(0, 0, 0, 0.35);
 }
 
 form {
@@ -152,6 +147,10 @@ form {
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
+    background-color: rgb(255 255 255 / 43%);
+    box-shadow: 10px 10px 20px 0 rgb(0 0 0 / 50%);
+    border-radius: 5px;
 }
 
 form div {
@@ -210,7 +209,6 @@ input {
     margin: 1rem;
     color: red;
     font-size: 1.1rem;
-    text-shadow: .5px .5px 2px rgba(0, 0, 0, 0.35);
 }
 
 button {
